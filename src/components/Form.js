@@ -66,13 +66,12 @@ const Form = () => {
                 Pay here
               </Link>
             </p>
-          )}
-          {/* {taxPaid ? (
+          )}{' '}
+          {taxPaid ? (
             <Button text='continue' />
           ) : (
             <Button text='pay' onClick={() => setTaxPaid(!taxPaid)} />
-          )} */}
-          <Button text='continue' />
+          )}
         </div>
       </form>
     </div>
