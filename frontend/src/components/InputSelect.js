@@ -1,9 +1,12 @@
 import React from 'react';
 
-const InputSelect = () => {
+const InputSelect = ({ label, labelFor }) => {
   return (
     <div className='input--text'>
-      <select>
+      <label className='label' for={labelFor}>
+        {label}
+      </label>
+      <select id={labelFor}>
         <option>New Co</option>
       </select>
     </div>

@@ -4,7 +4,7 @@ import Form from '../components/Form';
 const HomeScreen = () => {
   return (
     <>
-      <Form pay='tax' />
+      <Form />
     </>
   );
 };

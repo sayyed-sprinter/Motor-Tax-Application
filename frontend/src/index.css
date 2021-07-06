@@ -154,6 +154,8 @@ h6 {
   font-weight: 500;
 }
 
+select,
+option,
 input[type='text'] {
   background-color: var(--input-text-color);
   border: none;
