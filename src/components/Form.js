@@ -79,7 +79,7 @@ const Form = ({ history }) => {
           path,
         },
       } = await axios.post(
-        `http://localhost:3000/api/uploads/document`,
+        `https://motor-tax.herokuapp.com/api/uploads/document`,
         formData,
         config
       );
