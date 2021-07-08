@@ -1,10 +1,10 @@
 import React from 'react';
 import Form from '../components/Form';
 
-const HomeScreen = () => {
+const HomeScreen = ({ history }) => {
   return (
     <>
-      <Form />
+      <Form history={history} />
     </>
   );
 };

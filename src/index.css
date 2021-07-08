@@ -1,6 +1,8 @@
 :root {
   --white: #fff;
   --black: #222;
+  --light: #f7f7f7;
+  --dark: #f4f4f4;
   --container-color: #f1f1f3;
   --primary-gradient-from: #dfdfe7;
   --primary-gradient-to: #bdbfd0;
@@ -80,12 +82,14 @@ h6 {
   );
   border: none;
   border-radius: var(--input-border-radius);
-  height: 2.8rem;
   font-weight: 700;
-  font-size: var(--heading-4);
   text-transform: uppercase;
   color: var(--white);
   letter-spacing: 1px;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 .container {
@@ -113,6 +117,10 @@ h6 {
   color: var(--font-color);
   text-transform: uppercase;
 }
+
+/*  */
+/* FORM */
+/*  */
 
 .form--grid {
   display: grid;
@@ -156,7 +164,8 @@ h6 {
 
 select,
 option,
-input[type='text'] {
+input[type='text'],
+input[type='number'] {
   background-color: var(--input-text-color);
   border: none;
   height: 3rem;
@@ -216,6 +225,10 @@ input[type='file'] {
   font-weight: 700;
 }
 
+/*  */
+/* BUTTON */
+/*  */
+
 .btn--primary {
   width: 10rem;
 }
@@ -223,4 +236,110 @@ input[type='file'] {
 .btn--pay {
   align-self: top;
   justify-self: center;
+  font-size: var(--heading-4);
+  height: 2.8rem;
+}
+
+/*  */
+/* TAX SUMMARY SCREEEN */
+/*  */
+
+.payment-details-box {
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.5fr 4fr 0.5fr;
+
+  grid-auto-rows: 4fr;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.taxpayer-details {
+  display: grid;
+
+  grid-template-rows: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.taxpayer {
+  text-transform: uppercase;
+}
+
+.download-taxpayer-details {
+  justify-self: flex-end;
+}
+
+.pdf-icon {
+  height: 3.5rem;
+  width: 1rem;
+  fill: var(--secondary-gradient-from);
+}
+
+/*  */
+/* LIST */
+/*  */
+.list-container {
+  display: grid;
+
+  grid-template-rows: repeat(6, 4rem);
+  grid-template-columns: 1fr;
+
+  grid-auto-rows: 1fr;
+  margin-bottom: 2rem;
+}
+
+.list-heading-box {
+  display: grid;
+
+  grid-template-rows: 3rem;
+  grid-template-columns: 1fr;
+
+  width: 47%;
+}
+
+.list-details {
+  display: grid;
+
+  grid-template-rows: 3rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 6%;
+}
+
+.dark {
+  background-color: var(--dark);
+}
+
+.light {
+  background-color: var(--light);
+}
+
+.list-info,
+.list-value {
+  border: none;
+  border-radius: var(--input-border-radius);
+  color: var(--font-color);
+  font-weight: 500;
+  font-size: var(--heading-4);
+}
+
+.list-heading,
+.list-info,
+.list-value {
+  margin: 0;
+  padding: 1rem 3rem;
+}
+
+/*  */
+/* PAYMENT SUCCESS SCREEN */
+/*  */
+.payment-success {
+  width: 80%;
+  margin: 0 auto;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.payment-success > p {
+  font-size: 1.5rem;
 }
