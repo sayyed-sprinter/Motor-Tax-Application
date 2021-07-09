@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
@@ -28,6 +28,9 @@ const Form = ({ history }) => {
     'Attach your citizenship copy'
   );
   const [receipt, setReceipt] = useState(' Attach your insurance receipt copy');
+
+  const record = useSelector((state) => state.taxpayer);
+  let { error, success } = record;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
@@ -72,6 +75,12 @@ const Form = ({ history }) => {
   };
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (success) {
+      history.push('/tax-summary');
+    }
+  }, [success, history]);
 
   const uploadFileHandler = async (e, type) => {
     const file = e.target.files[0];
@@ -131,12 +140,12 @@ const Form = ({ history }) => {
         policy_file_path,
       })
     );
-    history.push('/tax-summary');
   };
 
   return (
     <div className='form--pay-tax'>
       <h1 className='heading-1'>Pay Your Tax</h1>
+
       <form action='' className='form--grid' onSubmit={submitHandler}>
         <div className='text-box'>
           <div className='input--text'>
@@ -303,6 +312,7 @@ const Form = ({ history }) => {
             <Button text='pay' onClick={() => setTaxPaid(!taxPaid)} />
           )}
         </div>
+        {error && <p className='error-message'>{error}&#128532;</p>}
       </form>
     </div>
   );
