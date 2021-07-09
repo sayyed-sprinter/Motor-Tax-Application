@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
@@ -28,9 +28,6 @@ const Form = ({ history }) => {
     'Attach your citizenship copy'
   );
   const [receipt, setReceipt] = useState(' Attach your insurance receipt copy');
-
-  const taxpayerRecord = useSelector((state) => state.taxpayer);
-  const { inputFields } = taxpayerRecord;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
