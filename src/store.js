@@ -8,12 +8,13 @@ const reducer = combineReducers({
   taxpayer: taxpayerReducer,
 });
 
+const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
+  ? JSON.parse(localStorage.getItem('taxpayerinfo'))
+  : {};
+
 const initialState = {
   taxpayer: {
-    bluebook_number: '1625649993115',
-    vehicle_number: '1528',
-    policy_number: '05454451515',
-    engine_cc: '500',
+    taxpayerinfo: taxpayerFromStorage,
   },
 };
 

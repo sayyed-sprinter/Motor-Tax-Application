@@ -9,7 +9,10 @@ export const taxpayerReducer = (state = {}, action) => {
     case TAXPAYER_FETCH_REQUEST:
       return { loading: true };
     case TAXPAYER_FETCH_SUCCESS:
-      return { LOADING: false, taxpayer: action.payload };
+      return {
+        loading: false,
+        taxpayerinfo: action.payload,
+      };
     case TAXPAYER_FETCH_FAIL:
       return { loading: false, error: action.payload };
     default:

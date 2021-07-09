@@ -11,11 +11,16 @@ export const fetchTaxpayerDetails = (bodydata) => async (dispatch) => {
     dispatch({ type: TAXPAYER_FETCH_REQUEST });
 
     const { data } = await axios.post(
-      `https://motor-tax.herokuapp.com/api/taxpayer/`,
+      `http://localhost:3000/api/taxpayer/`,
       bodydata
     );
 
-    dispatch({ type: TAXPAYER_FETCH_SUCCESS, payload: data });
+    dispatch({
+      type: TAXPAYER_FETCH_SUCCESS,
+      payload: data,
+    });
+
+    localStorage.setItem('taxpayerinfo', JSON.stringify(data));
   } catch (error) {
     dispatch({
       type: TAXPAYER_FETCH_FAIL,

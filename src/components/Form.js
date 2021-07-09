@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
@@ -8,14 +8,16 @@ import Button from './Button';
 import { fetchTaxpayerDetails } from '../actions/taxpayerActions';
 
 const Form = ({ history }) => {
-  let file_path = '';
-
   const [taxPaid, setTaxPaid] = useState(true);
   const [vehicle_number, setVehicle_number] = useState('');
   const [bluebook_number, setBluebook_number] = useState('');
   const [engine_cc, setEngine_cc] = useState('');
   const [policy_number, setPolicy_number] = useState('');
   const [insuranceAgent, setInsuranceAgent] = useState('');
+  const [bluebook_file_path, setBluebook_file_path] = useState('');
+  const [citizenship_file_path, setCitizenship_file_path] = useState('');
+  const [policy_file_path, setPolicy_file_path] = useState('');
+
   const [fileLoading, setFileLoading] = useState(false);
   const [bluebookLoader, setBluebookLoader] = useState(false);
   const [citizenshipLoader, setCitizenshipLoader] = useState(false);
@@ -26,6 +28,9 @@ const Form = ({ history }) => {
     'Attach your citizenship copy'
   );
   const [receipt, setReceipt] = useState(' Attach your insurance receipt copy');
+
+  const taxpayerRecord = useSelector((state) => state.taxpayer);
+  const { inputFields } = taxpayerRecord;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
@@ -56,11 +61,20 @@ const Form = ({ history }) => {
     }
   };
 
-  const dispatch = useDispatch();
+  // DISPLAY Loader
+  const setFilePaths = (path, type) => {
+    if (type === 'bluebook') {
+      setBluebook_file_path(`https://motor-tax.herokuapp.com/${path}`);
+    }
+    if (type === 'citizenship') {
+      setCitizenship_file_path(`https://motor-tax.herokuapp.com/${path}`);
+    }
+    if (type === 'policy') {
+      setPolicy_file_path(`https://motor-tax.herokuapp.com/${path}`);
+    }
+  };
 
-  useEffect(() => {
-    console.log(taxPaid);
-  }, [taxPaid]);
+  const dispatch = useDispatch();
 
   const uploadFileHandler = async (e, type) => {
     const file = e.target.files[0];
@@ -75,17 +89,14 @@ const Form = ({ history }) => {
 
       const {
         data: {
-          file: { name },
-          path,
+          file: { name, path },
         },
       } = await axios.post(
-        `https://motor-tax.herokuapp.com/api/uploads/document`,
+        `http://localhost:3000/api/uploads/document`,
         formData,
         config
       );
 
-      // SAVE FILE PATH IN filePath
-      file_path = `https://motor-tax.herokuapp.com/${path}`;
       showTooltip(name, type);
 
       // ASSIGN NAME
@@ -101,6 +112,9 @@ const Form = ({ history }) => {
       setBluebookLoader(false);
       setCitizenshipLoader(false);
       setPolicyLoader(false);
+
+      // SAVE FILE PATH IN filePath
+      setFilePaths(path, type);
     } catch (error) {
       setFileLoading(false);
       console.error(`Error occured: ${error}`);
@@ -115,7 +129,9 @@ const Form = ({ history }) => {
         bluebook_number,
         engine_cc,
         policy_number,
-        file_path,
+        bluebook_file_path,
+        citizenship_file_path,
+        policy_file_path,
       })
     );
     history.push('/tax-summary');
@@ -127,20 +143,6 @@ const Form = ({ history }) => {
       <form action='' className='form--grid' onSubmit={submitHandler}>
         <div className='text-box'>
           <div className='input--text'>
-            <label className='label' htmlFor='vehicle-number'>
-              Vehicle number
-            </label>
-            <input
-              type='text'
-              id='vehicle-number'
-              name='vehicle-number'
-              required
-              value={vehicle_number}
-              onChange={(e) => setVehicle_number(e.target.value)}
-            ></input>
-          </div>
-
-          <div className='input--text'>
             <label className='label' htmlFor='bluebook-number'>
               Bluebook number
             </label>
@@ -151,6 +153,20 @@ const Form = ({ history }) => {
               required
               value={bluebook_number}
               onChange={(e) => setBluebook_number(e.target.value)}
+            ></input>
+          </div>
+
+          <div className='input--text'>
+            <label className='label' htmlFor='vehicle-number'>
+              Vehicle number
+            </label>
+            <input
+              type='text'
+              id='vehicle-number'
+              name='vehicle-number'
+              required
+              value={vehicle_number}
+              onChange={(e) => setVehicle_number(e.target.value)}
             ></input>
           </div>
 

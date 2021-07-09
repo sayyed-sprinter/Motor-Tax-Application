@@ -74,6 +74,14 @@ h6 {
   color: var(--font-color);
 }
 
+.container {
+  width: 92%;
+  margin: 3rem auto;
+  background-color: var(--container-color);
+  border-radius: var(--border-radius);
+  box-shadow: --box-shadow;
+}
+
 .btn {
   background: linear-gradient(
     to right,
@@ -145,14 +153,6 @@ h6 {
 .label-policy:hover + .tooltip-box {
   visibility: visible;
   transition: all 0.3s linear;
-}
-
-.container {
-  width: 92%;
-  margin: 3rem auto;
-  background-color: var(--container-color);
-  border-radius: var(--border-radius);
-  box-shadow: --box-shadow;
 }
 
 .form--pay-tax {
