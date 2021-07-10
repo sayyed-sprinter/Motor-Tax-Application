@@ -396,6 +396,10 @@ input[type='file'] {
   fill: var(--secondary-gradient-from);
 }
 
+.pdf-icon:hover {
+  cursor: pointer;
+}
+
 /*  */
 /* LIST */
 /*  */
