@@ -307,9 +307,13 @@ const Form = ({ history }) => {
             </p>
           )}{' '}
           {taxPaid ? (
-            <Button text='continue' />
+            <Button text='continue' classes='btn btn--primary btn--pay' />
           ) : (
-            <Button text='pay' onClick={() => setTaxPaid(!taxPaid)} />
+            <Button
+              text='pay'
+              classes='btn btn--primary btn--pay'
+              onClick={() => setTaxPaid(!taxPaid)}
+            />
           )}
         </div>
         {error && <p className='error-message'>{error}&#128532;</p>}

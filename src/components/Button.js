@@ -1,10 +1,18 @@
 import React from 'react';
 
-const Button = ({ text }) => {
+const Button = ({ text, classes, disabled }) => {
   return (
-    <button type='submit' className='btn btn--primary btn--pay'>
-      {text}
-    </button>
+    <>
+      {disabled ? (
+        <button className={classes} disabled>
+          {text}
+        </button>
+      ) : (
+        <button type='submit' className={classes} disabled={disabled}>
+          {text}
+        </button>
+      )}
+    </>
   );
 };
 

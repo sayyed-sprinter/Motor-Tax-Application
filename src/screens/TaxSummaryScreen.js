@@ -69,11 +69,11 @@ const TaxSummaryScreen = ({ history }) => {
         <p>Error occured: {error}</p>
       ) : (
         <>
-          <div className='btn btn--go-back' onClick={goBackHandler}>
-            <TiArrowBack className='go-back' />
-          </div>
           <div className='payment-details-box'>
             <h1 className='heading-1'>Payment details</h1>
+            <div className='btn btn--go-back' onClick={goBackHandler}>
+              <TiArrowBack className='go-back' />
+            </div>
             <div className='payment-details'>
               <div className='taxpayer-details'>
                 <h2 className='taxpayer'>{taxpayerinfo.taxpayer_name}</h2>
@@ -96,6 +96,8 @@ const TaxSummaryScreen = ({ history }) => {
                 value4={taxpayerinfo.engine_cc}
                 key5='Province'
                 value5={taxpayerinfo.province}
+                key6='Last tax paid on'
+                value6={`${taxpayerinfo.paidYear}/${taxpayerinfo.paidMonth}/${taxpayerinfo.paidDate}`}
               />
               <List
                 title='Tax charges'
@@ -117,9 +119,18 @@ const TaxSummaryScreen = ({ history }) => {
                 }`}
               />
             </div>
-            <Link to='/payment-success' className='btn--pay'>
-              <Button text='pay' />
-            </Link>
+
+            {taxpayerinfo.taxAmount > 0 ? (
+              <Link to='/payment-success' className='btn--pay'>
+                <Button text='pay' />
+              </Link>
+            ) : (
+              <Button
+                text='Nothing to pay'
+                classes='btn btn--pay btn-lg'
+                disabled
+              />
+            )}
           </div>
         </>
       )}

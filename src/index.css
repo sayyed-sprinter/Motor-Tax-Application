@@ -1,6 +1,8 @@
 :root {
   --white: #fff;
   --black: #222;
+  --grey-light: #777;
+  --grey-dark: #333;
   --light: #f7f7f7;
   --dark: #f4f4f4;
   --container-color: #f1f1f3;
@@ -11,6 +13,7 @@
   --secondary-gradient-to: #fa745b;
   --font-color: #3f2935;
   --box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.178);
+  --box-shadow-dense: 2px 4px 12px rgba(0, 0, 0, 0.411);
   --text-shadow: 1px 2px 6px rgba (0, 0, 0, 0.322);
   --border-radius: 1.5rem;
   --input-border-radius: 0.4rem;
@@ -97,6 +100,15 @@ h6 {
   letter-spacing: 1px;
 }
 
+.btn-lg {
+  width: 13rem;
+}
+
+.btn:disabled {
+  background-color: var(--grey-light);
+  background-image: none;
+}
+
 .hidden {
   visibility: hidden;
 }
@@ -106,10 +118,21 @@ h6 {
   display: inline-block;
   width: 2.5rem;
   height: 2.5rem;
-  margin: 2rem 0 0 5rem;
   text-align: center;
   border-radius: 50%;
   box-shadow: var(--box-shadow);
+  transition: all 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.btn--go-back:hover {
+  box-shadow: var(--box-shadow-dense);
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.btn--go-back:active {
+  box-shadow: var(--box-shadow);
+  transform: scale(0.95);
 }
 
 .go-back {
@@ -344,11 +367,12 @@ input[type='file'] {
   display: grid;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 4fr 0.5fr;
+  grid-template-rows: 0.5fr 2.5rem 4fr 0.5fr;
 
   grid-auto-rows: 4fr;
   width: 80%;
   margin: 0 auto;
+  align-items: center;
 }
 
 .taxpayer-details {
