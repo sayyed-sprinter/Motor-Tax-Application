@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import Button from './Button';
@@ -30,7 +30,7 @@ const Form = ({ history }) => {
   const [receipt, setReceipt] = useState(' Attach your insurance receipt copy');
 
   const record = useSelector((state) => state.taxpayer);
-  let { error, success } = record;
+  let { error, success, loading } = record;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
@@ -293,24 +293,38 @@ const Form = ({ history }) => {
           )}
         </div>
         <div className='submit-info'>
-          {taxPaid && (
+          {/* {taxPaid && (
             <p className='no-policy'>
               {' '}
               Not paid Insurance? &nbsp;
               <Link
                 to='#'
                 className='link-primary'
-                onClick={() => setTaxPaid(!taxPaid)}
+                id='btn-pay-here'
+               onClick={() => setTaxPaid(!taxPaid)}
               >
                 Pay here
               </Link>
             </p>
-          )}{' '}
+          )}{' '} */}
           {taxPaid ? (
-            <Button text='continue' classes='btn btn--primary btn--pay' />
+            loading ? (
+              <Button
+                text='loading...'
+                classes='btn btn--primary btn--pay'
+                id='btn-continue'
+              />
+            ) : (
+              <Button
+                text='continue'
+                classes='btn btn--primary btn--pay'
+                id='btn-continue'
+              />
+            )
           ) : (
             <Button
               text='pay'
+              id='btn-pay-insurance'
               classes='btn btn--primary btn--pay'
               onClick={() => setTaxPaid(!taxPaid)}
             />

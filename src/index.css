@@ -98,6 +98,16 @@ h6 {
   text-transform: uppercase;
   color: var(--white);
   letter-spacing: 1px;
+  transition: all 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.btn:hover {
+  box-shadow: var(--box-shadow-dense);
+  transform: scale(1.01);
+}
+
+.btn:active {
+  transform: scale(0.96);
 }
 
 .btn-lg {
@@ -379,24 +389,54 @@ input[type='file'] {
   display: grid;
 
   grid-template-rows: 100%;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .taxpayer {
   text-transform: uppercase;
 }
 
-.download-taxpayer-details {
-  justify-self: flex-end;
-}
-
 .pdf-icon {
-  height: 3.5rem;
-  width: 1rem;
   fill: var(--secondary-gradient-from);
+  justify-self: self-end;
+  display: block;
+  align-self: center;
+  font-size: xx-large;
 }
 
 .pdf-icon:hover {
+  cursor: pointer;
+}
+
+.download-statement-box {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 4rem 12rem;
+  justify-items: center;
+  width: 18rem;
+  margin: 0 auto;
+  transition: all 0.1s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.download-statement-box:hover {
+  transform: scale(1.02);
+}
+
+.download-statement-box:active {
+  transform: scale(0.98);
+}
+
+.download-statement {
+  background-image: linear-gradient(
+    to right,
+    var(--secondary-gradient-from),
+    var(--secondary-gradient-to)
+  );
+  display: block;
+  justify-self: self-start;
+  color: var(--white);
+  padding: 0.35rem 0.4rem;
+  border-radius: 0.2rem;
   cursor: pointer;
 }
 

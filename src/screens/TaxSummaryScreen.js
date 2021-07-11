@@ -3,58 +3,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
-import pdfMake from 'pdfmake/build/pdfmake';
 import { TiArrowBack } from 'react-icons/ti';
-
-import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 import Button from '../components/Button';
 import List from '../components/List';
-import { FaFilePdf } from 'react-icons/fa';
 
 import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const TaxSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.taxpayer);
   const { loading, error, taxpayerinfo } = record;
 
   const dispatch = useDispatch();
-
-  const downloadClickListener = () => {
-    var docDefinition = {
-      content: [
-        { text: `${taxpayerinfo.taxpayer_name}`, style: 'header' },
-        { text: '\n\nVehicle Details', style: 'header' },
-        {
-          ul: [
-            `Bluebook Number: ${taxpayerinfo.bluebook_number}`,
-            `Vehicle Number: ${taxpayerinfo.vehicle_number}`,
-            `Vehicle Type: ${taxpayerinfo.type}`,
-            `Engine CC: ${taxpayerinfo.engine_cc}`,
-            `Province: ${taxpayerinfo.province}`,
-          ],
-        },
-        { text: '\nTax Charges', style: 'header' },
-        {
-          ul: [
-            `Tax Amount: NPR.${taxpayerinfo.taxAmount}`,
-            `Tax overdue period: ${taxpayerinfo.taxOverdue}`,
-            `Penalty on overdue: NPR.${taxpayerinfo.penaltyOnOverdue}`,
-            `Polluting vehicle charge: NPR.${taxpayerinfo.pollutingCharge}`,
-            `Total amount to pay: NPR.${
-              taxpayerinfo.taxAmount +
-              taxpayerinfo.penaltyOnOverdue +
-              taxpayerinfo.pollutingCharge
-            }`,
-          ],
-        },
-      ],
-    };
-
-    pdfMake.createPdf(docDefinition).download();
-  };
 
   const goBackHandler = () => {
     dispatch({ type: TAXPAYER_FETCH_RESET });
@@ -77,12 +37,6 @@ const TaxSummaryScreen = ({ history }) => {
             <div className='payment-details'>
               <div className='taxpayer-details'>
                 <h2 className='taxpayer'>{taxpayerinfo.taxpayer_name}</h2>
-                <div className='download-taxpayer-details'>
-                  <FaFilePdf
-                    className='pdf-icon'
-                    onClick={downloadClickListener}
-                  />
-                </div>
               </div>
               <List
                 title='Vehicle details'
@@ -122,7 +76,11 @@ const TaxSummaryScreen = ({ history }) => {
 
             {taxpayerinfo.taxAmount > 0 ? (
               <Link to='/payment-success' className='btn--pay'>
-                <Button text='pay' classes='btn btn--pay btn--primary' />
+                <Button
+                  text='pay'
+                  classes='btn btn--pay btn--primary'
+                  id='btn-pay-tax'
+                />
               </Link>
             ) : (
               <Button
