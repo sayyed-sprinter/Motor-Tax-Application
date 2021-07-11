@@ -18,8 +18,6 @@ Given(
     await driver.findElement(By.id('insurance-number')).sendKeys('15s565rf');
     //await driver.sleep(delay);
     await driver.findElement(By.id('btn-continue')).click();
-    await driver.sleep(delay);
-    //await driver.sleep(delay);
 
     await driver.wait(until.elementLocated(By.id('tax-summary-screen')), 30000);
     expect(
@@ -30,22 +28,31 @@ Given(
 );
 Given('Test pay tax functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-   await driver.get('http://localhost:3000/tax-summary');
-  await driver.sleep(delay);
- await driver.findElement(By.id('btn-continue')).click();
+  await driver.get('http://localhost:3000/tax-summary');
 
- await driver.wait(until.elementLocated(By.id('payment-success-div')), 30000);
-expect(await driver.wait(until.elementLocated(By.id('payment-success-div'))));
-//await driver.quit();
+  await driver.findElement(By.id('btn-pay-tax')).click();
+
+  await driver.wait(until.elementLocated(By.id('payment-success-div')), 30000);
+  expect(await driver.wait(until.elementLocated(By.id('payment-success-div'))));
+  //await driver.quit();
 });
 
-Given('Test download statement functionality', { timeout: 30000 }, async function () {
-  let driver = await new Builder().forBrowser('chrome').build();
-   await driver.get('http://localhost:3000/payment-success');
-  await driver.sleep(delay);
- await driver.findElement(By.id('download-statement-btn')).click();
+Given(
+  'Test download statement functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/payment-success');
 
- await driver.wait(until.elementLocated(By.id('payment-success-div')), 30000);
-expect(await driver.wait(until.elementLocated(By.id('payment-success-div'))));
-//await driver.quit();
-});
+    await driver.findElement(By.id('download-statement-btn')).click();
+
+    await driver.wait(
+      until.elementLocated(By.id('payment-success-div')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('payment-success-div')))
+    );
+    //await driver.quit();
+  }
+);

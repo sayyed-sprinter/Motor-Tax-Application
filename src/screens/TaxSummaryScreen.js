@@ -29,7 +29,7 @@ const TaxSummaryScreen = ({ history }) => {
         <p>Error occured: {error}</p>
       ) : (
         <>
-          <div className='payment-details-box'>
+          <div className='payment-details-box' id='tax-summary-screen'>
             <h1 className='heading-1'>Payment details</h1>
             <div className='btn btn--go-back' onClick={goBackHandler}>
               <TiArrowBack className='go-back' />
@@ -75,12 +75,8 @@ const TaxSummaryScreen = ({ history }) => {
             </div>
 
             {taxpayerinfo.taxAmount > 0 ? (
-              <Link to='/payment-success' className='btn--pay'>
-                <Button
-                  text='pay'
-                  classes='btn btn--pay btn--primary'
-                  id='btn-pay-tax'
-                />
+              <Link to='/payment-success' className='btn--pay' id='btn-pay-tax'>
+                <Button text='pay' classes='btn btn--pay btn--primary' />
               </Link>
             ) : (
               <Button

@@ -14,7 +14,17 @@ const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
 
 const initialState = {
   taxpayer: {
-    taxpayerinfo: taxpayerFromStorage,
+    taxpayerinfo: {
+      bluebook_number: '...',
+      vehicle_number: '...',
+      engine_cc: '...',
+      province: '...',
+      lastTaxPaidOn: '...',
+      taxAmount: 2,
+      taxOverdue: '3',
+      penaltyOnOverdue: 2,
+      pollutingCharge: 0,
+    },
   },
 };
 
