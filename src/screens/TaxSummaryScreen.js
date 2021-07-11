@@ -97,7 +97,7 @@ const TaxSummaryScreen = ({ history }) => {
                 key5='Province'
                 value5={taxpayerinfo.province}
                 key6='Last tax paid on'
-                value6={`${taxpayerinfo.paidYear}/${taxpayerinfo.paidMonth}/${taxpayerinfo.paidDate}`}
+                value6={`${taxpayerinfo.lastTaxPaidOn}`}
               />
               <List
                 title='Tax charges'
@@ -122,7 +122,7 @@ const TaxSummaryScreen = ({ history }) => {
 
             {taxpayerinfo.taxAmount > 0 ? (
               <Link to='/payment-success' className='btn--pay'>
-                <Button text='pay' />
+                <Button text='pay' classes='btn btn--pay btn--primary' />
               </Link>
             ) : (
               <Button
