@@ -143,7 +143,7 @@ const Form = ({ history }) => {
   };
 
   return (
-    <div className='form--pay-tax'>
+    <div className='form--pay-tax' id="home-screen">
       <h1 className='heading-1'>Pay Your Tax</h1>
 
       <form action='' className='form--grid' onSubmit={submitHandler}>

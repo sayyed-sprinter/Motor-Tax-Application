@@ -3,6 +3,7 @@ const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const { Builder, By, Key, until, sleep } = require('selenium-webdriver');
 const { delay } = require('../utils/delay');
 
+
 Given(
   'Test input motor details functionality',
   { timeout: 100000 },
@@ -26,6 +27,8 @@ Given(
     // await driver.quit();
   }
 );
+
+
 Given('Test pay tax functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
   await driver.get('http://localhost:3000/tax-summary');
@@ -36,6 +39,7 @@ Given('Test pay tax functionality', { timeout: 30000 }, async function () {
   expect(await driver.wait(until.elementLocated(By.id('payment-success-div'))));
   //await driver.quit();
 });
+
 
 Given(
   'Test download statement functionality',
@@ -56,3 +60,26 @@ Given(
     //await driver.quit();
   }
 );
+
+
+Given(
+  'Test redirect to insurance page functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('btn-pay-here')).click();
+
+    await driver.wait(
+      until.elementLocated(By.id('home-screen')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('home-screen')))
+    );
+    //await driver.quit();
+  }
+);
+
+
