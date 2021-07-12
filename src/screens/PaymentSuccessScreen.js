@@ -48,7 +48,7 @@ const PaymentSuccessScreen = () => {
   };
 
   return (
-    <div className='payment-success'>
+    <div className='payment-success' id="payment-success-div">
       <h1 className='heading-1'>Payment successful</h1>
       <p>Thank you!</p>
       <p className='payment-msg'>
@@ -56,7 +56,7 @@ const PaymentSuccessScreen = () => {
       </p>
       <p className='payment-review'>Please rate your experience below.</p>
 
-      <div onClick={downloadClickListener} className='download-statement-box'>
+      <div onClick={downloadClickListener} className='download-statement-box' id='download-statement-btn'> 
         <FaFilePdf className='pdf-icon' />
         <p className='download-statement'>Download statement</p>
       </div>

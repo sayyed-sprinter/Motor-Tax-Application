@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({ text, classes, disabled }) => {
+const Button = ({ text, classes, disabled, id}) => {
   return (
     <>
       {disabled ? (
@@ -8,7 +8,7 @@ const Button = ({ text, classes, disabled }) => {
           {text}
         </button>
       ) : (
-        <button type='submit' className={classes} disabled={disabled}>
+        <button type='submit' className={classes} id={id}>
           {text}
         </button>
       )}
