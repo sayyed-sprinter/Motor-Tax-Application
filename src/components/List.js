@@ -18,7 +18,7 @@ const List = ({
   return (
     <div className='list-container'>
       <div className='list-heading-box'>
-        <h4 className='btn list-heading'>{title}</h4>
+        <h4 className='main-heading list-heading'>{title}</h4>
       </div>
       <div className='list-details'>
         <p className='list-info light'>{key1}</p>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import Button from './Button';
@@ -293,7 +293,7 @@ const Form = ({ history }) => {
           )}
         </div>
         <div className='submit-info'>
-          {/* {taxPaid && (
+          {taxPaid && (
             <p className='no-policy'>
               {' '}
               Not paid Insurance? &nbsp;
@@ -301,12 +301,12 @@ const Form = ({ history }) => {
                 to='#'
                 className='link-primary'
                 id='btn-pay-here'
-               onClick={() => setTaxPaid(!taxPaid)}
+                onClick={() => setTaxPaid(!taxPaid)}
               >
                 Pay here
               </Link>
             </p>
-          )}{' '} */}
+          )}{' '}
           {taxPaid ? (
             loading ? (
               <Button
@@ -326,7 +326,7 @@ const Form = ({ history }) => {
               text='pay'
               id='btn-pay-insurance'
               classes='btn btn--primary btn--pay'
-              onClick={() => setTaxPaid(!taxPaid)}
+              //onClick={() => setTaxPaid(!taxPaid)}
             />
           )}
         </div>

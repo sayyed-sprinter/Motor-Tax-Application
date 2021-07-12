@@ -8,9 +8,9 @@ const reducer = combineReducers({
   taxpayer: taxpayerReducer,
 });
 
-const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
-  ? JSON.parse(localStorage.getItem('taxpayerinfo'))
-  : {};
+// const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
+//   ? JSON.parse(localStorage.getItem('taxpayerinfo'))
+//   : {};
 
 const initialState = {
   taxpayer: {

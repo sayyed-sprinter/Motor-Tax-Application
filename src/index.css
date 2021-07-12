@@ -86,6 +86,7 @@ h6 {
   box-shadow: --box-shadow;
 }
 
+.main-heading,
 .btn {
   background: linear-gradient(
     to right,
