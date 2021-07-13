@@ -18,7 +18,7 @@ export const taxpayerReducer = (state = {}, action) => {
     case TAXPAYER_FETCH_FAIL:
       return { loading: false, error: action.payload, success: false };
     case TAXPAYER_FETCH_RESET:
-      return { taxpayer: {}, success: false };
+      return { taxpayerinfo: {}, success: false };
     default:
       return state;
   }

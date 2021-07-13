@@ -6,9 +6,12 @@ import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import Button from './Button';
 import { fetchTaxpayerDetails } from '../actions/taxpayerActions';
+import { getAllInsuranceCompanies } from '../actions/insuranceAction';
 
 const Form = ({ history }) => {
-  const [taxPaid, setTaxPaid] = useState(true);
+  const dispatch = useDispatch();
+
+  const [insurancePaid, setinsurancePaid] = useState(true);
   const [vehicle_number, setVehicle_number] = useState('');
   const [bluebook_number, setBluebook_number] = useState('');
   const [engine_cc, setEngine_cc] = useState('');
@@ -30,7 +33,10 @@ const Form = ({ history }) => {
   const [receipt, setReceipt] = useState(' Attach your insurance receipt copy');
 
   const record = useSelector((state) => state.taxpayer);
-  let { error, success, loading } = record;
+  const { error, success, loading } = record;
+
+  const insComapnies = useSelector((state) => state.insurance);
+  const { insuranceCompanies } = insComapnies;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
@@ -74,13 +80,13 @@ const Form = ({ history }) => {
     }
   };
 
-  const dispatch = useDispatch();
-
   useEffect(() => {
     if (success) {
       history.push('/tax-summary');
     }
-  }, [success, history]);
+
+    dispatch(getAllInsuranceCompanies());
+  }, [success, history, dispatch]);
 
   const uploadFileHandler = async (e, type) => {
     const file = e.target.files[0];
@@ -127,7 +133,7 @@ const Form = ({ history }) => {
     }
   };
 
-  const submitHandler = (e) => {
+  const submitTaxDetailsHandler = (e) => {
     e.preventDefault();
     dispatch(
       fetchTaxpayerDetails({
@@ -142,11 +148,27 @@ const Form = ({ history }) => {
     );
   };
 
-  return (
-    <div className='form--pay-tax' id="home-screen">
-      <h1 className='heading-1'>Pay Your Tax</h1>
+  const submitInsuranceDetailsHandler = (e) => {
+    history.push('/insurance-summary');
+  };
 
-      <form action='' className='form--grid' onSubmit={submitHandler}>
+  return (
+    <div className='form--pay-tax' id='home-screen'>
+      {insurancePaid ? (
+        <h1 className='heading-1'>Pay Your Tax</h1>
+      ) : (
+        <h1 className='heading-1'>Pay Motor Insurance</h1>
+      )}
+
+      <form
+        action=''
+        className='form--grid'
+        onSubmit={
+          insurancePaid
+            ? submitTaxDetailsHandler
+            : submitInsuranceDetailsHandler
+        }
+      >
         <div className='text-box'>
           <div className='input--text'>
             <label className='label' htmlFor='bluebook-number'>
@@ -189,7 +211,7 @@ const Form = ({ history }) => {
               onChange={(e) => setEngine_cc(e.target.value)}
             ></input>
           </div>
-          {taxPaid ? (
+          {insurancePaid ? (
             <div className='input--text'>
               <label className='label' htmlFor='insurance-number'>
                 Insurance policy number
@@ -214,7 +236,12 @@ const Form = ({ history }) => {
                 value={insuranceAgent}
                 onChange={(e) => setInsuranceAgent(e.target.value)}
               >
-                <option>New Co</option>
+                <option value=''>Select Insurance Company</option>
+                {insuranceCompanies.map((item) => (
+                  <option value={item.insurance_company}>
+                    {item.insurance_company}
+                  </option>
+                ))}
               </select>
             </div>
           )}
@@ -270,7 +297,7 @@ const Form = ({ history }) => {
             />
           </div>
 
-          {taxPaid && (
+          {insurancePaid && (
             <div className='input--file'>
               <BiLinkAlt className='file-icon' />{' '}
               <label htmlFor='receipt-file' className='label-file label-policy'>
@@ -293,7 +320,7 @@ const Form = ({ history }) => {
           )}
         </div>
         <div className='submit-info'>
-          {taxPaid && (
+          {insurancePaid && (
             <p className='no-policy'>
               {' '}
               Not paid Insurance? &nbsp;
@@ -301,13 +328,13 @@ const Form = ({ history }) => {
                 to='#'
                 className='link-primary'
                 id='btn-pay-here'
-                onClick={() => setTaxPaid(!taxPaid)}
+                onClick={() => setinsurancePaid(!insurancePaid)}
               >
                 Pay here
               </Link>
             </p>
           )}{' '}
-          {taxPaid ? (
+          {insurancePaid ? (
             loading ? (
               <Button
                 text='loading...'
@@ -323,10 +350,9 @@ const Form = ({ history }) => {
             )
           ) : (
             <Button
-              text='pay'
+              text='calculate'
               id='btn-pay-insurance'
               classes='btn btn--primary btn--pay'
-              //onClick={() => setTaxPaid(!taxPaid)}
             />
           )}
         </div>

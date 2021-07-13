@@ -3,9 +3,11 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { taxpayerReducer } from './reducers/taxpayerReducers';
+import { insuranceReducers } from './reducers/insuranceReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
+  insurance: insuranceReducers,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')

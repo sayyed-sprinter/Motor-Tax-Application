@@ -18,7 +18,7 @@ const TaxSummaryScreen = ({ history }) => {
 
   const goBackHandler = () => {
     dispatch({ type: TAXPAYER_FETCH_RESET });
-    history.push('/');
+    history.push({ pathname: '/', state: { insurancePaid: true } });
   };
 
   return (
