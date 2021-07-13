@@ -115,6 +115,10 @@ h6 {
   width: 13rem;
 }
 
+.btn-xlg {
+  width: 17rem;
+}
+
 .btn:disabled {
   background-color: var(--grey-light);
   background-image: none;
