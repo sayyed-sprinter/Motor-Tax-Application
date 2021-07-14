@@ -1,18 +1,19 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
 import { TiArrowBack } from 'react-icons/ti';
 
-import Button from '../components/Button';
 import List from '../components/List';
 
 import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
+//import PaymentSuccess from '../components/PaymentSuccess';
 
 const InsuranceSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.taxpayer);
-  const { loading, error, taxpayerinfo } = record;
+  const { loading, error } = record;
+
+  //const [showButton, setShowButton] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -30,7 +31,7 @@ const InsuranceSummaryScreen = ({ history }) => {
           <p>Error occured: {error}</p>
         ) : (
           <>
-            <div className='payment-details-box' id='tax-summary-screen'>
+            <div className='payment-details-box' id='insurance-summary-screen'>
               <h1 className='heading-1'>Payment details</h1>
               <div className='btn btn--go-back' onClick={goBackHandler}>
                 <TiArrowBack className='go-back' />
@@ -71,10 +72,17 @@ const InsuranceSummaryScreen = ({ history }) => {
                 />
               </div>
 
-              <Button
-                text='pay & download receipt'
-                classes='btn btn--pay btn-xlg'
-              />
+              {/* {showButton ? ( */}
+              <p
+                className='btn btn--pay btn--primary'
+                id='btn-pay-here'
+                //onClick={() => setShowButton(false)}
+              >
+                Pay here
+              </p>
+              {/*) : (
+                <PaymentSuccess type='insurance' />
+               )} */}
             </div>
           </>
         )}

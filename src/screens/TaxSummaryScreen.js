@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
 import { TiArrowBack } from 'react-icons/ti';
@@ -9,10 +8,13 @@ import Button from '../components/Button';
 import List from '../components/List';
 
 import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
+import PaymentSuccess from '../components/PaymentSuccess';
 
 const TaxSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.taxpayer);
   const { loading, error, taxpayerinfo } = record;
+
+  const [showButton, setShowButton] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -74,16 +76,24 @@ const TaxSummaryScreen = ({ history }) => {
               />
             </div>
 
-            {taxpayerinfo.taxAmount > 0 ? (
-              <Link to='/payment-success' className='btn--pay' id='btn-pay-tax'>
-                <Button text='pay' classes='btn btn--pay btn--primary' />
-              </Link>
+            {showButton ? (
+              taxpayerinfo.taxAmount > 0 ? (
+                <p
+                  className='btn btn--pay btn--primary'
+                  id='btn-pay-here'
+                  onClick={() => setShowButton(false)}
+                >
+                  Pay here
+                </p>
+              ) : (
+                <Button
+                  text='Nothing to pay'
+                  classes='btn btn--pay btn-lg'
+                  disabled
+                />
+              )
             ) : (
-              <Button
-                text='Nothing to pay'
-                classes='btn btn--pay btn-lg'
-                disabled
-              />
+              <PaymentSuccess type='tax' />
             )}
           </div>
         </>

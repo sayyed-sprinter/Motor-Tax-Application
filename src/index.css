@@ -119,6 +119,11 @@ h6 {
   width: 17rem;
 }
 
+p.btn {
+  text-align: center;
+  line-height: 2.8rem;
+}
+
 .btn:disabled {
   background-color: var(--grey-light);
   background-image: none;
@@ -382,7 +387,7 @@ input[type='file'] {
   display: grid;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 0.5fr 2.5rem 4fr 0.5fr;
+  grid-template-rows: 0.25fr 2.5rem 2fr 0.3fr;
 
   grid-auto-rows: 4fr;
   width: 80%;

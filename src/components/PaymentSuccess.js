@@ -8,7 +8,7 @@ import { FaFilePdf } from 'react-icons/fa';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-const PaymentSuccessScreen = () => {
+const PaymentSuccess = ({ type }) => {
   const record = useSelector((state) => state.taxpayer);
   const { taxpayerinfo } = record;
 
@@ -29,21 +29,54 @@ const PaymentSuccessScreen = () => {
         { text: '\nTax Charges', style: 'header' },
         {
           ul: [
-            `Tax Amount: NPR.${taxpayerinfo.taxAmount}`,
-            `Tax overdue period: ${taxpayerinfo.taxOverdue}`,
-            `Penalty on overdue: NPR.${taxpayerinfo.penaltyOnOverdue}`,
-            `Polluting vehicle charge: NPR.${taxpayerinfo.pollutingCharge}`,
+            `Tax Amount: NPR.${taxpayerinfo.taxAmount}/-`,
+            `Tax overdue period: ${taxpayerinfo.taxOverdue}/-`,
+            `Penalty on overdue: NPR.${taxpayerinfo.penaltyOnOverdue}/-`,
+            `Polluting vehicle charge: NPR.${taxpayerinfo.pollutingCharge}/-`,
             `Total amount to pay: NPR.${
               taxpayerinfo.taxAmount +
               taxpayerinfo.penaltyOnOverdue +
               taxpayerinfo.pollutingCharge
-            }`,
+            }/-`,
           ],
         },
       ],
     };
 
-    pdfMake.createPdf(taxDocDefinition).download();
+    var insuranceDocDefinition = {
+      content: [
+        { text: `${taxpayerinfo.taxpayer_name}`, style: 'header' },
+        { text: '\n\nPolicy Details', style: 'header' },
+        {
+          ul: [
+            `Insurance Type: Third-party insurance`,
+            `Insured Date: 07/Jul/2021`,
+            `Insurance Amount: NPR. 2500/-`,
+            `Policy Number: 262564FG45`,
+            `Expires on : 06/Jul/2022`,
+            `Bluebook Number : 5`,
+          ],
+        },
+        { text: '\nCoverage To', style: 'header' },
+        {
+          ul: [
+            `Vehicle Type and CC: Bike - 250 cc`,
+            `Driver: NPR. 500000/-`,
+            `Conductor: NPR. 500000/-`,
+            `Helper: NPR. 500000/-`,
+            `Passenger: NPR. 500000/-`,
+            `Medical expenses: NPR. 300000/- (per tax)`,
+          ],
+        },
+      ],
+    };
+
+    if (type === 'tax') {
+      pdfMake.createPdf(taxDocDefinition).download();
+    }
+    if (type === 'insurance') {
+      pdfMake.createPdf(insuranceDocDefinition).download();
+    }
   };
 
   return (
@@ -66,5 +99,4 @@ const PaymentSuccessScreen = () => {
     </div>
   );
 };
-
-export default PaymentSuccessScreen;
+export default PaymentSuccess;

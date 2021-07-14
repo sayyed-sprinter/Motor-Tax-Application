@@ -12,7 +12,7 @@ export const getAllInsuranceCompanies = () => async (dispatch) => {
 
     const {
       data: { allInsuranceAgents },
-    } = await axios.get(`http://localhost:3000/api/insurance-agents`);
+    } = await axios.get(`https://motor-tax.herokuapp.com/api/insurance-agents`);
 
     dispatch({ type: INSURANCE_FETCH_SUCCESS, payload: allInsuranceAgents });
   } catch (error) {
