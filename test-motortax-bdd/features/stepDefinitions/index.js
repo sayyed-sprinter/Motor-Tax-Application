@@ -3,7 +3,7 @@ const { Given, When, Then, Before, After } = require('@cucumber/cucumber');
 const { Builder, By, Key, until, sleep } = require('selenium-webdriver');
 const { delay } = require('../utils/delay');
 
-
+/*
 Given(
   'Test input motor details functionality',
   { timeout: 100000 },
@@ -82,4 +82,29 @@ Given(
   }
 );
 
+*/
 
+Given(
+  'Test input motor details choose insurance company functionality',
+  { timeout: 100000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+    await driver.findElement(By.id('btn-pay-here')).click();
+    await driver.findElement(By.id('bluebook-number')).sendKeys('6');
+    // await driver.sleep(delay);
+    await driver.findElement(By.id('vehicle-number')).sendKeys('6666');
+    //await driver.sleep(delay);
+    await driver.findElement(By.id('engine-cc')).sendKeys(250);
+    //await driver.sleep(delay);
+    await driver.findElement(By.id('select-policy')).sendKeys('Modern insurance company');
+    //await driver.sleep(delay);
+    await driver.findElement(By.id('btn-pay-insurance')).click();
+
+    await driver.wait(until.elementLocated(By.id('home-screen')), 30000);
+    expect(
+      await driver.wait(until.elementLocated(By.id('home-screen')))
+    );
+    // await driver.quit();
+  }
+);
