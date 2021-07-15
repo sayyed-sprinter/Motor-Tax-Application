@@ -6,19 +6,19 @@ import { TiArrowBack } from 'react-icons/ti';
 
 import List from '../components/List';
 
-import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
+import { INSURANCE_REPORT_FETCH_RESET } from '../constants/insuranceConstants';
 //import PaymentSuccess from '../components/PaymentSuccess';
 
 const InsuranceSummaryScreen = ({ history }) => {
-  const record = useSelector((state) => state.taxpayer);
-  const { loading, error } = record;
+  const record = useSelector((state) => state.insuranceReport);
+  const { loading, error, report_details } = record;
 
   //const [showButton, setShowButton] = useState(true);
 
   const dispatch = useDispatch();
 
   const goBackHandler = () => {
-    dispatch({ type: TAXPAYER_FETCH_RESET });
+    dispatch({ type: INSURANCE_REPORT_FETCH_RESET });
     history.push({ pathname: '/', state: { insurancePaid: true } });
   };
 
@@ -32,43 +32,45 @@ const InsuranceSummaryScreen = ({ history }) => {
         ) : (
           <>
             <div className='payment-details-box' id='insurance-summary-screen'>
-              <h1 className='heading-1'>Payment details</h1>
+              <h1 className='heading-1'>Insurance policy details</h1>
               <div className='btn btn--go-back' onClick={goBackHandler}>
                 <TiArrowBack className='go-back' />
               </div>
               <div className='payment-details'>
                 <div className='taxpayer-details'>
-                  <h2 className='taxpayer'>Company Name</h2>
+                  <h2 className='taxpayer'>
+                    {report_details.insurance_company}
+                  </h2>
                 </div>
                 <List
                   title='Policy Details'
                   key1='Insurance Type'
-                  value1='Third-party Insurance'
+                  value1={report_details.insurance_type}
                   key2='Insured Date'
-                  value2='13/07/2021'
+                  value2={report_details.createdAt.split('T')[0]}
                   key3='Insurance amount'
-                  value3='3500'
+                  value3={report_details.insuranceAmount}
                   key4='Policy Number'
-                  value4='13S07K2021'
+                  value4={report_details._id}
                   key5='Expires on'
-                  value5='12/07/2022'
+                  value5={report_details.insuranceExpiryDate.split('T')[0]}
                   key6='Bluebook Number'
-                  value6='25455DD545'
+                  value6={report_details.bluebook_number}
                 />
                 <List
                   title='Coverage to'
                   key1='Vehicle type and CC'
-                  value1='Bike - 250 cc'
+                  value1={`${report_details.type} - ${report_details.engine_cc}CC`}
                   key2='Driver'
-                  value2='Rs. 500,000/-'
+                  value2={`NPR.${report_details.driver}/-`}
                   key3='Conductor:'
-                  value3='Rs. 500,000/-'
+                  value3={`NPR.${report_details.conductor}/-`}
                   key4='Helper'
-                  value4='Rs. 500,000/-'
+                  value4={`NPR.${report_details.helper}/-`}
                   key5='Passenger'
-                  value5='Rs. 500,000/-'
+                  value5={`NPR.${report_details.passenger}/-`}
                   key6='Medical Expense'
-                  value6='Rs. 300,000/- (per pax)'
+                  value6={`NPR.${report_details.medical_expenses}/- (per tax)`}
                 />
               </div>
 

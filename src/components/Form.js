@@ -6,7 +6,10 @@ import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import Button from './Button';
 import { fetchTaxpayerDetails } from '../actions/taxpayerActions';
-import { getAllInsuranceCompanies } from '../actions/insuranceAction';
+import {
+  fetchInsuranceReportDetails,
+  getAllInsuranceCompanies,
+} from '../actions/insuranceAction';
 
 const Form = ({ history }) => {
   const dispatch = useDispatch();
@@ -16,7 +19,7 @@ const Form = ({ history }) => {
   const [bluebook_number, setBluebook_number] = useState('');
   const [engine_cc, setEngine_cc] = useState('');
   const [policy_number, setPolicy_number] = useState('');
-  const [insuranceAgent, setInsuranceAgent] = useState('');
+  const [insurance_company, setInsurance_company] = useState('');
   const [bluebook_file_path, setBluebook_file_path] = useState('');
   const [citizenship_file_path, setCitizenship_file_path] = useState('');
   const [policy_file_path, setPolicy_file_path] = useState('');
@@ -34,6 +37,13 @@ const Form = ({ history }) => {
 
   const record = useSelector((state) => state.taxpayer);
   const { error, success, loading } = record;
+
+  const insurnceReport = useSelector((state) => state.insuranceReport);
+  const {
+    success: successInsuranceReport,
+    loading: loadingInsuranceReport,
+    error: errInsuranceReport,
+  } = insurnceReport;
 
   const insComapnies = useSelector((state) => state.insurance);
   const { insuranceCompanies } = insComapnies;
@@ -85,8 +95,11 @@ const Form = ({ history }) => {
       history.push('/tax-summary');
     }
 
+    if (successInsuranceReport) {
+      history.push('/insurance-summary');
+    }
     dispatch(getAllInsuranceCompanies());
-  }, [success, history, dispatch]);
+  }, [success, successInsuranceReport, history, dispatch]);
 
   const uploadFileHandler = async (e, type) => {
     const file = e.target.files[0];
@@ -149,7 +162,17 @@ const Form = ({ history }) => {
   };
 
   const submitInsuranceDetailsHandler = (e) => {
-    history.push('/insurance-summary');
+    e.preventDefault();
+    dispatch(
+      fetchInsuranceReportDetails({
+        vehicle_number,
+        bluebook_number,
+        engine_cc,
+        insurance_company,
+        bluebook_file_path,
+        citizenship_file_path,
+      })
+    );
   };
 
   return (
@@ -227,21 +250,22 @@ const Form = ({ history }) => {
             </div>
           ) : (
             <div className='input--text'>
-              <label className='label' htmlFor='select-policy'>
+              <label className='label' htmlFor='insurance_company'>
                 Select insurance policy
               </label>
               <select
-                id='select-policy'
-                name='select-policy'
-                value={insuranceAgent}
-                onChange={(e) => setInsuranceAgent(e.target.value)}
+                id='insurance_company'
+                name='insurance_company'
+                value={insurance_company}
+                onChange={(e) => setInsurance_company(e.target.value)}
               >
                 <option value=''>Select Insurance Company</option>
-                {insuranceCompanies.map((item) => (
-                  <option value={item.insurance_company}>
-                    {item.insurance_company}
-                  </option>
-                ))}
+                {insuranceCompanies &&
+                  insuranceCompanies.map((item) => (
+                    <option value={item.insurance_company}>
+                      {item.insurance_company}
+                    </option>
+                  ))}
               </select>
             </div>
           )}
@@ -348,6 +372,12 @@ const Form = ({ history }) => {
                 id='btn-continue'
               />
             )
+          ) : loadingInsuranceReport ? (
+            <Button
+              text='loading...'
+              id='btn-pay-insurance'
+              classes='btn btn--primary btn--pay'
+            />
           ) : (
             <Button
               text='calculate'
@@ -357,6 +387,9 @@ const Form = ({ history }) => {
           )}
         </div>
         {error && <p className='error-message'>{error}&#128532;</p>}
+        {errInsuranceReport && (
+          <p className='error-message'>{errInsuranceReport}&#128532;</p>
+        )}
       </form>
     </div>
   );

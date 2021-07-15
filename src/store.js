@@ -3,11 +3,15 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { taxpayerReducer } from './reducers/taxpayerReducers';
-import { insuranceReducers } from './reducers/insuranceReducers';
+import {
+  insuranceReducers,
+  insuranceReportReducer,
+} from './reducers/insuranceReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
   insurance: insuranceReducers,
+  insuranceReport: insuranceReportReducer,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
@@ -26,6 +30,27 @@ const initialState = {
       taxOverdue: '3',
       penaltyOnOverdue: 2,
       pollutingCharge: 0,
+    },
+  },
+  insuranceReport: {
+    report_details: {
+      bluebook_number: '...',
+      insuranceAmount: '...',
+      vehicle_number: '...',
+      engine_cc: '...',
+      insurance_type: 'Third party',
+      taxpayer_name: '...',
+      type: '...',
+      insuranceExpiryDate: '...',
+      insurance_company: '...',
+      driver: '500000',
+      conductor: '500000',
+      helper: '500000',
+      passenger: '500000',
+      medical_expenses: '300000',
+    },
+    insurance: {
+      insuranceCompanies: [],
     },
   },
 };

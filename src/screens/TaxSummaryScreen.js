@@ -58,21 +58,21 @@ const TaxSummaryScreen = ({ history }) => {
               <List
                 title='Tax charges'
                 key1='Tax amount'
-                value1={`NPR. ${taxpayerinfo.taxAmount}`}
+                value1={`NPR. ${taxpayerinfo.taxAmount}/-`}
                 key2='Tax overdue period'
                 value2={`${taxpayerinfo.taxOverdue} ${
                   taxpayerinfo.taxOverdue > 1 ? 'years' : 'year'
                 }`}
                 key3='Penalty on overdue'
-                value3={`NPR. ${taxpayerinfo.penaltyOnOverdue}`}
+                value3={`NPR. ${taxpayerinfo.penaltyOnOverdue}/-`}
                 key4='Polluting vehicle charge'
-                value4={`NPR. ${taxpayerinfo.pollutingCharge}`}
+                value4={`NPR. ${taxpayerinfo.pollutingCharge}/-`}
                 key5='Total amount to pay'
                 value5={`NPR. ${
                   taxpayerinfo.taxAmount +
                   taxpayerinfo.penaltyOnOverdue +
                   taxpayerinfo.pollutingCharge
-                }`}
+                }/-`}
               />
             </div>
 
