@@ -12,6 +12,9 @@ const PaymentSuccess = ({ type }) => {
   const record = useSelector((state) => state.taxpayer);
   const { taxpayerinfo } = record;
 
+  const insurance_info = useSelector((state) => state.insuranceReport);
+  const { report_details } = insurance_info;
+
   const downloadClickListener = () => {
     var taxDocDefinition = {
       content: [
@@ -45,27 +48,27 @@ const PaymentSuccess = ({ type }) => {
 
     var insuranceDocDefinition = {
       content: [
-        { text: `${taxpayerinfo.taxpayer_name}`, style: 'header' },
+        { text: `${report_details.insurance_company}`, style: 'header' },
         { text: '\n\nPolicy Details', style: 'header' },
         {
           ul: [
-            `Insurance Type: Third-party insurance`,
-            `Insured Date: 07/Jul/2021`,
-            `Insurance Amount: NPR. 2500/-`,
-            `Policy Number: 262564FG45`,
-            `Expires on : 06/Jul/2022`,
-            `Bluebook Number : 5`,
+            `Insurance Type: ${report_details.insurance_type}`,
+            `Insured Date: ${report_details.createdAt.split('T')[0]}`,
+            `Insurance Amount: NPR. ${report_details.insuranceAmount}/-`,
+            `Policy Number: ${report_details._id}`,
+            `Expires on : ${report_details.insuranceExpiryDate.split('T')[0]}`,
+            `Bluebook Number : ${report_details.bluebook_number}`,
           ],
         },
         { text: '\nCoverage To', style: 'header' },
         {
           ul: [
-            `Vehicle Type and CC: Bike - 250 cc`,
-            `Driver: NPR. 500000/-`,
-            `Conductor: NPR. 500000/-`,
-            `Helper: NPR. 500000/-`,
-            `Passenger: NPR. 500000/-`,
-            `Medical expenses: NPR. 300000/- (per tax)`,
+            `Vehicle Type and CC: ${report_details.type} - ${report_details.engine_cc}CC`,
+            `Driver: NPR.${report_details.driver}/-`,
+            `Conductor: NPR.${report_details.conductor}/-`,
+            `Helper: NPR.${report_details.helper}/-`,
+            `Passenger: NPR.${report_details.passenger}/-`,
+            `Medical expenses: NPR.${report_details.medical_expenses}/- (per tax)`,
           ],
         },
       ],

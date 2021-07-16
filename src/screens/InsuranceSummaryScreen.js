@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { VscLoading } from 'react-icons/vsc';
@@ -7,13 +7,13 @@ import { TiArrowBack } from 'react-icons/ti';
 import List from '../components/List';
 
 import { INSURANCE_REPORT_FETCH_RESET } from '../constants/insuranceConstants';
-//import PaymentSuccess from '../components/PaymentSuccess';
+import PaymentSuccess from '../components/PaymentSuccess';
 
 const InsuranceSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.insuranceReport);
   const { loading, error, report_details } = record;
 
-  //const [showButton, setShowButton] = useState(true);
+  const [showButton, setShowButton] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -74,17 +74,17 @@ const InsuranceSummaryScreen = ({ history }) => {
                 />
               </div>
 
-              {/* {showButton ? ( */}
-              <p
-                className='btn btn--pay btn--primary'
-                id='btn-pay-here'
-                //onClick={() => setShowButton(false)}
-              >
-                Pay here
-              </p>
-              {/*) : (
+              {showButton ? (
+                <p
+                  className='btn btn--pay btn--primary'
+                  id='btn-pay-here'
+                  onClick={() => setShowButton(false)}
+                >
+                  Pay here
+                </p>
+              ) : (
                 <PaymentSuccess type='insurance' />
-               )} */}
+              )}
             </div>
           </>
         )}
