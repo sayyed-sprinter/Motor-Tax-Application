@@ -19,7 +19,16 @@ const InsuranceSummaryScreen = ({ history }) => {
 
   const goBackHandler = () => {
     dispatch({ type: INSURANCE_REPORT_FETCH_RESET });
-    history.push({ pathname: '/', state: { insurancePaid: true } });
+    history.push({
+      pathname: '/',
+      state: {
+        insurancePaid: true,
+        policy_number: report_details._id,
+        bluebook_number: report_details.bluebook_number,
+        vehicle_number: report_details.vehicle_number,
+        engine_cc: report_details.engine_cc,
+      },
+    });
   };
 
   return (
@@ -77,7 +86,7 @@ const InsuranceSummaryScreen = ({ history }) => {
               {showButton ? (
                 <p
                   className='btn btn--pay btn--primary'
-                  id='btn-pay-here'
+                  id='btn-pay-insurance'
                   onClick={() => setShowButton(false)}
                 >
                   Pay here

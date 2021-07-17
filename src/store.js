@@ -48,6 +48,7 @@ const initialState = {
       helper: '500000',
       passenger: '500000',
       medical_expenses: '300000',
+      createdAt: '1990/12/01',
     },
     insurance: {
       insuranceCompanies: [],

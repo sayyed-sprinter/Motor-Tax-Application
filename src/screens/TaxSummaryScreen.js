@@ -80,10 +80,10 @@ const TaxSummaryScreen = ({ history }) => {
               taxpayerinfo.taxAmount > 0 ? (
                 <p
                   className='btn btn--pay btn--primary'
-                  id='btn-pay-here'
+                  id='btn-pay-tax'
                   onClick={() => setShowButton(false)}
                 >
-                  Pay here
+                  Pay
                 </p>
               ) : (
                 <Button

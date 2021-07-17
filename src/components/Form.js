@@ -46,7 +46,7 @@ const Form = ({ history }) => {
   } = insurnceReport;
 
   const insComapnies = useSelector((state) => state.insurance);
-  const { insuranceCompanies } = insComapnies;
+  const { insuranceCompanies, loading: loadingInsCompanies } = insComapnies;
 
   // DISPLAY TOOLTIPS
   const showTooltip = (name, type) => {
@@ -146,8 +146,21 @@ const Form = ({ history }) => {
     }
   };
 
+  const checkInputFields = () => {
+    vehicle_number === '' &&
+      setVehicle_number(history.location.state.vehicle_number);
+    bluebook_number === '' &&
+      setBluebook_number(history.location.state.bluebook_number);
+    engine_cc === '' && setEngine_cc(history.location.state.engine_cc);
+    policy_number === '' &&
+      setPolicy_number(history.location.state.policy_number);
+  };
+
+  history.location.state !== undefined && checkInputFields();
+
   const submitTaxDetailsHandler = (e) => {
     e.preventDefault();
+
     dispatch(
       fetchTaxpayerDetails({
         vehicle_number,
@@ -202,7 +215,11 @@ const Form = ({ history }) => {
               id='bluebook-number'
               name='bluebook-number'
               required
-              value={bluebook_number}
+              value={
+                history.location.state !== undefined
+                  ? history.location.state.bluebook_number
+                  : bluebook_number
+              }
               onChange={(e) => setBluebook_number(e.target.value)}
             ></input>
           </div>
@@ -216,7 +233,11 @@ const Form = ({ history }) => {
               id='vehicle-number'
               name='vehicle-number'
               required
-              value={vehicle_number}
+              value={
+                history.location.state !== undefined
+                  ? history.location.state.vehicle_number
+                  : vehicle_number
+              }
               onChange={(e) => setVehicle_number(e.target.value)}
             ></input>
           </div>
@@ -230,7 +251,11 @@ const Form = ({ history }) => {
               id='engine-cc'
               name='engine-cc'
               required
-              value={engine_cc}
+              value={
+                history.location.state !== undefined
+                  ? history.location.state.engine_cc
+                  : engine_cc
+              }
               onChange={(e) => setEngine_cc(e.target.value)}
             ></input>
           </div>
@@ -244,7 +269,11 @@ const Form = ({ history }) => {
                 id='insurance-number'
                 name='insurance-number'
                 required
-                value={policy_number}
+                value={
+                  history.location.state !== undefined
+                    ? history.location.state.policy_number
+                    : policy_number
+                }
                 onChange={(e) => setPolicy_number(e.target.value)}
               ></input>
             </div>
@@ -260,12 +289,22 @@ const Form = ({ history }) => {
                 onChange={(e) => setInsurance_company(e.target.value)}
               >
                 <option value=''>Select Insurance Company</option>
-                {insuranceCompanies &&
-                  insuranceCompanies.map((item) => (
-                    <option value={item.insurance_company}>
+                {loadingInsCompanies ? (
+                  <option value='New Insurance Company' id='insurance-new'>
+                    New Insurance Company
+                  </option>
+                ) : (
+                  insuranceCompanies &&
+                  insuranceCompanies.map((item, index) => (
+                    <option
+                      value={item.insurance_company}
+                      id={`insurance-${index}`}
+                      key={`insurance-${index}`}
+                    >
                       {item.insurance_company}
                     </option>
-                  ))}
+                  ))
+                )}
               </select>
             </div>
           )}
@@ -375,13 +414,13 @@ const Form = ({ history }) => {
           ) : loadingInsuranceReport ? (
             <Button
               text='loading...'
-              id='btn-pay-insurance'
+              id='btn-calculate-insurance'
               classes='btn btn--primary btn--pay'
             />
           ) : (
             <Button
               text='calculate'
-              id='btn-pay-insurance'
+              id='btn-calculate-insurance'
               classes='btn btn--primary btn--pay'
             />
           )}
