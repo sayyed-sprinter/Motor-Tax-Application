@@ -425,9 +425,17 @@ const Form = ({ history }) => {
             />
           )}
         </div>
-        {error && <p className='error-message'>{error}&#128532;</p>}
-        {errInsuranceReport && (
+        {error && error !== 'tax-paid' && (
+          <p className='error-message'>{error}&#128532;</p>
+        )}
+        {error === 'tax-paid' && (
+          <p className='success-message'>Tax already paid! &#128522;</p>
+        )}
+        {errInsuranceReport && errInsuranceReport !== 'tax-paid' && (
           <p className='error-message'>{errInsuranceReport}&#128532;</p>
+        )}
+        {errInsuranceReport === 'tax-paid' && (
+          <p className='success-message'>Tax already paid! &#128522;</p>
         )}
       </form>
     </div>

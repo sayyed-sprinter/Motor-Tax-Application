@@ -10,74 +10,79 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PaymentSuccess = ({ type }) => {
   const record = useSelector((state) => state.taxpayer);
-  const { taxpayerinfo } = record;
+  const { loading: loadingTax, error: errTax, taxpayerinfo } = record;
 
   const insurance_info = useSelector((state) => state.insuranceReport);
-  const { report_details } = insurance_info;
+  const { loading: loadingIns, error: errIns, report_details } = insurance_info;
 
   const downloadClickListener = () => {
-    var taxDocDefinition = {
-      content: [
-        { text: `${taxpayerinfo.taxpayer_name}`, style: 'header' },
-        { text: '\n\nVehicle Details', style: 'header' },
-        {
-          ul: [
-            `Bluebook Number: ${taxpayerinfo.bluebook_number}`,
-            `Vehicle Number: ${taxpayerinfo.vehicle_number}`,
-            `Vehicle Type: ${taxpayerinfo.type}`,
-            `Engine CC: ${taxpayerinfo.engine_cc}`,
-            `Province: ${taxpayerinfo.province}`,
-          ],
-        },
-        { text: '\nTax Charges', style: 'header' },
-        {
-          ul: [
-            `Tax Amount: NPR.${taxpayerinfo.taxAmount}/-`,
-            `Tax overdue period: ${taxpayerinfo.taxOverdue}/-`,
-            `Penalty on overdue: NPR.${taxpayerinfo.penaltyOnOverdue}/-`,
-            `Polluting vehicle charge: NPR.${taxpayerinfo.pollutingCharge}/-`,
-            `Total amount to pay: NPR.${
-              taxpayerinfo.taxAmount +
-              taxpayerinfo.penaltyOnOverdue +
-              taxpayerinfo.pollutingCharge
-            }/-`,
-          ],
-        },
-      ],
-    };
+    console.log(taxpayerinfo);
 
-    var insuranceDocDefinition = {
-      content: [
-        { text: `${report_details.insurance_company}`, style: 'header' },
-        { text: '\n\nPolicy Details', style: 'header' },
-        {
-          ul: [
-            `Insurance Type: ${report_details.insurance_type}`,
-            `Insured Date: ${report_details.createdAt.split('T')[0]}`,
-            `Insurance Amount: NPR. ${report_details.insuranceAmount}/-`,
-            `Policy Number: ${report_details._id}`,
-            `Expires on : ${report_details.insuranceExpiryDate.split('T')[0]}`,
-            `Bluebook Number : ${report_details.bluebook_number}`,
-          ],
-        },
-        { text: '\nCoverage To', style: 'header' },
-        {
-          ul: [
-            `Vehicle Type and CC: ${report_details.type} - ${report_details.engine_cc}CC`,
-            `Driver: NPR.${report_details.driver}/-`,
-            `Conductor: NPR.${report_details.conductor}/-`,
-            `Helper: NPR.${report_details.helper}/-`,
-            `Passenger: NPR.${report_details.passenger}/-`,
-            `Medical expenses: NPR.${report_details.medical_expenses}/- (per tax)`,
-          ],
-        },
-      ],
-    };
-
-    if (type === 'tax') {
+    if (type === 'tax' && !loadingTax && !errTax) {
+      var taxDocDefinition = {
+        content: [
+          { text: `${taxpayerinfo.taxpayer_name}`, style: 'header' },
+          { text: '\n\nVehicle Details', style: 'header' },
+          {
+            ul: [
+              `Bluebook Number: ${taxpayerinfo.bluebook_number}`,
+              `Vehicle Number: ${taxpayerinfo.vehicle_number}`,
+              `Vehicle Type: ${taxpayerinfo.type}`,
+              `Engine CC: ${taxpayerinfo.engine_cc}`,
+              `Province: ${taxpayerinfo.province}`,
+            ],
+          },
+          { text: '\nTax Charges', style: 'header' },
+          {
+            ul: [
+              `Tax Amount: NPR.${taxpayerinfo.taxAmount}/-`,
+              `Tax overdue period: ${taxpayerinfo.taxOverdue}/-`,
+              `Penalty on overdue: NPR.${taxpayerinfo.penaltyOnOverdue}/-`,
+              `Polluting vehicle charge: NPR.${taxpayerinfo.pollutingCharge}/-`,
+              `Total amount to pay: NPR.${
+                taxpayerinfo.taxAmount +
+                taxpayerinfo.penaltyOnOverdue +
+                taxpayerinfo.pollutingCharge
+              }/-`,
+            ],
+          },
+        ],
+      };
       pdfMake.createPdf(taxDocDefinition).download();
     }
-    if (type === 'insurance') {
+    if (type === 'insurance' && !loadingIns && !errIns) {
+      console.log(taxpayerinfo);
+      var insuranceDocDefinition = {
+        content: [
+          { text: `${report_details.insurance_company}`, style: 'header' },
+          { text: '\n\nPolicy Details', style: 'header' },
+          {
+            ul: [
+              `Insurance Type: ${report_details.insurance_type}`,
+              `Insured Date: ${report_details.createdAt.split('T')[0]}`,
+              `Premium: ${report_details.premium}`,
+              `Policy Number : ${report_details._id}`,
+              `Expires on : ${
+                report_details.insuranceExpiryDate.split('T')[0]
+              }`,
+              `Bluebook Number : ${report_details.bluebook_number}`,
+            ],
+          },
+          { text: '\nCoverage To', style: 'header' },
+          {
+            ul: [
+              `Vehicle Type and CC: ${report_details.type.toUpperCase()} - ${
+                report_details.engine_cc
+              } CC`,
+              `Death: NPR.${report_details.death}/-`,
+              `Disabled: NPR.${report_details.disabled}/-`,
+              `Injured: NPR.${report_details.injured}/-`,
+              `Medical expenses: ${report_details.medical_expenses}/-`,
+              `Attendant expenses: ${report_details.attendant_expenses}`,
+            ],
+          },
+        ],
+      };
       pdfMake.createPdf(insuranceDocDefinition).download();
     }
   };

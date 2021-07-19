@@ -11,7 +11,7 @@ export const fetchTaxpayerDetails = (bodydata) => async (dispatch) => {
     dispatch({ type: TAXPAYER_FETCH_REQUEST });
 
     const { data } = await axios.post(
-      `https://motor-tax.herokuapp.com/api/taxpayer/`,
+      `http://localhost:3000/api/taxpayer/`,
       bodydata
     );
 

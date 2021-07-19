@@ -41,15 +41,14 @@ const InsuranceSummaryScreen = ({ history }) => {
         ) : (
           <>
             <div className='payment-details-box' id='insurance-summary-screen'>
-              <h1 className='heading-1'>Insurance policy details</h1>
+              <h3 className='heading-1'>{report_details.insurance_company}</h3>
               <div className='btn btn--go-back' onClick={goBackHandler}>
                 <TiArrowBack className='go-back' />
               </div>
               <div className='payment-details'>
                 <div className='taxpayer-details'>
-                  <h2 className='taxpayer'>
-                    {report_details.insurance_company}
-                  </h2>
+                  <h2 className='taxpayer'>{report_details.taxpayer_name}</h2>
+                  <p className='tab-verified btn--success'>Verified</p>
                 </div>
                 <List
                   title='Policy Details'
@@ -57,8 +56,8 @@ const InsuranceSummaryScreen = ({ history }) => {
                   value1={report_details.insurance_type}
                   key2='Insured Date'
                   value2={report_details.createdAt.split('T')[0]}
-                  key3='Insurance amount'
-                  value3={report_details.insuranceAmount}
+                  key3='Premium'
+                  value3={report_details.premium}
                   key4='Policy Number'
                   value4={report_details._id}
                   key5='Expires on'
@@ -69,17 +68,19 @@ const InsuranceSummaryScreen = ({ history }) => {
                 <List
                   title='Coverage to'
                   key1='Vehicle type and CC'
-                  value1={`${report_details.type} - ${report_details.engine_cc}CC`}
-                  key2='Driver'
-                  value2={`NPR.${report_details.driver}/-`}
-                  key3='Conductor:'
-                  value3={`NPR.${report_details.conductor}/-`}
-                  key4='Helper'
-                  value4={`NPR.${report_details.helper}/-`}
-                  key5='Passenger'
-                  value5={`NPR.${report_details.passenger}/-`}
-                  key6='Medical Expense'
-                  value6={`NPR.${report_details.medical_expenses}/- (per tax)`}
+                  value1={`${report_details.type.toUpperCase()} - ${
+                    report_details.engine_cc
+                  } CC`}
+                  key2='Death'
+                  value2={`NPR.${report_details.death}/-`}
+                  key3='Disabled:'
+                  value3={`NPR.${report_details.disabled}/-`}
+                  key4='Injured'
+                  value4={`NPR.${report_details.injured}/-`}
+                  key5='Medical expenses'
+                  value5={`${report_details.medical_expenses}`}
+                  key6='Attendant expenses'
+                  value6={`NPR.${report_details.attendant_expenses}`}
                 />
               </div>
 
@@ -89,7 +90,7 @@ const InsuranceSummaryScreen = ({ history }) => {
                   id='btn-pay-insurance'
                   onClick={() => setShowButton(false)}
                 >
-                  Pay here
+                  Pay
                 </p>
               ) : (
                 <PaymentSuccess type='insurance' />

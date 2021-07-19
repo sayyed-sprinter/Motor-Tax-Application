@@ -42,8 +42,8 @@ const List = ({
       </div>
       {key6 && (
         <div className='list-details'>
-          <p className='list-info light'>{key6}</p>
-          <p className='list-value dark'>{value6}</p>
+          <p className='list-info dark  '>{key6}</p>
+          <p className='list-value light'>{value6}</p>
         </div>
       )}
     </div>
