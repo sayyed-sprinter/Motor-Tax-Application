@@ -39,6 +39,9 @@ const TaxSummaryScreen = ({ history }) => {
             <div className='payment-details'>
               <div className='taxpayer-details'>
                 <h2 className='taxpayer'>{taxpayerinfo.taxpayer_name}</h2>
+                <p className='tab-verified btn--success' id='taxpayer-verified'>
+                  Verified
+                </p>
               </div>
               <List
                 title='Vehicle details'
