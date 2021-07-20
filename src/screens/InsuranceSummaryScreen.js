@@ -48,7 +48,6 @@ const InsuranceSummaryScreen = ({ history }) => {
               <div className='payment-details'>
                 <div className='taxpayer-details'>
                   <h2 className='taxpayer'>{report_details.taxpayer_name}</h2>
-                  <p className='tab-verified btn--success'>Verified</p>
                 </div>
                 <List
                   title='Policy Details'
