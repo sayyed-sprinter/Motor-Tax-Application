@@ -17,7 +17,7 @@ function App() {
           exact
         />
         <Route path='/payment-success' component={PaymentSuccessScreen} exact />
-        <Route path='/admin' component={AdminScreen} exact />
+        <Route path='/admin' component={AdminScreen} />
         <Route path='/' component={HomeScreen} exact />
       </main>
     </Router>
