@@ -90,6 +90,68 @@ h6 {
 }
 
 /*  */
+/* HEADER */
+/*  */
+header {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 3rem;
+}
+
+/* NAV */
+
+.nav-lists {
+  display: flex;
+
+  justify-content: space-between;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  list-style-type: none;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 0 1rem;
+  height: 1rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--font-color);
+  text-shadow: var(--box-shadow);
+  display: block;
+}
+
+.nav-link:hover:after {
+  content: '';
+  display: block;
+  padding: 0.1rem;
+  border-bottom: 0.2rem solid var(--secondary-gradient-to);
+  animation: borderanimation 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+/*  */
+/* NAV_ITEMA_ANIMATION */
+/*  */
+
+@keyframes borderanimation {
+  from {
+    width: 0%;
+  }
+  50% {
+    width: 50%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/*  */
 /* BUTTON */
 /*  */
 
@@ -585,7 +647,7 @@ input[type='file'] {
 /* DOCUMENT LISTINGS */
 /*  */
 .taxpayer-docs {
-  padding-top: 5rem;
+  padding-top: 4rem;
   text-align: center;
 }
 

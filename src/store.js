@@ -8,10 +8,13 @@ import {
   insuranceReportReducer,
 } from './reducers/insuranceReducers';
 
+import { adminDocsReducer } from './reducers/adminDocsReducers';
+
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
   insurance: insuranceReducers,
   insuranceReport: insuranceReportReducer,
+  adminDocs: adminDocsReducer,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
