@@ -7,7 +7,7 @@ const Nav = () => {
   return (
     <ul className='nav-lists'>
       {menus.map((menu) => (
-        <li className='nav-item' key={menu.id}>
+        <li className='nav-item' key={menu.id} id={menu.id}>
           <Link to={menu.link} className='nav-link'>
             {menu.text}
           </Link>

@@ -1,16 +1,11 @@
 export const menus = [
   {
-    id: 1,
+    id: 'nav-home',
     text: 'Home',
     link: '/',
   },
   {
-    id: 2,
-    text: 'About',
-    link: '/about',
-  },
-  {
-    id: 5,
+    id: 'nav-admin',
     text: 'Admin',
     link: '/admin',
   },
