@@ -2,6 +2,7 @@ import React from 'react';
 import Nav from './Nav';
 import logo from '../logo.svg';
 import { Link } from 'react-router-dom';
+import HamburgerBar from './HamburgerBar';
 
 const Header = () => {
   return (
@@ -11,8 +12,13 @@ const Header = () => {
           <img src={logo} alt='Logo' className='logo-img' />
         </Link>
       </section>
+      <HamburgerBar />
       <nav className='nav'>
-        <Nav />
+        <Nav
+          ulClassName='nav-lists'
+          liClassName='nav-item'
+          aClassName='nav-link'
+        />
       </nav>
     </header>
   );

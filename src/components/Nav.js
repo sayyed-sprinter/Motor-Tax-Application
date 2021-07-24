@@ -3,14 +3,20 @@ import { Link } from 'react-router-dom';
 
 import { menus } from '../constants/navMenuConstants';
 
-const Nav = () => {
+const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink }) => {
   return (
-    <ul className='nav-lists'>
+    <ul className={ulClassName}>
       {menus.map((menu) => (
-        <li className='nav-item' key={menu.id} id={menu.id}>
-          <Link to={menu.link} className='nav-link'>
-            {menu.text}
-          </Link>
+        <li className={liClassName} key={menu.id} id={menu.id}>
+          {shouldUseLink ? (
+            <Link to={menu.link} className={aClassName}>
+              {menu.text}
+            </Link>
+          ) : (
+            <a href={menu.link} className={aClassName}>
+              {menu.text}
+            </a>
+          )}
         </li>
       ))}
     </ul>
