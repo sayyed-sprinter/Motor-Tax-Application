@@ -82,15 +82,15 @@ Given(
     let driver = await new Builder().forBrowser('chrome').build();
     await driver.get('http://localhost:3000/');
     await driver.findElement(By.id('btn-pay-here')).click();
-    await driver.findElement(By.id('bluebook-number')).sendKeys('5');
+    await driver.findElement(By.id('bluebook-number')).sendKeys('6');
     // await driver.sleep(delay);
-    await driver.findElement(By.id('vehicle-number')).sendKeys('5555');
+    await driver.findElement(By.id('vehicle-number')).sendKeys('6666');
     //await driver.sleep(delay);
-    await driver.findElement(By.id('engine-cc')).sendKeys(350);
+    await driver.findElement(By.id('engine-cc')).sendKeys(600);
     //await driver.sleep(delay);
     await driver.findElement(By.id('insurance_company')).click();
     delay;
-    await driver.findElement(By.id('insurance-new')).click();
+    await driver.findElement(By.id('insurance-0')).click();
 
     //await driver.sleep(delay);
     await driver.findElement(By.id('btn-calculate-insurance')).click();
@@ -124,6 +124,48 @@ Given(
     expect(
       await driver.wait(until.elementLocated(By.id('payment-success-div')))
     );
-    await driver.quit();
+    
+  }
+);
+
+Given(
+  'Test taxpayer verification functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-admin')).click();
+
+    await driver.wait(
+      until.elementLocated(By.id('taxpayer-documents')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('taxpayer-documents')))
+    );
+    // await driver.quit();
+  }
+);
+
+Given(
+  'Test taxpayer verification message functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-admin')).click();
+    delay
+    await driver.findElement(By.id('btn-verify-1')).click();
+    
+    await driver.wait(
+      until.elementLocated(By.id('doc-verified-1')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('doc-verified-1')))
+    );
+     await driver.quit();
   }
 );
