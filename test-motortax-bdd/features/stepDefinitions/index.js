@@ -166,6 +166,25 @@ Given(
     expect(
       await driver.wait(until.elementLocated(By.id('doc-verified-1')))
     );
+  }
+);
+
+Given(
+  'Test view tax details functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-tax-details')).click();
+  
+    await driver.wait(
+      until.elementLocated(By.id('tax-details-container')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('tax-details-container')))
+    );
      await driver.quit();
   }
 );
