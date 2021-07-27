@@ -131,6 +131,11 @@ header {
   color: var(--font-color);
   text-shadow: var(--box-shadow);
   display: block;
+  transition: all 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.nav-link:hover {
+  transform: scale(1.2);
 }
 
 .nav-link:hover:after {
@@ -540,6 +545,7 @@ p.btn {
   font-size: var(--heading-1);
   color: var(--font-color);
   text-transform: uppercase;
+  text-align: center;
 }
 
 /*  */
@@ -878,7 +884,7 @@ input[type='file'] {
   .list-info {
     background-color: var(--dark);
     color: var(--secondary-gradient-from);
-    font-weight: 700;
+    font-weight: 900;
   }
   .list-value {
     background-color: var(--light);
@@ -1015,4 +1021,23 @@ input[type='file'] {
     grid-column-start: 1;
     grid-column-end: 3;
   }
+}
+
+/*  */
+/* TAX DETAILS */
+/*  */
+
+.tax-details-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+.tax-details {
+  margin: 2rem 0;
+}
+
+.tax-details-type {
+  margin-top: 3rem;
+  text-transform: uppercase;
 }

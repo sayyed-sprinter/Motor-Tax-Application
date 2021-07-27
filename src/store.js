@@ -13,12 +13,15 @@ import {
   adminUpdatesTaxpayerReducer,
 } from './reducers/adminDocsReducers';
 
+import { getTaxDetailsReducer } from './reducers/taxDetailReducers';
+
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
   insurance: insuranceReducers,
   insuranceReport: insuranceReportReducer,
   adminDocs: adminDocsReducer,
   adminUpdatesTaxpayer: adminUpdatesTaxpayerReducer,
+  getTaxDetails: getTaxDetailsReducer,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
@@ -60,6 +63,9 @@ const initialState = {
     },
     insurance: {
       insuranceCompanies: [],
+    },
+    getTaxDetails: {
+      taxDetails: [],
     },
   },
 };
