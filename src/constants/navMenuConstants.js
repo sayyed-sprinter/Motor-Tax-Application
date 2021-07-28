@@ -9,7 +9,11 @@ export const menus = [
     text: 'Tax Details',
     link: '/tax-details',
   },
-
+  {
+    id: 'nav-faqs',
+    text: 'FAQs',
+    link: '/faqs',
+  },
   {
     id: 'nav-admin',
     text: 'Admin',

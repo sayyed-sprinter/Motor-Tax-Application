@@ -7,13 +7,13 @@ import InsuranceSummaryScreen from './screens/InsuranceSummaryScreen.js';
 import AdminScreen from './screens/AdminScreen.js';
 import Header from './components/Header.js';
 import TaxDetailScreen from './screens/TaxDetailScreen.js';
+import FAQsScreen from './screens/FAQsScreen.js';
 
 function App() {
   return (
     <Router>
       <main className='container'>
         <Header />
-        <Route path='/tax-details' component={TaxDetailScreen} exact />
         <Route path='/tax-summary' component={TaxSummaryScreen} exact />
         <Route
           path='/insurance-summary'
@@ -21,6 +21,8 @@ function App() {
           exact
         />
         <Route path='/payment-success' component={PaymentSuccessScreen} exact />
+        <Route path='/tax-details' component={TaxDetailScreen} exact />
+        <Route path='/faqs' component={FAQsScreen} exact />
         <Route path='/admin' component={AdminScreen} exact />
         <Route path='/' component={HomeScreen} exact />
       </main>
