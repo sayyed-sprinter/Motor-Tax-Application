@@ -4,12 +4,12 @@ import {
   TAX_DETAILS_FETCH_SUCCESS,
 } from '../constants/taxDetailsConstants';
 
-export const getTaxDetailsReducer = (state = { taxDetails: [] }, action) => {
+export const getTaxDetailsReducer = (state = { taxRates: [] }, action) => {
   switch (action.type) {
     case TAX_DETAILS_FETCH_REQUEST:
       return { loading: true };
     case TAX_DETAILS_FETCH_SUCCESS:
-      return { loading: false, taxDetails: action.payload };
+      return { loading: false, taxRates: action.payload };
     case TAX_DETAILS_FETCH_FAIL:
       return { loading: false, error: action.payload };
     default:

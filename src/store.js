@@ -65,7 +65,7 @@ const initialState = {
       insuranceCompanies: [],
     },
     getTaxDetails: {
-      taxDetails: [],
+      taxRates: [],
     },
   },
 };

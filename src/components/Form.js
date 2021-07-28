@@ -10,6 +10,7 @@ import {
   fetchInsuranceReportDetails,
   getAllInsuranceCompanies,
 } from '../actions/insuranceAction';
+import MessageBar from './MessageBar';
 
 const Form = ({ history }) => {
   const dispatch = useDispatch();
@@ -426,16 +427,14 @@ const Form = ({ history }) => {
           )}
         </div>
         {error && error !== 'tax-paid' && (
-          <p className='error-message'>{error}&#128532;</p>
+          <MessageBar error={true} text={error} />
         )}
-        {error === 'tax-paid' && (
-          <p className='success-message'>Tax already paid! &#128522;</p>
-        )}
+        {error === 'tax-paid' && <MessageBar text='Tax already paid!' />}
         {errInsuranceReport && errInsuranceReport !== 'tax-paid' && (
-          <p className='error-message'>{errInsuranceReport}&#128532;</p>
+          <MessageBar error={true} text={errInsuranceReport} />
         )}
         {errInsuranceReport === 'tax-paid' && (
-          <p className='success-message'>Tax already paid! &#128522;</p>
+          <MessageBar text='Tax already paid!' />
         )}
       </form>
     </div>

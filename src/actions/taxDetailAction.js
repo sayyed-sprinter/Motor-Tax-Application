@@ -6,13 +6,15 @@ import {
   TAX_DETAILS_FETCH_SUCCESS,
 } from '../constants/taxDetailsConstants';
 
-export const getAllInsuranceCompanies = () => async (dispatch) => {
+export const getTaxDetails = () => async (dispatch) => {
   try {
     dispatch({ type: TAX_DETAILS_FETCH_REQUEST });
 
-    const { data } = await axios.get(`http://localhost:3000/api/tax-details`);
+    const {
+      data: { taxRates },
+    } = await axios.get(`https://motor-tax.herokuapp.com/api/tax-details`);
 
-    dispatch({ type: TAX_DETAILS_FETCH_SUCCESS, payload: data });
+    dispatch({ type: TAX_DETAILS_FETCH_SUCCESS, payload: taxRates });
   } catch (error) {
     dispatch({
       type: TAX_DETAILS_FETCH_FAIL,

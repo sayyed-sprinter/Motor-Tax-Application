@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { VscLoading } from 'react-icons/vsc';
 import { TiArrowBack } from 'react-icons/ti';
 
 import List from '../components/List';
 
 import { INSURANCE_REPORT_FETCH_RESET } from '../constants/insuranceConstants';
 import PaymentSuccess from '../components/PaymentSuccess';
+import MessageBar from '../components/MessageBar';
+import Loader from '../components/Loader';
 
 const InsuranceSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.insuranceReport);
@@ -35,9 +36,9 @@ const InsuranceSummaryScreen = ({ history }) => {
     <>
       <>
         {loading ? (
-          <VscLoading className='loader screen-loader' />
+          <Loader />
         ) : error ? (
-          <p>Error occured: {error}</p>
+          <MessageBar error={true} text={error} />
         ) : (
           <>
             <div className='payment-details-box' id='insurance-summary-screen'>

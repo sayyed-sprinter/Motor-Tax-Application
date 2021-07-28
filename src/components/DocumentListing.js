@@ -7,6 +7,8 @@ import {
   adminUpdatesTaxpayer,
   getAllAdminDocs,
 } from '../actions/adminDocsAction';
+import Loader from './Loader';
+import MessageBar from './MessageBar';
 
 const DocumentListing = ({ history }) => {
   const dispatch = useDispatch();
@@ -15,7 +17,7 @@ const DocumentListing = ({ history }) => {
   const [btnCloseClicked, setBtnClosedClicked] = useState(false);
 
   const adminDocuments = useSelector((state) => state.adminDocs);
-  const { loading, adminDocs } = adminDocuments;
+  const { loading, error, adminDocs } = adminDocuments;
 
   const updatedDocs = useSelector((state) => state.adminUpdatesTaxpayer);
   const { loading: updateLoading, success } = updatedDocs;
@@ -50,7 +52,11 @@ const DocumentListing = ({ history }) => {
 
   return (
     <>
-      {!loading ? (
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <MessageBar text={error} error={true} />
+      ) : (
         adminDocs &&
         adminDocs.map((item, index) => (
           <section className='docs-list' key={`docs-${index}`}>
@@ -145,8 +151,6 @@ const DocumentListing = ({ history }) => {
             </section>
           </section>
         ))
-      ) : (
-        <p>loading...</p>
       )}
     </>
   );

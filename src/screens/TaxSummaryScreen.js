@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { VscLoading } from 'react-icons/vsc';
 import { TiArrowBack } from 'react-icons/ti';
 
 import Button from '../components/Button';
@@ -9,6 +8,8 @@ import List from '../components/List';
 
 import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
 import PaymentSuccess from '../components/PaymentSuccess';
+import Loader from '../components/Loader';
+import MessageBar from '../components/MessageBar';
 
 const TaxSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.taxpayer);
@@ -26,9 +27,9 @@ const TaxSummaryScreen = ({ history }) => {
   return (
     <>
       {loading ? (
-        <VscLoading className='loader screen-loader' />
+        <Loader />
       ) : error ? (
-        <p>Error occured: {error}</p>
+        <MessageBar error={true} text={error} />
       ) : (
         <>
           <div className='payment-details-box' id='tax-summary-screen'>

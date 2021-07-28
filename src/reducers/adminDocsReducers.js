@@ -14,7 +14,7 @@ export const adminDocsReducer = (state = { adminDocs: [] }, action) => {
     case ADMIN_DOCS_FETCH_SUCCESS:
       return { loading: false, adminDocs: action.payload };
     case ADMIN_DOCS_FETCH_FAIL:
-      return { loading: false, error: true };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }
@@ -32,7 +32,7 @@ export const adminUpdatesTaxpayerReducer = (state = {}, action) => {
         message: action.payload.message,
       };
     case ADMIN_DOCS_UPDATE_FAIL:
-      return { loading: false };
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

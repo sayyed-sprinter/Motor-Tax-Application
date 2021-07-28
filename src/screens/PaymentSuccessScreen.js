@@ -5,12 +5,14 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 import { FaFilePdf } from 'react-icons/fa';
+import Loader from '../components/Loader';
+import MessageBar from '../components/MessageBar';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const PaymentSuccessScreen = () => {
   const record = useSelector((state) => state.taxpayer);
-  const { taxpayerinfo } = record;
+  const { loading, error, taxpayerinfo } = record;
 
   const downloadClickListener = () => {
     var taxDocDefinition = {
@@ -47,23 +49,31 @@ const PaymentSuccessScreen = () => {
   };
 
   return (
-    <div className='payment-success' id='payment-success-div'>
-      <h1 className='heading-1'>Payment successful</h1>
-      <p>Thank you!</p>
-      <p className='payment-msg'>
-        Your payment has been successfully captured.
-      </p>
-      <p className='payment-review'>Please rate your experience below.</p>
+    <>
+      {loading ? (
+        <Loader />
+      ) : error ? (
+        <MessageBar text={error} error={true} />
+      ) : (
+        <div className='payment-success' id='payment-success-div'>
+          <h1 className='heading-1'>Payment successful</h1>
+          <p>Thank you!</p>
+          <p className='payment-msg'>
+            Your payment has been successfully captured.
+          </p>
+          <p className='payment-review'>Please rate your experience below.</p>
 
-      <div
-        onClick={downloadClickListener}
-        className='download-statement-box'
-        id='download-statement-btn'
-      >
-        <FaFilePdf className='pdf-icon' />
-        <p className='download-statement'>Download statement</p>
-      </div>
-    </div>
+          <div
+            onClick={downloadClickListener}
+            className='download-statement-box'
+            id='download-statement-btn'
+          >
+            <FaFilePdf className='pdf-icon' />
+            <p className='download-statement'>Download statement</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 
