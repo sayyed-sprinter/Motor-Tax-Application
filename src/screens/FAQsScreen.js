@@ -3,7 +3,7 @@ import FAQs from '../components/FAQs';
 
 const FAQsScreen = () => {
   return (
-    <section className='faqs-container'>
+    <section className='faqs-container' id='faqs-container'>
       <h1 className='heading-1 faqs-heading'>FAQs</h1>
       <FAQs />
     </section>

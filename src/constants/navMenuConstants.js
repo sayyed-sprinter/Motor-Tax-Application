@@ -15,6 +15,11 @@ export const menus = [
     link: '/faqs',
   },
   {
+    id: 'nav-support',
+    text: 'support',
+    link: '/support',
+  },
+  {
     id: 'nav-admin',
     text: 'Admin',
     link: '/admin',

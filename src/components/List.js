@@ -20,26 +20,36 @@ const List = ({
       <div className='list-heading-box'>
         <h4 className='main-heading list-heading'>{title}</h4>
       </div>
-      <div className='list-details'>
-        <p className='list-info light'>{key1}</p>
-        <p className='list-value dark'>{value1}</p>
-      </div>
-      <div className='list-details'>
-        <p className='list-info dark'>{key2}</p>
-        <p className='list-value light'>{value2}</p>
-      </div>
-      <div className='list-details'>
-        <p className='list-info light'>{key3}</p>
-        <p className='list-value dark'>{value3}</p>
-      </div>
-      <div className='list-details'>
-        <p className='list-info dark'>{key4}</p>
-        <p className='list-value light'>{value4}</p>
-      </div>
-      <div className='list-details'>
-        <p className='list-info light'>{key5}</p>
-        <p className='list-value dark'>{value5}</p>
-      </div>
+      {key1 && (
+        <div className='list-details'>
+          <p className='list-info light'>{key1}</p>
+          <p className='list-value dark'>{value1}</p>
+        </div>
+      )}
+      {key2 && (
+        <div className='list-details'>
+          <p className='list-info dark'>{key2}</p>
+          <p className='list-value light'>{value2}</p>
+        </div>
+      )}
+      {key3 && (
+        <div className='list-details'>
+          <p className='list-info light'>{key3}</p>
+          <p className='list-value dark'>{value3}</p>
+        </div>
+      )}
+      {key4 && (
+        <div className='list-details'>
+          <p className='list-info dark'>{key4}</p>
+          <p className='list-value light'>{value4}</p>
+        </div>
+      )}
+      {key5 && (
+        <div className='list-details'>
+          <p className='list-info light'>{key5}</p>
+          <p className='list-value dark'>{value5}</p>
+        </div>
+      )}
       {key6 && (
         <div className='list-details'>
           <p className='list-info dark  '>{key6}</p>
