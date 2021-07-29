@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
 
 const FAQs = ({ faqs }) => {
-  const [displayAns, setDisplayAns] = useState(false);
+  const clickHandler = (e) => {
+    const index = e.target.className.split('-')[1];
+    const targetAnswer = document.querySelector(`.answer-box-${index}`);
+    const iconDown = document.querySelector(`.icon-down-${index}`);
+    const iconRight = document.querySelector(`.icon-right-${index}`);
+    targetAnswer.classList.toggle('hide-answer');
+    iconDown.classList.toggle('icon-hide');
+    iconRight.classList.toggle('icon-hide');
+  };
 
   return (
     <>
@@ -12,36 +20,22 @@ const FAQs = ({ faqs }) => {
           <section className='faqs' key={index}>
             <section className='question-box'>
               <span className='icons-container'>
-                {displayAns ? (
-                  <FaAngleDown
-                    className='icon-down'
-                    onClick={(e) => {
-                      setDisplayAns(!displayAns);
-                    }}
-                  />
-                ) : (
-                  <FaAngleRight
-                    className='icon-right'
-                    onClick={(e) => {
-                      setDisplayAns(!displayAns);
-                    }}
-                  />
-                )}
+                <FaAngleDown
+                  className={`icon-down icon-down-${index} icon-hide`}
+                />
+
+                <FaAngleRight className={`icon-right icon-right-${index}`} />
               </span>
               <h3
-                className='question'
+                className={`question question-${index}`}
                 onClick={(e) => {
-                  setDisplayAns(!displayAns);
+                  clickHandler(e);
                 }}
               >
                 {faq.question}
               </h3>
             </section>
-            <section
-              className={
-                displayAns ? `show-answer answer-box` : 'hide-answer answer-box'
-              }
-            >
+            <section className={`hide-answer answer-box-${index}`}>
               <p className='answer'>{faq.answer}</p>
             </section>
           </section>
