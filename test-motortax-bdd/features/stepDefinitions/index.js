@@ -185,6 +185,44 @@ Given(
     expect(
       await driver.wait(until.elementLocated(By.id('tax-details-container')))
     );
+  }
+);
+
+Given(
+  'Test Faq functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-faqs')).click();
+  
+    await driver.wait(
+      until.elementLocated(By.id('faqs-container')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('faqs-container')))
+    );
+  }
+);
+
+Given(
+  'Test support functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-support')).click();
+  
+    await driver.wait(
+      until.elementLocated(By.id('support-container')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('support-container')))
+    );
      await driver.quit();
   }
 );
