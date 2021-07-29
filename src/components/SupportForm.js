@@ -45,6 +45,7 @@ const SupportForm = () => {
             message
           </label>
           <textarea
+            id='message'
             name='message'
             rows='5'
             value={message}
@@ -54,7 +55,11 @@ const SupportForm = () => {
         </div>
 
         <div className='submit-info'>
-          <button type='submit' className='btn btn--submit'>
+          <button
+            type='submit'
+            className='btn btn--submit'
+            id='contact-form-submit'
+          >
             submit
           </button>
         </div>

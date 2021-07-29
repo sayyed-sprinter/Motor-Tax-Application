@@ -14,6 +14,8 @@
   --error-msg-gradient-from: #db3445;
   --error-msg-gradient-to: #f71735;
   --success-msg-gradient-from: #0bab64;
+  --whatsapp: #0bab64;
+  --viber: #665cac;
   --success-msg-gradient-to: #3bb78f;
   --font-color: #3f2935;
   --box-shadow: 1px 3px 8px rgba(0, 0, 0, 0.178);
@@ -674,7 +676,7 @@ p.btn {
 }
 
 .label {
-  font-size: var(--heading-2);
+  font-size: var(--heading-3);
   color: var(--font-color);
   align-self: end;
   padding-bottom: 0.4rem;
@@ -1233,11 +1235,12 @@ textarea {
   padding: 3rem 0;
 }
 
-/* .faqs-heading {
+.faqs-heading {
+  margin: 3rem 0 5rem 0;
 }
 
-.faqs {
-} */
+/* .faqs {
+}  */
 
 .question-box {
   display: grid;
@@ -1286,7 +1289,17 @@ textarea {
 .support-container {
   width: var(--container-width);
   margin: 0 auto;
+}
 
+.about-us-content {
+  letter-spacing: 1px;
+  font-size: 1rem;
+  word-spacing: 3px;
+  line-height: 1.5rem;
+  text-align: justify;
+}
+
+.contact-us {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(2, 1fr);
@@ -1322,20 +1335,42 @@ textarea {
 .contact-list {
   display: grid;
 
-  grid-template-rows: repeat(4, 5rem);
+  grid-template-rows: repeat(4, 1fr);
   grid-template-columns: 1fr;
   grid-gap: 0.5rem;
+
+  align-items: center;
 }
 
 .contact-list-heading-box {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr;
+
+  align-items: center;
 }
 
 .contact-list-heading {
-  margin: 0.5rem 0;
-  padding: 0 2rem;
+  margin: 0;
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.icon-phone,
+.icon-mail,
+.icon-officer,
+.icon-whatsapp,
+.icon-viber {
+  font-size: 1.5rem;
+}
+
+.icon-whatsapp {
+  color: var(--whatsapp);
+}
+
+.icon-viber {
+  color: var(--viber);
 }
 
 .contact-info {
@@ -1344,13 +1379,32 @@ textarea {
   font-size: var(--heading-4);
   font-weight: 500;
   letter-spacing: 1px;
+
+  display: flex;
+  align-items: center;
+}
+
+.contact-info > a:link,
+.contact-info > a:visited {
+  text-decoration: none;
+  color: var(--font-color);
+  transition: all 0.2s linear;
+  backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.contact-info > a:hover,
+.contact-info > a:active {
+  transform: rotate(-1deg);
 }
 
 @media screen and (max-width: 60rem) {
   .support-container {
     width: 80%;
     margin: 0 auto;
-
+  }
+  .contact-us {
     grid-template-columns: 1fr;
     grid-template-rows: repeat(2, 1fr);
     grid-gap: 2rem;
