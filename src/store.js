@@ -14,6 +14,7 @@ import {
 } from './reducers/adminDocsReducers';
 
 import { getTaxDetailsReducer } from './reducers/taxDetailReducers';
+import { getFAQsReducer } from './reducers/faqsReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   adminDocs: adminDocsReducer,
   adminUpdatesTaxpayer: adminUpdatesTaxpayerReducer,
   getTaxDetails: getTaxDetailsReducer,
+  getFAQs: getFAQsReducer,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
@@ -66,6 +68,9 @@ const initialState = {
     },
     getTaxDetails: {
       taxRates: [],
+    },
+    getFAQs: {
+      faqs: [],
     },
   },
 };

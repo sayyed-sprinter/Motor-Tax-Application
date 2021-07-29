@@ -1,6 +1,6 @@
 import React from 'react';
 import { GiPoliceOfficerHead, GiPhone } from 'react-icons/gi';
-import { FaWhatsapp, FaViber, FaPhoneAlt } from 'react-icons/fa';
+import { FaWhatsapp, FaViber } from 'react-icons/fa';
 import { BiMailSend } from 'react-icons/bi';
 
 const ContactList = ({ title, phone, email, whatsapp, viber }) => {
