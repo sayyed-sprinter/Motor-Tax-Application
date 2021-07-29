@@ -1,5 +1,5 @@
 import React from 'react';
-import FAQs from '../components/FAQs';
+import FAQs from '../components/Faqs';
 
 const FAQsScreen = () => {
   return (
