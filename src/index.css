@@ -1438,6 +1438,11 @@ textarea {
     padding: 3rem 0;
   }
 
+  .contact-info,
+  .contact-list-heading {
+    font-size: 0.85rem;
+  }
+
   .contact-details {
     width: 100%;
   }

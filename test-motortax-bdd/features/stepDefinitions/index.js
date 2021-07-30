@@ -124,7 +124,6 @@ Given(
     expect(
       await driver.wait(until.elementLocated(By.id('payment-success-div')))
     );
-    
   }
 );
 
@@ -133,14 +132,9 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+    await driver.get('http://localhost:3000/admin');
 
-    await driver.findElement(By.id('nav-admin')).click();
-
-    await driver.wait(
-      until.elementLocated(By.id('taxpayer-documents')),
-      30000
-    );
+    await driver.wait(until.elementLocated(By.id('taxpayer-documents')), 30000);
     expect(
       await driver.wait(until.elementLocated(By.id('taxpayer-documents')))
     );
@@ -153,19 +147,12 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+    await driver.get('http://localhost:3000/admin');
 
-    await driver.findElement(By.id('nav-admin')).click();
-    delay
     await driver.findElement(By.id('btn-verify-1')).click();
-    
-    await driver.wait(
-      until.elementLocated(By.id('doc-verified-1')),
-      30000
-    );
-    expect(
-      await driver.wait(until.elementLocated(By.id('doc-verified-1')))
-    );
+
+    await driver.wait(until.elementLocated(By.id('doc-verified-1')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id('doc-verified-1'))));
   }
 );
 
@@ -174,10 +161,8 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+    await driver.get('http://localhost:3000/tax-details');
 
-    await driver.findElement(By.id('nav-tax-details')).click();
-  
     await driver.wait(
       until.elementLocated(By.id('tax-details-container')),
       30000
@@ -188,41 +173,19 @@ Given(
   }
 );
 
-Given(
-  'Test Faq functionality',
-  { timeout: 30000 },
-  async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+Given('Test Faq functionality', { timeout: 30000 }, async function () {
+  let driver = await new Builder().forBrowser('chrome').build();
+  await driver.get('http://localhost:3000/faqs');
 
-    await driver.findElement(By.id('nav-faqs')).click();
-  
-    await driver.wait(
-      until.elementLocated(By.id('faqs-container')),
-      30000
-    );
-    expect(
-      await driver.wait(until.elementLocated(By.id('faqs-container')))
-    );
-  }
-);
+  await driver.wait(until.elementLocated(By.id('faqs-container')), 30000);
+  expect(await driver.wait(until.elementLocated(By.id('faqs-container'))));
+});
 
-Given(
-  'Test support functionality',
-  { timeout: 30000 },
-  async function () {
-    let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+Given('Test support functionality', { timeout: 30000 }, async function () {
+  let driver = await new Builder().forBrowser('chrome').build();
+  await driver.get('http://localhost:3000/support');
 
-    await driver.findElement(By.id('nav-support')).click();
-  
-    await driver.wait(
-      until.elementLocated(By.id('support-container')),
-      30000
-    );
-    expect(
-      await driver.wait(until.elementLocated(By.id('support-container')))
-    );
-     await driver.quit();
-  }
-);
+  await driver.wait(until.elementLocated(By.id('support-container')), 30000);
+  expect(await driver.wait(until.elementLocated(By.id('support-container'))));
+  await driver.quit();
+});

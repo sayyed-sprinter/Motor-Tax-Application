@@ -7,13 +7,13 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink }) => {
   return (
     <ul className={ulClassName}>
       {menus.map((menu) => (
-        <li className={liClassName} key={menu.id} id={menu.id}>
+        <li className={liClassName} key={menu.id}>
           {shouldUseLink ? (
             <Link to={menu.link} className={aClassName}>
               {menu.text}
             </Link>
           ) : (
-            <a href={menu.link} className={aClassName}>
+            <a href={menu.link} className={aClassName} id={menu.id}>
               {menu.text}
             </a>
           )}
