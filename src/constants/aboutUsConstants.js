@@ -1,0 +1,2 @@
+export const ABOUT_US =
+  'Motor tax application is recently launched web based application that is designed to be accessible to everyone. Using this application, user can easily get the information related to the tax of vehicle. Users do not need to go physically to the transportation department. Motor tax application is extremely easy, simple and efficient to use, as it provide straight information and all the details of the vehicle not only contain the tax information but also features like: Insurance policy. ';

@@ -1,21 +1,14 @@
 import React from 'react';
 import ContactList from '../components/ContactList';
 import SupportForm from '../components/SupportForm';
+import { ABOUT_US } from '../constants/aboutUsConstants';
 
 const SupportScreen = () => {
   return (
     <section className='support-container' id='support-container'>
       <article className='about-us'>
         <h1 className='heading-1 about-us-heading'>About us</h1>
-        <p className='about-us-content'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque
-          earum, sequi veniam, sed voluptates vitae quisquam culpa dicta quis
-          delectus nisi maxime, voluptatum corrupti enim quidem. Adipisci
-          numquam molestias recusandae? Lorem ipsum, dolor sit amet consectetur
-          adipisicing elit. Voluptas magni ipsa adipisci, aut aperiam ducimus
-          non libero modi quas esse eos. Numquam, animi. Quam dolore atque
-          incidunt laboriosam soluta nam.
-        </p>
+        <p className='about-us-content'>{ABOUT_US}</p>
       </article>
       <section className='contact-us'>
         <section className='contact-form'>

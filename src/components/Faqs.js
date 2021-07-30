@@ -4,6 +4,19 @@ import { FaAngleDown, FaAngleRight } from 'react-icons/fa';
 
 const FAQs = ({ faqs }) => {
   const clickHandler = (e) => {
+    const allAnswer = document.querySelectorAll('.answer-box');
+    const allIconDown = document.querySelectorAll('.icon-down');
+    const allIconRight = document.querySelectorAll('.icon-right');
+    allAnswer.forEach((item) => {
+      item.classList.add('hide-answer');
+    });
+    allIconDown.forEach((item) => {
+      item.classList.add('icon-hide');
+    });
+    allIconRight.forEach((item) => {
+      item.classList.remove('icon-hide');
+    });
+
     const index = e.target.className.split('-')[1];
     const targetAnswer = document.querySelector(`.answer-box-${index}`);
     const iconDown = document.querySelector(`.icon-down-${index}`);
@@ -35,7 +48,7 @@ const FAQs = ({ faqs }) => {
                 {faq.question}
               </h3>
             </section>
-            <section className={`hide-answer answer-box-${index}`}>
+            <section className={`hide-answer answer-box answer-box-${index}`}>
               <p className='answer'>{faq.answer}</p>
             </section>
           </section>
