@@ -11,6 +11,8 @@
   --primary-gradient-to: #bdbfd0;
   --secondary-gradient-from: #fe3c6c;
   --secondary-gradient-to: #fa745b;
+  --footer-gradient-from: #27bbe1;
+  --footer-gradient-to: #3985e2;
   --error-msg-gradient-from: #db3445;
   --error-msg-gradient-to: #f71735;
   --success-msg-gradient-from: #0bab64;
@@ -971,7 +973,7 @@ textarea {
 .two-col-list {
   width: var(--container-width);
   margin: 0 auto;
-  padding: 1rem 0;
+  padding-bottom: 1rem;
 }
 
 .col-heading-2 {
@@ -1067,7 +1069,6 @@ textarea {
 /* DOCUMENT LISTINGS */
 /*  */
 .taxpayer-docs {
-  padding-top: 4rem;
   text-align: center;
 }
 
@@ -1198,7 +1199,6 @@ textarea {
 .tax-details-container {
   width: 80%;
   margin: 0 auto;
-  padding: 3rem 0;
 }
 
 .tax-details {
@@ -1210,10 +1210,8 @@ textarea {
   text-transform: uppercase;
 }
 
-.tax-detail-heading {
-  margin: 0;
-  padding-bottom: 1rem;
-}
+/* .tax-detail-heading {
+} */
 
 @media screen and (max-width: 60rem) {
   .tax-details-container {
@@ -1232,11 +1230,6 @@ textarea {
 .faqs-container {
   width: var(--container-width);
   margin: 0 auto;
-  padding: 3rem 0;
-}
-
-.faqs-heading {
-  margin: 3rem 0 5rem 0;
 }
 
 .faqs {
@@ -1446,4 +1439,25 @@ textarea {
   .contact-details {
     width: 100%;
   }
+}
+
+/*  */
+/* SCREEN CONTAINER */
+/*  */
+.tax-details-container,
+.summary-container,
+.faqs-container,
+.admin-container,
+.support-container {
+  padding: 3rem 0;
+}
+
+/*  */
+/* SCREEN HEADINGS */
+/*  */
+.tax-detail-heading,
+.about-us-heading,
+.taxpayer-docs,
+.faqs-heading {
+  padding-bottom: 2.5rem;
 }

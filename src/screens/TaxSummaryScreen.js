@@ -25,7 +25,7 @@ const TaxSummaryScreen = ({ history }) => {
   };
 
   return (
-    <>
+    <section className='summary-container'>
       {loading ? (
         <Loader />
       ) : error ? (
@@ -102,7 +102,7 @@ const TaxSummaryScreen = ({ history }) => {
           </div>
         </>
       )}
-    </>
+    </section>
   );
 };
 
