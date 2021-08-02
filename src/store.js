@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import { taxpayerReducer } from './reducers/taxpayerReducers';
 import {
+  newInsuranceCompanyReducers,
   insuranceReducers,
   insuranceReportReducer,
 } from './reducers/insuranceReducers';
@@ -18,6 +19,7 @@ import { getFAQsReducer } from './reducers/faqsReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
+  newInsuranceCompany: newInsuranceCompanyReducers,
   insurance: insuranceReducers,
   insuranceReport: insuranceReportReducer,
   adminDocs: adminDocsReducer,
@@ -44,6 +46,12 @@ const initialState = {
       pollutingCharge: 0,
     },
   },
+  newInsuranceCompany: {
+    insuranceCompanies: {},
+  },
+  insurance: {
+    insuranceCompanies: [],
+  },
   insuranceReport: {
     report_details: {
       death: '0',
@@ -62,9 +70,6 @@ const initialState = {
       insurance_type: '...',
       premium: 0,
       createdAt: '0000-00-00',
-    },
-    insurance: {
-      insuranceCompanies: [],
     },
     getTaxDetails: {
       taxRates: [],

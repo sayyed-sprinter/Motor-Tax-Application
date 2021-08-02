@@ -260,7 +260,7 @@ header {
 .hamburger-bar__link:link,
 .hamburger-bar__link:visited {
   display: inline-block;
-  width: 8rem;
+  width: 14rem;
   font-size: var(--heading-3);
   font-weight: 400;
   color: var(--white);
@@ -377,6 +377,7 @@ header {
   width: 10rem;
 }
 
+.btn--register,
 .btn--pay,
 .btn--submit {
   align-self: top;
@@ -608,6 +609,7 @@ p.btn {
 /* FORM */
 /*  */
 
+.insurance-companies-container,
 .form--pay-tax {
   width: 75%;
   margin: 1rem auto;
@@ -619,13 +621,21 @@ p.btn {
   row-gap: 4rem;
 }
 
+.company-form--grid,
 .form--grid {
   display: grid;
-
-  grid-template-rows: 2fr 1.3fr 1.3fr;
   grid-template-columns: 1fr;
-  grid-auto-rows: 0.4fr;
   grid-auto-columns: 1fr;
+}
+
+.form--grid {
+  grid-template-rows: 2fr 1.3fr 1.3fr;
+  grid-auto-rows: 0.4fr;
+}
+
+.company-form--grid {
+  grid-template-rows: 3fr 1fr 1fr;
+  grid-auto-rows: 1fr;
 }
 
 .text-box {
@@ -662,16 +672,10 @@ p.btn {
   grid-template-columns: 1fr;
 }
 
-.label-bluebook:hover + .tooltip-box {
-  visibility: visible;
-  transition: all 0.3s linear;
-}
-
-.label-citizenship:hover + .tooltip-box {
-  visibility: visible;
-  transition: all 0.3s linear;
-}
-
+.label-vat:hover + .tooltip-box,
+.label-license:hover + .tooltip-box,
+.label-bluebook:hover + .tooltip-box,
+.label-citizenship:hover + .tooltip-box,
 .label-policy:hover + .tooltip-box {
   visibility: visible;
   transition: all 0.3s linear;
@@ -723,11 +727,11 @@ textarea {
   resize: vertical;
 }
 
+.company-file-box,
 .file-box {
   padding: 1.5rem 0;
   display: grid;
 
-  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: repeat(2, 1fr);
 
   grid-auto-rows: 1fr;
@@ -735,6 +739,14 @@ textarea {
   align-items: center;
   column-gap: 3rem;
   row-gap: 1.5rem;
+}
+
+.file-box {
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.company-file-box {
+  grid-template-rows: 1fr;
 }
 
 .file-icon,
@@ -765,9 +777,14 @@ textarea {
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 60rem) {
+  .insurance-companies-container,
   .form--pay-tax {
     row-gap: 1rem;
     padding-top: 1rem;
+  }
+
+  .company-form--grid {
+    grid-template-rows: 6fr 2fr 1fr;
   }
 
   .form--grid {
@@ -779,8 +796,16 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .company-file-box {
+    grid-template-rows: repeat(2, 0.5fr);
+  }
+
   .file-box {
     grid-template-rows: repeat(3, 0.5fr);
+  }
+
+  .company-file-box,
+  .file-box {
     grid-template-columns: 1fr;
 
     row-gap: 0.5rem;
@@ -1213,16 +1238,6 @@ textarea {
 /* .tax-detail-heading {
 } */
 
-@media screen and (max-width: 60rem) {
-  .tax-details-container {
-    padding: 1.5rem 0;
-  }
-
-  .tax-detail-heading {
-    padding-bottom: 0.8rem;
-  }
-}
-
 /*  */
 /* FAQs */
 /*  */
@@ -1448,8 +1463,20 @@ textarea {
 .summary-container,
 .faqs-container,
 .admin-container,
-.support-container {
+.support-container,
+.insurance-companies-conatiner {
   padding: 3rem 0;
+}
+
+@media screen and (max-width: 60rem) {
+  .tax-details-container,
+  .summary-container,
+  .faqs-container,
+  .admin-container,
+  .support-container,
+  .insurance-companies-conatiner {
+    padding: 1rem 0;
+  }
 }
 
 /*  */
@@ -1458,6 +1485,22 @@ textarea {
 .tax-detail-heading,
 .about-us-heading,
 .taxpayer-docs,
-.faqs-heading {
+.faqs-heading,
+.heading-new-company {
   padding-bottom: 2.5rem;
+}
+
+.heading-new-company {
+  margin-top: 0.5rem;
+}
+
+@media screen and (max-width: 60rem) {
+  .tax-detail-heading,
+  .about-us-heading,
+  .taxpayer-docs,
+  .faqs-heading,
+  .heading-new-company {
+    padding-bottom: 0.5rem;
+    margin: 0;
+  }
 }

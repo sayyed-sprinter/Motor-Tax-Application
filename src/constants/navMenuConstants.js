@@ -5,6 +5,11 @@ export const menus = [
     link: '/',
   },
   {
+    id: 'nav-companies',
+    text: 'Insurance Companies',
+    link: '/insurance-companies',
+  },
+  {
     id: 'nav-tax-details',
     text: 'Tax Details',
     link: '/tax-details',

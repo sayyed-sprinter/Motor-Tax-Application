@@ -9,7 +9,7 @@ import Header from './components/Header.js';
 import TaxDetailScreen from './screens/TaxDetailScreen.js';
 import FAQsScreen from './screens/FAQsScreen.js';
 import SupportScreen from './screens/SupportScreen.js';
-import InsuranceCompanies from './screens/InsuranceCompanies.js';
+import InsuranceCompaniesScreen from './screens/InsuranceCompaniesScreen.js';
 
 function App() {
   return (
@@ -29,7 +29,7 @@ function App() {
         <Route path='/admin' component={AdminScreen} exact />
         <Route
           path='/insurance-companies'
-          component={InsuranceCompanies}
+          component={InsuranceCompaniesScreen}
           exact
         />
         <Route path='/' component={HomeScreen} exact />

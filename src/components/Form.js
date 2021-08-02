@@ -78,7 +78,7 @@ const Form = ({ history }) => {
     }
   };
 
-  // DISPLAY Loader
+  // SET FILE PATHS
   const setFilePaths = (path, type) => {
     if (type === 'bluebook') {
       setBluebook_file_path(`https://motor-tax.herokuapp.com/${path}`);

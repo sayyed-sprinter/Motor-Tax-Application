@@ -4,10 +4,35 @@ import {
   INSURANCE_FETCH_FAIL,
   INSURANCE_FETCH_REQUEST,
   INSURANCE_FETCH_SUCCESS,
+  INSURANCE_POST_FAIL,
+  INSURANCE_POST_REQUEST,
+  INSURANCE_POST_SUCCESS,
   INSURANCE_REPORT_FETCH_FAIL,
   INSURANCE_REPORT_FETCH_REQUEST,
   INSURANCE_REPORT_FETCH_SUCCESS,
 } from '../constants/insuranceConstants';
+
+export const createNewlInsuranceCompany =
+  (company_details) => async (dispatch) => {
+    try {
+      dispatch({ type: INSURANCE_POST_REQUEST });
+
+      const { data } = await axios.post(
+        `http://localhost:3000/api/insurance-agents/`,
+        company_details
+      );
+
+      dispatch({ type: INSURANCE_POST_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: INSURANCE_POST_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getAllInsuranceCompanies = () => async (dispatch) => {
   try {
@@ -15,7 +40,9 @@ export const getAllInsuranceCompanies = () => async (dispatch) => {
 
     const {
       data: { allInsuranceAgents },
-    } = await axios.get(`https://motor-tax.herokuapp.com/api/insurance-agents`);
+    } = await axios.get(
+      `https://motor-tax.herokuapp.com/api/insurance-agents/`
+    );
 
     dispatch({ type: INSURANCE_FETCH_SUCCESS, payload: allInsuranceAgents });
   } catch (error) {
