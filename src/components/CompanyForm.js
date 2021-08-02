@@ -263,7 +263,11 @@ const CompanyForm = () => {
             />
           </section>
         </section>
-        <Button text='Register' classes='btn btn--primary btn--register' />
+        <Button
+          text='Register'
+          classes='btn btn--primary btn--register'
+          id='btn-company-register'
+        />
       </form>
     </section>
   );

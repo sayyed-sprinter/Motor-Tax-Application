@@ -94,7 +94,7 @@ h6 {
   box-shadow: --box-shadow;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .container {
     width: 94%;
     margin: 1rem auto;
@@ -112,7 +112,7 @@ header {
   padding: 2.5rem 3rem;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   header {
     padding: 2.5rem 2rem;
   }
@@ -343,7 +343,17 @@ header {
   transform: rotate(-135deg);
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (min-width: 50rem) and (max-width: 66rem) {
+  .hamburger-bar__checkbox:checked ~ .hamburger-bar__background {
+    transform: scale(80);
+    background-image: radial-gradient(
+      var(--secondary-gradient-from),
+      var(--secondary-gradient-to)
+    );
+  }
+}
+
+@media screen and (max-width: 66rem) {
   .hamburger-bar {
     display: block;
   }
@@ -531,7 +541,7 @@ p.btn {
   );
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .error-message,
   .success-message {
     font-size: var(--heading-6);
@@ -776,7 +786,7 @@ textarea {
 }
 
 /* MEDIA QUERIES */
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .insurance-companies-container,
   .form--pay-tax {
     row-gap: 1rem;
@@ -964,7 +974,7 @@ textarea {
   padding: 1rem 3rem;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .payment-details-box {
     grid-template-rows: 0.1fr 2.5rem 2fr 0.1fr;
   }
@@ -1042,7 +1052,7 @@ textarea {
   font-weight: bold;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .two-col-list {
     width: 100%;
     padding: 0.5rem 0;
@@ -1175,7 +1185,7 @@ textarea {
   font-weight: 500;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .taxpayer-docs {
     padding-top: 1rem;
   }
@@ -1290,7 +1300,7 @@ textarea {
   text-align: justify;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .faqs-container {
     padding: 1rem;
   }
@@ -1435,7 +1445,7 @@ textarea {
   transform: rotate(-1deg);
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .support-container {
     width: 80%;
     margin: 0 auto;
@@ -1468,7 +1478,7 @@ textarea {
   padding: 3rem 0;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .tax-details-container,
   .summary-container,
   .faqs-container,
@@ -1494,7 +1504,7 @@ textarea {
   margin-top: 0.5rem;
 }
 
-@media screen and (max-width: 60rem) {
+@media screen and (max-width: 66rem) {
   .tax-detail-heading,
   .about-us-heading,
   .taxpayer-docs,
