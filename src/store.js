@@ -7,6 +7,7 @@ import {
   newInsuranceCompanyReducers,
   insuranceReducers,
   insuranceReportReducer,
+  latestInsuranceReducers,
 } from './reducers/insuranceReducers';
 
 import {
@@ -21,6 +22,7 @@ const reducer = combineReducers({
   taxpayer: taxpayerReducer,
   newInsuranceCompany: newInsuranceCompanyReducers,
   insurance: insuranceReducers,
+  latestInsurance: latestInsuranceReducers,
   insuranceReport: insuranceReportReducer,
   adminDocs: adminDocsReducer,
   adminUpdatesTaxpayer: adminUpdatesTaxpayerReducer,
@@ -50,6 +52,9 @@ const initialState = {
     insuranceCompanies: {},
   },
   insurance: {
+    insuranceCompanies: [],
+  },
+  latestInsurance: {
     insuranceCompanies: [],
   },
   insuranceReport: {

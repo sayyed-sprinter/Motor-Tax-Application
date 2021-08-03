@@ -4,6 +4,9 @@ import {
   INSURANCE_FETCH_FAIL,
   INSURANCE_FETCH_REQUEST,
   INSURANCE_FETCH_SUCCESS,
+  INSURANCE_LATEST_FETCH_FAIL,
+  INSURANCE_LATEST_FETCH_REQUEST,
+  INSURANCE_LATEST_FETCH_SUCCESS,
   INSURANCE_POST_FAIL,
   INSURANCE_POST_REQUEST,
   INSURANCE_POST_SUCCESS,
@@ -18,7 +21,7 @@ export const createNewlInsuranceCompany =
       dispatch({ type: INSURANCE_POST_REQUEST });
 
       const { data } = await axios.post(
-        `http://localhost:3000/api/insurance-agents/`,
+        `https://motor-tax.herokuapp.com/api/insurance-agents/`,
         company_details
       );
 
@@ -48,6 +51,31 @@ export const getAllInsuranceCompanies = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: INSURANCE_FETCH_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const getLatestInsuranceCompanies = () => async (dispatch) => {
+  try {
+    dispatch({ type: INSURANCE_LATEST_FETCH_REQUEST });
+
+    const {
+      data: { latestInsuranceAgents },
+    } = await axios.get(
+      `https://motor-tax.herokuapp.com/api/insurance-agents/latest`
+    );
+
+    dispatch({
+      type: INSURANCE_LATEST_FETCH_SUCCESS,
+      payload: latestInsuranceAgents,
+    });
+  } catch (error) {
+    dispatch({
+      type: INSURANCE_LATEST_FETCH_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

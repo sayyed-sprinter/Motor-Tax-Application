@@ -28,6 +28,7 @@ const HamburgerBar = () => {
           ulClassName='hamburger-bar__list'
           liClassName='hamburger-bar__item'
           aClassName='hamburger-bar__link'
+          type='mob'
         />
       </nav>
     </section>
