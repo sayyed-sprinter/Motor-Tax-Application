@@ -1523,7 +1523,8 @@ textarea {
 .insurance-companies-container {
   display: grid;
 
-  grid-template-rows: 35rem 3rem 1fr;
+  /* grid-template-rows: 35rem 3rem 1fr; */
+  grid-template-rows: 3rem 1fr;
   grid-template-columns: 1fr;
   row-gap: 4rem;
 
@@ -1551,6 +1552,12 @@ textarea {
     var(--footer-gradient-from),
     var(--footer-gradient-to)
   );
+}
+
+.grid-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .grid-company {
@@ -1762,7 +1769,8 @@ textarea {
 
 @media screen and (max-width: 62rem) {
   .insurance-companies-container {
-    grid-template-rows: 40rem 3rem 1fr;
+    /* grid-template-rows: 40rem 3rem 1fr; */
+    grid-template-rows: 3rem 1fr;
     padding: 1.5rem 0;
     grid-gap: 1rem;
   }

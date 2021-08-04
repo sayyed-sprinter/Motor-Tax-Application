@@ -49,7 +49,9 @@ const initialState = {
     },
   },
   newInsuranceCompany: {
-    insuranceCompanies: {},
+    insuranceCompanies: {
+      success: false,
+    },
   },
   insurance: {
     insuranceCompanies: [],
