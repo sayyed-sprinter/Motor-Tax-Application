@@ -187,5 +187,39 @@ Given('Test support functionality', { timeout: 30000 }, async function () {
 
   await driver.wait(until.elementLocated(By.id('support-container')), 30000);
   expect(await driver.wait(until.elementLocated(By.id('support-container'))));
-  await driver.quit();
+  
 });
+
+Given(
+  'Test insurance agents functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/insurance-companies');
+
+    // await driver.findElement(By.id('nav-companies')).click();
+
+    await driver.findElement(By.id('insurance_company')).click();
+
+    await driver.findElement(By.id('license_number')).click();
+    
+    await driver.findElement(By.id('vat_number')).click();
+    
+    await driver.findElement(By.id('address')).click();
+
+    await driver.findElement(By.id('contact')).click();
+
+    await driver.findElement(By.id('email')).click();
+
+    await driver.findElement(By.id('btn-company-register')).click();
+
+    await driver.wait(
+      until.elementLocated(By.id('insurance-companies-screen')),
+      30000
+    );
+    expect(
+      await driver.wait(until.elementLocated(By.id('insurance-companies-screen')))
+    );
+    await driver.quit();
+  }
+);
