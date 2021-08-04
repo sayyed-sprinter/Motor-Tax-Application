@@ -83,16 +83,15 @@ Given(
     await driver.get('http://localhost:3000/');
     await driver.findElement(By.id('btn-pay-here')).click();
     await driver.findElement(By.id('bluebook-number')).sendKeys('6');
-    // await driver.sleep(delay);
+
     await driver.findElement(By.id('vehicle-number')).sendKeys('6666');
-    //await driver.sleep(delay);
+
     await driver.findElement(By.id('engine-cc')).sendKeys(600);
-    //await driver.sleep(delay);
+
     await driver.findElement(By.id('insurance_company')).click();
-    delay;
+
     await driver.findElement(By.id('insurance-0')).click();
 
-    //await driver.sleep(delay);
     await driver.findElement(By.id('btn-calculate-insurance')).click();
 
     await driver.wait(
@@ -149,10 +148,8 @@ Given(
     let driver = await new Builder().forBrowser('chrome').build();
     await driver.get('http://localhost:3000/admin');
 
-    await driver.findElement(By.id('btn-verify-1')).click();
-
-    await driver.wait(until.elementLocated(By.id('doc-verified-1')), 30000);
-    expect(await driver.wait(until.elementLocated(By.id('doc-verified-1'))));
+    await driver.wait(until.elementLocated(By.id('doc-verified-0')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id('doc-verified-0'))));
   }
 );
 
@@ -161,7 +158,9 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/tax-details');
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-tax-details')).click();
 
     await driver.wait(
       until.elementLocated(By.id('tax-details-container')),
@@ -175,7 +174,8 @@ Given(
 
 Given('Test Faq functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3000/faqs');
+  await driver.get('http://localhost:3000/');
+  await driver.findElement(By.id('nav-faqs')).click();
 
   await driver.wait(until.elementLocated(By.id('faqs-container')), 30000);
   expect(await driver.wait(until.elementLocated(By.id('faqs-container'))));
@@ -183,9 +183,35 @@ Given('Test Faq functionality', { timeout: 30000 }, async function () {
 
 Given('Test support functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3000/support');
+  await driver.get('http://localhost:3000/');
+  await driver.findElement(By.id('nav-support')).click();
 
   await driver.wait(until.elementLocated(By.id('support-container')), 30000);
   expect(await driver.wait(until.elementLocated(By.id('support-container'))));
-  await driver.quit();
+  //await driver.quit();
+});
+
+Given('Test Create Insurance Agents Account Functionality', { timeout: 30000 }, async function () {
+  let driver = await new Builder().forBrowser('chrome').build();
+  await driver.get('http://localhost:3000/');
+  await driver.findElement(By.id('nav-companies')).click();
+
+
+  await driver.findElement(By.id('insurance_company')).sendKeys('Citizens Insurance company');
+    
+    await driver.findElement(By.id('license_number')).sendKeys('9882');
+    
+    await driver.findElement(By.id('vat_number')).sendKeys('35884');
+    
+    await driver.findElement(By.id('address')).sendKeys('putalisadak');
+
+    await driver.findElement(By.id('contact')).sendKeys('9863313549');
+
+    await driver.findElement(By.id('email')).sendKeys('hitech@bhjh');
+
+    await driver.findElement(By.id('btn-company-register')).click();
+
+  await driver.wait(until.elementLocated(By.id('insurance-companies-screen')), 30000);
+  expect(await driver.wait(until.elementLocated(By.id('insurance-companies-screen'))));
+  
 });
