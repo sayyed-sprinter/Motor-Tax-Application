@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import axios from 'axios';
 
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
-import {
-  createNewlInsuranceCompany,
-  getLatestInsuranceCompanies,
-} from '../actions/insuranceAction';
+import { createNewlInsuranceCompany } from '../actions/insuranceAction';
 import Button from './Button';
 import MessageBar from './MessageBar';
 
 const CompanyForm = () => {
   const dispatch = useDispatch();
 
-  const { loading, error, insuranceCompanies } = useSelector(
-    (state) => state.newInsuranceCompany
-  );
+  // const { loading, error, insuranceCompanies } = useSelector(
+  //   (state) => state.newInsuranceCompany
+  // );
+
+  const [tempSuccess, setTempSuccess] = useState(false);
 
   const [insuranceCompany, setInsuranceCompany] = useState('');
   const [licenseNumber, setLicenseNumber] = useState('');
@@ -37,29 +36,29 @@ const CompanyForm = () => {
   const [fileLoading, setFileLoading] = useState(false);
   const [vatLoader, setVatLoader] = useState(false);
   const [licenseLoader, setLicenseLoader] = useState(false);
-  const [btnText, setBtnText] = useState('Register');
+  //const [btnText, setBtnText] = useState('Register');
 
-  useEffect(() => {
-    if (!loading && !error) {
-      dispatch(getLatestInsuranceCompanies());
-      setInsuranceCompany('');
-      setLicenseNumber('');
-      setVatNumber('');
-      setAddress('');
-      setContact('');
-      setEmail('');
-      setBtnText('Register');
-    }
+  // useEffect(() => {
+  //   if (!loading && !error) {
+  //     dispatch(getLatestInsuranceCompanies());
+  //     setInsuranceCompany('');
+  //     setLicenseNumber('');
+  //     setVatNumber('');
+  //     setAddress('');
+  //     setContact('');
+  //     setEmail('');
+  //     setBtnText('Register')
+  //   }
 
-    const timer = setTimeout(() => {
-      window.scroll({
-        top: 100,
-        left: 100,
-        behavior: 'smooth',
-      });
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, [dispatch, loading, error]);
+  //   const timer = setTimeout(() => {
+  //     window.scroll({
+  //       top: 100,
+  //       left: 100,
+  //       behavior: 'smooth',
+  //     });
+  //   }, 2000);
+  //   return () => clearTimeout(timer);
+  // }, [dispatch, loading, error]);
 
   // DISPLAY Loader
   const showLoader = (type) => {
@@ -134,6 +133,19 @@ const CompanyForm = () => {
     }
   };
 
+  useEffect(() => {
+    const setTimer = setTimeout(() => {
+      setTempSuccess(false);
+      setInsuranceCompany('');
+      setLicenseNumber('');
+      setVatNumber('');
+      setAddress('');
+      setContact('');
+      setEmail('');
+    }, 5000);
+    return () => clearTimeout(setTimer);
+  }, [setTempSuccess, tempSuccess]);
+
   const submitCompanyFormHandler = (e) => {
     e.preventDefault();
 
@@ -149,6 +161,7 @@ const CompanyForm = () => {
         license_file_path,
       })
     );
+    setTempSuccess(true);
   };
 
   return (
@@ -295,12 +308,13 @@ const CompanyForm = () => {
           </section>
         </section>
         <Button
-          text={btnText}
+          // text={btnText}
+          text='Register'
           classes='btn btn--primary btn--register'
           id='btn-company-register'
         />
       </form>
-      {loading ? (
+      {/* {loading ? (
         setBtnText('Loading...')
       ) : error ? (
         <MessageBar type='error' text={error} />
@@ -313,6 +327,14 @@ const CompanyForm = () => {
             id='company-registered'
           />
         )
+      )} */}
+
+      {tempSuccess && (
+        <MessageBar
+          type='success'
+          text='New company registered successfully'
+          id='company-registered'
+        />
       )}
     </section>
   );
