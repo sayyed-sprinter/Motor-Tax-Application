@@ -188,51 +188,39 @@ Given('Test support functionality', { timeout: 30000 }, async function () {
 
   await driver.wait(until.elementLocated(By.id('support-container')), 30000);
   expect(await driver.wait(until.elementLocated(By.id('support-container'))));
-  //await driver.quit();
-});
-
-Given('Test Create Insurance Agents Account Functionality', { timeout: 30000 }, async function () {
-  let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3000/');
-  await driver.findElement(By.id('nav-companies')).click();
-
-
-  await driver.findElement(By.id('insurance_company')).sendKeys('Citizens Insurance company');
-    
-    await driver.findElement(By.id('license_number')).sendKeys('9882');
-    
-    await driver.findElement(By.id('vat_number')).sendKeys('35884');
-    
-    await driver.findElement(By.id('address')).sendKeys('putalisadak');
-
-    await driver.findElement(By.id('contact')).sendKeys('9863313549');
-
-    await driver.findElement(By.id('email')).sendKeys('hitech@bhjh');
-
-    await driver.findElement(By.id('btn-company-register')).click();
-
-  await driver.wait(until.elementLocated(By.id('insurance-companies-screen')), 30000);
-  expect(await driver.wait(until.elementLocated(By.id('insurance-companies-screen'))));
   
 });
 
-
 Given(
-  'Test Verify Insurance Company Functionality',
+  'Test insurance agents functionality',
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/admin');
+    await driver.get('http://localhost:3000/insurance-companies');
 
-    await driver.findElement(By.id('menu-insurance-company')).click();
+    // await driver.findElement(By.id('nav-companies')).click();
 
-    await driver.findElement(By.id('btn-verify-0')).click();
+    await driver.findElement(By.id('insurance_company')).click();
 
-    await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')), 30000);
+    await driver.findElement(By.id('license_number')).click();
     
-    expect(
-      await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')))
+    await driver.findElement(By.id('vat_number')).click();
+    
+    await driver.findElement(By.id('address')).click();
+
+    await driver.findElement(By.id('contact')).click();
+
+    await driver.findElement(By.id('email')).click();
+
+    await driver.findElement(By.id('btn-company-register')).click();
+
+    await driver.wait(
+      until.elementLocated(By.id('insurance-companies-screen')),
+      30000
     );
-     await driver.quit();
+    expect(
+      await driver.wait(until.elementLocated(By.id('insurance-companies-screen')))
+    );
+    await driver.quit();
   }
 );
