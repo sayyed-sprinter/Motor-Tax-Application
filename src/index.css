@@ -1468,6 +1468,7 @@ textarea {
 /*  */
 /* SCREEN CONTAINER */
 /*  */
+
 .company-grid-container,
 .tax-details-container,
 .summary-container,
@@ -1957,4 +1958,55 @@ textarea {
     font-size: 0.8rem;
     font-weight: 500;
   }
+}
+
+/*  */
+/* NAV ADMIN */
+/*  */
+
+.nav-admin-container {
+  width: var(--container-width);
+  margin: 3rem auto 5rem auto;
+  box-sizing: border-box;
+
+  display: grid;
+
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+}
+
+.nav-admin {
+  background: linear-gradient(
+    to right,
+    var(--secondary-gradient-from),
+    var(--secondary-gradient-to)
+  );
+  position: relative;
+  border-radius: 3px;
+}
+
+.nav-admin > p {
+  position: relative;
+  text-align: center;
+  padding: 0.5rem 0;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.1s ease-in-out;
+  box-sizing: border-box;
+  background-color: var(--container-color);
+  margin: 2px;
+}
+
+.nav-admin > p:hover {
+  background: linear-gradient(
+    to right,
+    var(--secondary-gradient-from),
+    var(--secondary-gradient-to)
+  );
+  color: var(--white);
 }
