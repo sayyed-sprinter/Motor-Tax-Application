@@ -215,3 +215,23 @@ Given('Test Create Insurance Agents Account Functionality', { timeout: 30000 }, 
   expect(await driver.wait(until.elementLocated(By.id('insurance-companies-screen'))));
   
 });
+
+
+Given(
+  'Test Verify Insurance Company Functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/admin');
+
+    await driver.findElement(By.id('menu-insurance-company')).click();
+
+    await driver.findElement(By.id('btn-verify-0')).click();
+
+    await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')), 30000);
+    expect(
+      await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')))
+    );
+     await driver.quit();
+  }
+);
