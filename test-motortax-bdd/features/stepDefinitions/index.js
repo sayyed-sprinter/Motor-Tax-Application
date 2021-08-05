@@ -196,9 +196,9 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/insurance-companies');
+    await driver.get('http://localhost:3000/');
 
-    // await driver.findElement(By.id('nav-companies')).click();
+    await driver.findElement(By.id('nav-companies')).click();
 
     await driver.findElement(By.id('insurance_company')).click();
 
@@ -221,6 +221,25 @@ Given(
     expect(
       await driver.wait(until.elementLocated(By.id('insurance-companies-screen')))
     );
-    await driver.quit();
+    
+  }
+);
+
+Given(
+  'Test Verify Insurance Company Functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+    
+    await driver.findElement(By.id('nav-admin')).click();
+
+    await driver.findElement(By.id('menu-insurance-company')).click();
+
+    await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')), 30000);
+    expect(
+      await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')))
+    );
+     await driver.quit();
   }
 );
