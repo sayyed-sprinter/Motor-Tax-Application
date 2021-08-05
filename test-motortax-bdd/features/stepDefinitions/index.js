@@ -229,6 +229,7 @@ Given(
     await driver.findElement(By.id('btn-verify-0')).click();
 
     await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')), 30000);
+    
     expect(
       await driver.wait(until.elementLocated(By.id('admin-insurance-companies-docs')))
     );
