@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MdCheck, MdClose } from 'react-icons/md';
 
 import {
+  adminUpdatesInsurance,
   adminUpdatesTaxpayer,
   getAllAdminDocs,
 } from '../actions/adminDocsAction';
@@ -49,6 +50,30 @@ const DocumentListing = ({ taxpayer, insuranceCompany }) => {
       if (btnCloseClicked) return;
       setBtnClosedClicked(true);
       dispatch(adminUpdatesTaxpayer(msgForTaxpayer));
+      setBtnClosedClicked(false);
+    },
+    [dispatch, btnCloseClicked]
+  );
+
+  const verifiedInsClickHandler = React.useCallback(
+    (msgForTaxpayer) => {
+      if (btnCheckClicked) return;
+      setBtnCheckedClicked(true);
+      dispatch(adminUpdatesInsurance(msgForTaxpayer));
+      if (!updateLoading && success) {
+        dispatch(getAllAdminDocs());
+      }
+      setBtnCheckedClicked(false);
+    },
+
+    [dispatch, btnCheckClicked, updateLoading, success]
+  );
+
+  const unVerifiedInsClickHandler = React.useCallback(
+    (msgForTaxpayer) => {
+      if (btnCloseClicked) return;
+      setBtnClosedClicked(true);
+      dispatch(adminUpdatesInsurance(msgForTaxpayer));
       setBtnClosedClicked(false);
     },
     [dispatch, btnCloseClicked]
@@ -233,7 +258,7 @@ const DocumentListing = ({ taxpayer, insuranceCompany }) => {
                         id={`btn-verify-${index}`}
                         className='btn btn--success'
                         onClick={(e) =>
-                          verifiedClickHandler({
+                          verifiedInsClickHandler({
                             _id: item._id,
                             verified: true,
                           })
@@ -245,7 +270,7 @@ const DocumentListing = ({ taxpayer, insuranceCompany }) => {
                         id={`btn-error-verify-${index}`}
                         className='btn btn--error'
                         onClick={(e) =>
-                          unVerifiedClickHandler({
+                          unVerifiedInsClickHandler({
                             _id: item._id,
                             verified: false,
                             adminComment: 'Invalid documents!!',

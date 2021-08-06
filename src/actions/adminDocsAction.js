@@ -48,3 +48,24 @@ export const adminUpdatesTaxpayer = (taxpayer) => async (dispatch) => {
     });
   }
 };
+
+export const adminUpdatesInsurance = (insCompany) => async (dispatch) => {
+  try {
+    dispatch({ type: ADMIN_DOCS_UPDATE_REQUEST });
+
+    const { data } = await axios.put(
+      `https://motor-tax.herokuapp.com/api/insurance-agents/${insCompany._id}`,
+      insCompany
+    );
+
+    dispatch({ type: ADMIN_DOCS_UPDATE_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: ADMIN_DOCS_UPDATE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
