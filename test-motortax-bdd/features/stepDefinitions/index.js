@@ -8,7 +8,7 @@ Given(
   { timeout: 100000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
     await driver.findElement(By.id('bluebook-number')).sendKeys('5');
     // await driver.sleep(delay);
     await driver.findElement(By.id('vehicle-number')).sendKeys('5555');
@@ -29,7 +29,7 @@ Given(
 
 Given('Test pay tax functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3001/tax-summary');
+  await driver.get('http://localhost:3000/tax-summary');
 
   await driver.findElement(By.id('btn-pay-tax')).click();
 
@@ -43,7 +43,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/tax-summary');
+    await driver.get('http://localhost:3000/tax-summary');
 
     await driver.findElement(By.id('btn-pay-tax')).click();
 
@@ -65,7 +65,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('btn-pay-here')).click();
 
@@ -80,7 +80,7 @@ Given(
   { timeout: 100000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
     await driver.findElement(By.id('btn-pay-here')).click();
     await driver.findElement(By.id('bluebook-number')).sendKeys('6');
 
@@ -89,6 +89,8 @@ Given(
     await driver.findElement(By.id('engine-cc')).sendKeys(600);
 
     await driver.findElement(By.id('insurance_company')).click();
+
+    await driver.wait(until.elementLocated(By.id('insurance-0')), 30000);
 
     await driver.findElement(By.id('insurance-0')).click();
 
@@ -110,7 +112,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/insurance-summary');
+    await driver.get('http://localhost:3000/insurance-summary');
 
     await driver.findElement(By.id('btn-pay-insurance')).click();
 
@@ -131,7 +133,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/admin');
+    await driver.get('http://localhost:3000/admin');
 
     await driver.wait(until.elementLocated(By.id('taxpayer-documents')), 30000);
     expect(
@@ -146,7 +148,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('nav-admin')).click();
 
@@ -164,7 +166,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('nav-tax-details')).click();
 
@@ -180,7 +182,7 @@ Given(
 
 Given('Test Faq functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3001/');
+  await driver.get('http://localhost:3000/');
   await driver.findElement(By.id('nav-faqs')).click();
 
   await driver.wait(until.elementLocated(By.id('faqs-container')), 30000);
@@ -189,7 +191,7 @@ Given('Test Faq functionality', { timeout: 30000 }, async function () {
 
 Given('Test support functionality', { timeout: 30000 }, async function () {
   let driver = await new Builder().forBrowser('chrome').build();
-  await driver.get('http://localhost:3001/');
+  await driver.get('http://localhost:3000/');
   await driver.findElement(By.id('nav-support')).click();
 
   await driver.wait(until.elementLocated(By.id('support-container')), 30000);
@@ -201,7 +203,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('nav-companies')).click();
 
@@ -236,7 +238,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('nav-admin')).click();
 
@@ -259,7 +261,7 @@ Given(
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3001/');
+    await driver.get('http://localhost:3000/');
 
     await driver.findElement(By.id('nav-admin')).click();
 
