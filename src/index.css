@@ -387,7 +387,8 @@ header {
   width: 10rem;
 }
 
-.btn--register,
+.btn--signup,
+.btn--login,
 .btn--pay,
 .btn--submit {
   align-self: top;
@@ -707,8 +708,10 @@ p.btn {
 select,
 option,
 input[type='text'],
+input[type='password'],
 input[type='email'],
 input[type='number'],
+input[type='date'],
 textarea {
   background-color: var(--input-text-color);
   border: none;
@@ -776,7 +779,8 @@ textarea {
   grid-auto-columns: 1fr;
 }
 
-.no-policy {
+.no-policy,
+.no-account {
   font-size: var(--heading-2);
 }
 
@@ -1468,7 +1472,8 @@ textarea {
 /*  */
 /* SCREEN CONTAINER */
 /*  */
-
+.login-container,
+.signup-container,
 .company-grid-container,
 .tax-details-container,
 .summary-container,
@@ -1480,6 +1485,8 @@ textarea {
 }
 
 @media screen and (max-width: 62rem) {
+  .login-container,
+  .signup-container,
   .company-grid-container,
   .tax-details-container,
   .summary-container,
@@ -1494,6 +1501,8 @@ textarea {
 /*  */
 /* SCREEN HEADINGS */
 /*  */
+.login-heading,
+.signup-heading,
 .tax-detail-heading,
 .about-us-heading,
 .taxpayer-docs,
@@ -1507,6 +1516,8 @@ textarea {
 }
 
 @media screen and (max-width: 62rem) {
+  .login-heading,
+  .signup-heading,
   .tax-detail-heading,
   .about-us-heading,
   .taxpayer-docs,
@@ -2009,4 +2020,134 @@ textarea {
     var(--secondary-gradient-to)
   );
   color: var(--white);
+}
+
+/*  */
+/* LOGIN */
+/*  */
+.login-container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+/*  */
+/* SIGN UP */
+/*  */
+.admin-switch-container {
+  width: 100%;
+  height: 6rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.admin-switch-text {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 0.5rem;
+  text-shadow: var(--box-shadow);
+}
+
+.admin-switch {
+  background-color: var(--container-color);
+  width: 4rem;
+  height: 2rem;
+  position: relative;
+  box-shadow: inset 1px 1px 10px 1px #02020221;
+  border-radius: 10rem;
+}
+
+.admin-switch-btn {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.admin-switch-btn--off {
+  background-color: var(--grey-light);
+
+  transform: translate(0%, -50%);
+}
+
+.admin-switch-btn--on {
+  transform: translate(100%, -50%);
+  background-color: var(--secondary-gradient-from);
+}
+
+.signup-container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.sign-up-text-box {
+  display: grid;
+  grid-auto-rows: 1fr;
+  grid-auto-columns: 1fr;
+
+  grid-gap: 1.5rem 3rem;
+  justify-items: stretch;
+}
+.admin-signup-text-box {
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.taxpayer-signup-text-box {
+  grid-template-rows: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.common-text-box {
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.taxrecords-text-box {
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.signup-submit-info {
+  margin: 3rem 0;
+}
+
+.tax-record-heading {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-gradient-from);
+}
+
+@media screen and (max-width: 62rem) {
+  .admin-switch {
+    width: 3rem;
+    height: 1.5rem;
+  }
+
+  .admin-switch-btn {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .sign-up-text-box {
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    grid-auto-columns: 1fr;
+    grid-gap: 0.5rem;
+  }
+
+  .sign-up-filebox {
+    padding: 0;
+  }
+
+  .tax-record-heading {
+    font-size: 1.2rem;
+    margin-bottom: 0rem;
+  }
 }

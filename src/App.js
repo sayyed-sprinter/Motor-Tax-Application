@@ -10,6 +10,8 @@ import TaxDetailScreen from './screens/TaxDetailScreen.js';
 import FAQsScreen from './screens/FAQsScreen.js';
 import SupportScreen from './screens/SupportScreen.js';
 import InsuranceCompaniesScreen from './screens/InsuranceCompaniesScreen.js';
+import SignUpScreen from './screens/SignUpScreen.js';
+import LoginScreen from './screens/LoginScreen.js';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
         <Route path='/faqs' component={FAQsScreen} exact />
         <Route path='/support' component={SupportScreen} exact />
         <Route path='/admin' component={AdminScreen} exact />
+        <Route path='/login' component={LoginScreen} exact />
+        <Route path='/signup' component={SignUpScreen} exact />
         <Route
           path='/insurance-companies'
           component={InsuranceCompaniesScreen}

@@ -84,13 +84,20 @@ const InsuranceSummaryScreen = ({ history }) => {
             </div>
 
             {showButton ? (
-              <p
-                className='btn btn--pay btn--primary'
-                id='btn-pay-insurance'
-                onClick={() => setShowButton(false)}
-              >
-                Pay
-              </p>
+              !report_details.insurancePaid ? (
+                <p
+                  className='btn btn--pay btn--primary'
+                  id='btn-pay-insurance'
+                  onClick={() => setShowButton(false)}
+                >
+                  Pay
+                </p>
+              ) : (
+                <MessageBar
+                  className='success'
+                  text='Premium paid already please go back to pay tax'
+                />
+              )
             ) : (
               <PaymentSuccess type='insurance' />
             )}

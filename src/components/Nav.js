@@ -27,6 +27,15 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
           )}
         </li>
       ))}
+      <li className='nav-item'>
+        <a
+          href='/login'
+          className={type ? 'hamburger-bar__link' : 'nav-link'}
+          id={type ? `${type}-nav-login` : 'nav-login'}
+        >
+          Login
+        </a>
+      </li>
     </ul>
   );
 };
