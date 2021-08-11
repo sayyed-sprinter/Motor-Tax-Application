@@ -327,7 +327,7 @@ const SignUpScreen = () => {
         </section>
         {!admin && (
           <section className='tax-details'>
-            <h5 className='heading-5 tax-record-heading'>Tax reord details</h5>{' '}
+            <h5 className='heading-5 tax-record-heading'>Tax record details</h5>{' '}
             <section className='sign-up-text-box taxrecords-text-box'>
               <InputTextField
                 value={lastTaxPaidDate}
