@@ -273,6 +273,57 @@ Given(
 
     await driver.wait(until.elementLocated(By.id('doc-verified-3')), 30000);
     expect(await driver.wait(until.elementLocated(By.id('doc-verified-3'))));
+    
+  }
+);
+
+Given(
+  'Test Create User Functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-login')).click();
+
+    await driver.findElement(By.id('signup-link')).click();
+
+    await driver.findElement(By.id('taxpayer-name')).sendKeys('Test');
+
+    await driver.findElement(By.id('bluebook-number')).sendKeys('123');
+
+    await driver.findElement(By.id('vehicle-number')).sendKeys('777');
+
+    await driver.findElement(By.id('province')).sendKeys('12');
+
+    await driver.findElement(By.id('lot')).sendKeys('40');
+
+    await driver.findElement(By.id('vehicle-type')).sendKeys('Bike');
+
+    await driver.findElement(By.id('engine-cc')).sendKeys('250');
+
+    await driver.findElement(By.id('vehicle-registered-date')).sendKeys('01/12/2000');
+
+    await driver.findElement(By.id('contact')).sendKeys('9234234234');
+
+    await driver.findElement(By.id('email')).sendKeys('test@gmail.com');
+
+    await driver.findElement(By.id('username')).sendKeys('tests');
+
+    await driver.findElement(By.id('password ')).sendKeys('111');
+
+    await driver.findElement(By.id('confirm-password')).sendKeys('111');
+
+    await driver.findElement(By.id('last-tax-paid-date ')).sendKeys('02/11/2019');
+
+    await driver.findElement(By.id('policy-number ')).sendKeys('55');
+
+    await driver.findElement(By.id('tax-amount-paid ')).sendKeys('55555');
+
+    await driver.findElement(By.id('btn-signup')).click();
+
+    await driver.wait(until.elementLocated(By.id('login-container')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id('login-container'))));
     await driver.quit();
   }
 );
