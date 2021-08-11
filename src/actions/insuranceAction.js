@@ -91,7 +91,7 @@ export const fetchInsuranceReportDetails = (bodydata) => async (dispatch) => {
     const {
       data: { insuranceReports },
     } = await axios.post(
-      `https://motor-tax.herokuapp.com/api/insurance-report/`,
+      `http://localhost:3000/api/insurance-report/`,
       bodydata
     );
 

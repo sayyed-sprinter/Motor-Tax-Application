@@ -2,7 +2,11 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { taxpayerReducer } from './reducers/taxpayerReducers';
+import {
+  taxpayerLoginReducer,
+  taxpayerReducer,
+  taxpayerSignupReducer,
+} from './reducers/taxpayerReducers';
 import {
   newInsuranceCompanyReducers,
   insuranceReducers,
@@ -17,9 +21,15 @@ import {
 
 import { getTaxDetailsReducer } from './reducers/taxDetailReducers';
 import { getFAQsReducer } from './reducers/faqsReducers';
+import {
+  adminLoginReducer,
+  adminSignupReducer,
+} from './reducers/adminReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
+  taxpayerSignup: taxpayerSignupReducer,
+  taxpayerLogin: taxpayerLoginReducer,
   newInsuranceCompany: newInsuranceCompanyReducers,
   insurance: insuranceReducers,
   latestInsurance: latestInsuranceReducers,
@@ -28,6 +38,8 @@ const reducer = combineReducers({
   adminUpdatesTaxpayer: adminUpdatesTaxpayerReducer,
   getTaxDetails: getTaxDetailsReducer,
   getFAQs: getFAQsReducer,
+  adminSignup: adminSignupReducer,
+  adminLogin: adminLoginReducer,
 });
 
 // const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
@@ -85,6 +97,8 @@ const initialState = {
       faqs: [],
     },
   },
+  adminSignup: {},
+  adminLogin: {},
 };
 
 const middleware = [thunk];

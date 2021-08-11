@@ -11,6 +11,7 @@ import {
   getAllInsuranceCompanies,
 } from '../actions/insuranceAction';
 import MessageBar from './MessageBar';
+import InputTextField from './InputTextField';
 
 const Form = ({ history }) => {
   const dispatch = useDispatch();
@@ -190,7 +191,7 @@ const Form = ({ history }) => {
   };
 
   return (
-    <div className='form--pay-tax' id='home-screen'>
+    <section className='form--pay-tax' id='home-screen'>
       {insurancePaid ? (
         <h1 className='heading-1'>Pay Your Tax</h1>
       ) : (
@@ -206,80 +207,57 @@ const Form = ({ history }) => {
             : submitInsuranceDetailsHandler
         }
       >
-        <div className='text-box'>
-          <div className='input--text'>
-            <label className='label' htmlFor='bluebook-number'>
-              Bluebook number
-            </label>
-            <input
-              type='text'
-              id='bluebook-number'
-              name='bluebook-number'
-              required
-              value={
-                history.location.state !== undefined
-                  ? history.location.state.bluebook_number
-                  : bluebook_number
-              }
-              onChange={(e) => setBluebook_number(e.target.value)}
-            ></input>
-          </div>
+        <section className='text-box'>
+          <InputTextField
+            value={
+              history.location.state !== undefined
+                ? history.location.state.bluebook_number
+                : bluebook_number
+            }
+            setValue={setBluebook_number}
+            idValue='bluebook-number'
+            classValue='input--text'
+            labelName='Bluebook Number'
+          />
 
-          <div className='input--text'>
-            <label className='label' htmlFor='vehicle-number'>
-              Vehicle number
-            </label>
-            <input
-              type='text'
-              id='vehicle-number'
-              name='vehicle-number'
-              required
-              value={
-                history.location.state !== undefined
-                  ? history.location.state.vehicle_number
-                  : vehicle_number
-              }
-              onChange={(e) => setVehicle_number(e.target.value)}
-            ></input>
-          </div>
+          <InputTextField
+            value={
+              history.location.state !== undefined
+                ? history.location.state.vehicle_number
+                : vehicle_number
+            }
+            setValue={setVehicle_number}
+            idValue='vehicle-number'
+            classValue='input--text'
+            labelName='Vehicle number'
+          />
 
-          <div className='input--text'>
-            <label className='label' htmlFor='engine-cc'>
-              Engine displacement (in cc)
-            </label>
-            <input
-              type='number'
-              id='engine-cc'
-              name='engine-cc'
-              required
-              value={
-                history.location.state !== undefined
-                  ? history.location.state.engine_cc
-                  : engine_cc
-              }
-              onChange={(e) => setEngine_cc(e.target.value)}
-            ></input>
-          </div>
+          <InputTextField
+            value={
+              history.location.state !== undefined
+                ? history.location.state.engine_cc
+                : engine_cc
+            }
+            setValue={setEngine_cc}
+            idValue='engine-cc'
+            classValue='input--text'
+            labelName='Engine displacement (in cc)'
+          />
+
           {insurancePaid ? (
-            <div className='input--text'>
-              <label className='label' htmlFor='insurance-number'>
-                Insurance policy number
-              </label>
-              <input
-                type='text'
-                id='insurance-number'
-                name='insurance-number'
-                required
-                value={
-                  history.location.state !== undefined
-                    ? history.location.state.policy_number
-                    : policy_number
-                }
-                onChange={(e) => setPolicy_number(e.target.value)}
-              ></input>
-            </div>
+            <InputTextField
+              value={
+                history.location.state !== undefined
+                  ? history.location.state.policy_number
+                  : policy_number
+              }
+              setValue={setPolicy_number}
+              idValue='insurance-number'
+              classValue='input--text'
+              labelName='Insurance policy number'
+            />
           ) : (
-            <div className='input--text'>
+            <section className='input--text'>
               <label className='label' htmlFor='insurance_company'>
                 Select insurance policy
               </label>
@@ -307,11 +285,11 @@ const Form = ({ history }) => {
                   ))
                 )}
               </select>
-            </div>
+            </section>
           )}
-        </div>
-        <div className='file-box'>
-          <div className='input--file'>
+        </section>
+        <section className='file-box'>
+          <section className='input--file'>
             <BiLinkAlt className='file-icon' />{' '}
             <label
               htmlFor='bluebook-file'
@@ -323,11 +301,11 @@ const Form = ({ history }) => {
               <VscLoading className='loader loader-bluebook' />
             )}
             {fileLoading && (
-              <div className='tooltip-box'>
+              <section className='tooltip-box'>
                 <span className='tooltip tooltip-bluebook'>
                   No files attached
                 </span>
-              </div>
+              </section>
             )}
             <input
               type='file'
@@ -335,8 +313,8 @@ const Form = ({ history }) => {
               onChange={(e) => uploadFileHandler(e, 'bluebook')}
               id='bluebook-file'
             />
-          </div>
-          <div className='input--file'>
+          </section>
+          <section className='input--file'>
             <BiLinkAlt className='file-icon' />{' '}
             <label
               htmlFor='citizenship-file'
@@ -348,42 +326,42 @@ const Form = ({ history }) => {
               <VscLoading className='loader loader-citizenship' />
             )}
             {fileLoading && (
-              <div className='tooltip-box'>
+              <section className='tooltip-box'>
                 <span className='tooltip tooltip-citizenship'>
                   No files attached
                 </span>
-              </div>
+              </section>
             )}
             <input
               type='file'
               onChange={(e) => uploadFileHandler(e, 'citizenship')}
               id='citizenship-file'
             />
-          </div>
+          </section>
 
           {insurancePaid && (
-            <div className='input--file'>
+            <section className='input--file'>
               <BiLinkAlt className='file-icon' />{' '}
               <label htmlFor='receipt-file' className='label-file label-policy'>
                 {receipt}
               </label>{' '}
               {policyLoader && <VscLoading className='loader loader-policy' />}
               {fileLoading && (
-                <div className='tooltip-box'>
+                <section className='tooltip-box'>
                   <span className='tooltip tooltip-policy'>
                     No files attached
                   </span>
-                </div>
+                </section>
               )}
               <input
                 type='file'
                 onChange={(e) => uploadFileHandler(e, 'policy')}
                 id='receipt-file'
               />
-            </div>
+            </section>
           )}
-        </div>
-        <div className='submit-info'>
+        </section>
+        <section className='submit-info'>
           {insurancePaid && (
             <p className='no-policy'>
               {' '}
@@ -425,7 +403,7 @@ const Form = ({ history }) => {
               classes='btn btn--primary btn--pay'
             />
           )}
-        </div>
+        </section>
         {error && error !== 'tax-paid' && (
           <MessageBar error={true} text={error} />
         )}
@@ -437,7 +415,7 @@ const Form = ({ history }) => {
           <MessageBar text='Tax already paid!' />
         )}
       </form>
-    </div>
+    </section>
   );
 };
 

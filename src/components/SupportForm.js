@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import InputTextField from './InputTextField';
 
 const SupportForm = () => {
   const [username, setUsername] = useState('');
@@ -13,34 +14,24 @@ const SupportForm = () => {
       method='POST'
       className='support-form--grid'
     >
-      <div className='form-group'>
-        <div className='input--text'>
-          <label className='label' htmlFor='name'>
-            name
-          </label>
-          <input
-            type='text'
-            id='name'
-            name='name'
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div className='input--text'>
-          <label className='label ' htmlFor='email'>
-            email
-          </label>
-          <input
-            type='email'
-            id='email'
-            name='email'
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className='input--textarea'>
+      <section className='form-group'>
+        <InputTextField
+          value={username}
+          setValue={setUsername}
+          idValue='name'
+          classValue='input--text'
+          labelName='name'
+        />
+        <InputTextField
+          value={email}
+          setValue={setEmail}
+          idValue='email'
+          classValue='input--text'
+          labelName='email'
+          inputType='email'
+        />
+
+        <section className='input--textarea'>
           <label className='label label-textarea' htmlFor='message'>
             message
           </label>
@@ -52,9 +43,9 @@ const SupportForm = () => {
             onChange={(e) => setMessage(e.target.value)}
             required
           ></textarea>
-        </div>
+        </section>
 
-        <div className='submit-info'>
+        <section className='submit-info'>
           <button
             type='submit'
             className='btn btn--submit'
@@ -62,8 +53,8 @@ const SupportForm = () => {
           >
             submit
           </button>
-        </div>
-      </div>
+        </section>
+      </section>
     </form>
   );
 };
