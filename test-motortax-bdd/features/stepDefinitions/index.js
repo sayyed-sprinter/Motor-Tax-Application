@@ -310,9 +310,9 @@ Given(
 
     await driver.findElement(By.id('username')).sendKeys('tests');
 
-    await driver.findElement(By.id('password ')).sendKeys('111');
+    await driver.findElement(By.id('password ')).sendKeys('asd');
 
-    await driver.findElement(By.id('confirm-password')).sendKeys('111');
+    await driver.findElement(By.id('confirm-password')).sendKeys('asd');
 
     await driver.findElement(By.id('last-tax-paid-date ')).sendKeys('02/11/2019');
 
@@ -324,6 +324,27 @@ Given(
 
     await driver.wait(until.elementLocated(By.id('login-container')), 30000);
     expect(await driver.wait(until.elementLocated(By.id('login-container'))));
-    await driver.quit();
+    
   }
 );
+
+Given(
+  'Test View Profile Functionality',
+  { timeout: 30000 },
+  async function () {
+    let driver = await new Builder().forBrowser('chrome').build();
+    await driver.get('http://localhost:3000/');
+
+    await driver.findElement(By.id('nav-login')).click();
+
+    await driver.findElement(By.id('email')).sendKeys('');
+
+    await driver.findElement(By.id('password')).sendKeys('');
+
+    await driver.findElement(By.id('taxpayer-btn-login')).click();
+
+    await driver.wait(until.elementLocated(By.id('profile-container')), 30000);
+    expect(await driver.wait(until.elementLocated(By.id('profile-container'))));
+    await driver.quit();
+  }
+  );
