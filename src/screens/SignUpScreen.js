@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import InputTextField from '../components/InputTextField';
 import Button from '../components/Button';
 import { createAdminUser } from '../actions/adminAction';
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import { createTaxpayerAcc } from '../actions/taxpayerActions';
+import MessageBar from '../components/MessageBar';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ history }) => {
   const dispatch = useDispatch();
+
+  const taxpayerRes = useSelector((state) => state.taxpayerSignup);
+  const {
+    loading: loadingTaxpayer,
+    signupResponse: taxpayerSignupResponse,
+    error: errorTaxpayer,
+  } = taxpayerRes;
+
+  const adminRes = useSelector((state) => state.adminSignup);
+  const {
+    loading: loadingAdmin,
+    signupResponse: adminSignupResponse,
+    error: errorAdmin,
+  } = adminRes;
 
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
@@ -134,9 +149,18 @@ const SignUpScreen = () => {
     }
   };
 
+  //CHECK PASSWORD
+  const verifyPassword = password === confirmPassword ? true : false;
+
   // FORM SUBMIT HANDLER
   const submitHandler = (e) => {
     e.preventDefault();
+
+    if (!verifyPassword) {
+      const confirmPass = document.getElementById('confirm-password');
+      confirmPass.focus();
+      return;
+    }
 
     if (admin) {
       dispatch(
@@ -149,6 +173,14 @@ const SignUpScreen = () => {
           password,
         })
       );
+      history.push({
+        pathname: '/login',
+        state: {
+          email: adminSignupResponse.adminCreated.email,
+          password: adminSignupResponse.adminCreated.password,
+          admin: true,
+        },
+      });
     } else {
       dispatch(
         createTaxpayerAcc({
@@ -172,29 +204,31 @@ const SignUpScreen = () => {
           policy_file_path,
         })
       );
+      history.push({
+        pathname: '/login',
+        state: {
+          email: taxpayerSignupResponse.taxpayerCreated.email,
+          password: taxpayerSignupResponse.taxpayerCreated.password,
+        },
+      });
     }
   };
 
   return (
     <section className='signup-container' id='signup-container'>
       <h1 className='heading-1 signup-heading'>
-        {admin ? 'Admin - Sign Up' : 'Taxpayer - Sign Up'}
+        {admin ? 'Admin' : 'Taxpayer'} &ndash; Sign Up
       </h1>
-      <section
-        className='admin-switch-container'
-        onClick={() => setAdmin(!admin)}
-      >
+      <section className='admin-switch-container'>
         {' '}
         <p className='admin-switch-text'>Admin</p>
-        <section className='admin-switch'>
+        <section className='admin-switch' onClick={() => setAdmin(!admin)}>
           {admin ? (
             <section
               className='admin-switch-btn admin-switch-btn--on'
               onClick={() => setAdmin(!admin)}
               id='btn-switch-taxpayer'
-            >
-              &nbsp;
-            </section>
+            ></section>
           ) : (
             <section
               className='admin-switch-btn admin-switch-btn--off'
@@ -205,6 +239,7 @@ const SignUpScreen = () => {
             </section>
           )}
         </section>
+        {/* <p className='admin-switch-text'>Taxpayer</p> */}
       </section>
       <form className='' onSubmit={(e) => submitHandler(e)}>
         {admin ? (
@@ -260,6 +295,7 @@ const SignUpScreen = () => {
               idValue='lot'
               classValue='input--text'
               labelName='Lot'
+              inputType='Number'
             />
             <InputTextField
               value={vehicleType}
@@ -274,6 +310,7 @@ const SignUpScreen = () => {
               idValue='engine-cc'
               classValue='input--text'
               labelName='Engine (in CC)'
+              inputType='Number'
             />
             <InputTextField
               value={vehicleRegisteredDate}
@@ -428,13 +465,47 @@ const SignUpScreen = () => {
           </section>
         )}
         <section className='submit-info signup-submit-info'>
-          <Button
-            text='Sign Up'
-            classes='btn btn--primary btn--signup'
-            id='btn-signup'
-          />
+          {admin ? (
+            loadingAdmin ? (
+              <Button
+                text='Loading...'
+                classes='btn btn--primary btn--signup'
+                id='btn-signup-admin'
+              />
+            ) : (
+              <Button
+                text='Sign Up'
+                classes='btn btn--primary btn--signup'
+                id='btn-signup-admin'
+              />
+            )
+          ) : loadingTaxpayer ? (
+            <Button
+              text='Loading...'
+              classes='btn btn--primary btn--signup'
+              id='btn-signup-taxpayer'
+            />
+          ) : (
+            <Button
+              text='Sign Up'
+              classes='btn btn--primary btn--signup'
+              id='btn-signup-taxpayer'
+            />
+          )}
         </section>
       </form>
+      {admin
+        ? !loadingAdmin &&
+          errorAdmin && <MessageBar text={errorAdmin} error='true' />
+        : !loadingTaxpayer &&
+          errorTaxpayer && <MessageBar text={errorTaxpayer} error='true' />}
+
+      {!verifyPassword && (
+        <MessageBar
+          text='Password and confirm password did not matched'
+          error='true'
+        />
+      )}
     </section>
   );
 };

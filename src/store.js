@@ -42,9 +42,15 @@ const reducer = combineReducers({
   adminLogin: adminLoginReducer,
 });
 
-// const taxpayerFromStorage = localStorage.getItem('taxpayerinfo')
-//   ? JSON.parse(localStorage.getItem('taxpayerinfo'))
-//   : {};
+const taxpayerProfileInfoFromStorage = localStorage.getItem(
+  'taxpayerprofileinfo'
+)
+  ? JSON.parse(localStorage.getItem('taxpayerprofileinfo'))
+  : {};
+
+const adminProfileInfoFromStorage = localStorage.getItem('adminprofileinfo')
+  ? JSON.parse(localStorage.getItem('adminprofileinfo'))
+  : {};
 
 const initialState = {
   taxpayer: {
@@ -60,6 +66,10 @@ const initialState = {
       pollutingCharge: 0,
     },
   },
+  taxpayerSignup: {
+    signupResponse: {},
+  },
+  taxpayerLogin: { loginResponse: taxpayerProfileInfoFromStorage },
   newInsuranceCompany: {
     insuranceCompanies: {
       success: false,
@@ -97,8 +107,10 @@ const initialState = {
       faqs: [],
     },
   },
-  adminSignup: {},
-  adminLogin: {},
+  adminSignup: {
+    signupResponse: {},
+  },
+  adminLogin: { loginResponse: adminProfileInfoFromStorage },
 };
 
 const middleware = [thunk];

@@ -12,6 +12,7 @@ import SupportScreen from './screens/SupportScreen.js';
 import InsuranceCompaniesScreen from './screens/InsuranceCompaniesScreen.js';
 import SignUpScreen from './screens/SignUpScreen.js';
 import LoginScreen from './screens/LoginScreen.js';
+import ProfileScreen from './screens/ProfileScreen.js';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/admin' component={AdminScreen} exact />
         <Route path='/login' component={LoginScreen} exact />
         <Route path='/signup' component={SignUpScreen} exact />
+        <Route path='/profile' component={ProfileScreen} exact />
         <Route
           path='/insurance-companies'
           component={InsuranceCompaniesScreen}

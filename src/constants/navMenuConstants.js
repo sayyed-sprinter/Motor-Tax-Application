@@ -24,9 +24,4 @@ export const menus = [
     text: 'support',
     link: '/support',
   },
-  {
-    id: 'nav-admin',
-    text: 'Admin',
-    link: '/admin',
-  },
 ];

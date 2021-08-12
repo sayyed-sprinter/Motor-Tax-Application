@@ -39,6 +39,9 @@ export const adminUserLogin = (bodyData) => async (dispatch) => {
     );
 
     dispatch({ type: ADMIN_LOGIN_SUCCESS, payload: data });
+
+    localStorage.setItem('adminprofileinfo', JSON.stringify(data));
+    localStorage.removeItem('taxpayerinfo');
   } catch (err) {
     dispatch({
       type: ADMIN_LOGIN_FAIL,

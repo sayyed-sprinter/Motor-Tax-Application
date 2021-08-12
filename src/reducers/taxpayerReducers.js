@@ -36,13 +36,13 @@ export const taxpayerSignupReducer = (
 ) => {
   switch (action.type) {
     case TAXPAYER_SIGNUP_REQUEST:
-      return { loading: true, loginResponse: action.payload };
+      return { loading: true };
     case TAXPAYER_SIGNUP_SUCCESS:
       return { loading: false, signupResponse: action.payload };
     case TAXPAYER_SIGNUP_FAIL:
-      return { loading: false, signupResponse: action.payload };
+      return { loading: false, error: action.payload };
     default:
-      return { state };
+      return state;
   }
 };
 
@@ -53,8 +53,8 @@ export const taxpayerLoginReducer = (state = { loginResponse: {} }, action) => {
     case TAXPAYER_LOGIN_SUCCESS:
       return { loading: false, loginResponse: action.payload };
     case TAXPAYER_LOGIN_FAIL:
-      return { loading: false, loginResponse: action.payload };
+      return { loading: false, error: action.payload };
     default:
-      return { state };
+      return state;
   }
 };
