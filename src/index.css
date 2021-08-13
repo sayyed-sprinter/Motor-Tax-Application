@@ -2262,6 +2262,11 @@ textarea {
 /* PROFILE */
 /*  */
 
+.profile-container {
+  width: var(--container-width);
+  margin: 0 auto;
+}
+
 .profile-icon {
   color: var(--secondary-gradient-from);
   width: 1.5rem;

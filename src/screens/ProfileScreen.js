@@ -35,7 +35,7 @@ const ProfileScreen = ({ history }) => {
       if (window.confirm('Are you sure you want to delete?')) {
         dispatch(deleteTaxpayerAccount(loginResponse.taxpayer));
         setShowDialog(true);
-        setDeleted(false);
+
         const setTimer = setTimeout(() => {
           setLogoutStatus(true);
         }, 1500);

@@ -62,7 +62,7 @@ export const taxpayerLoginReducer = (state = { loginResponse: {} }, action) => {
     case TAXPAYER_LOGIN_FAIL:
       return { loading: false, error: action.payload };
     case TAXPAYER_LOGIN_RESET:
-      return { loginResponse: {} };
+      return state;
     default:
       return state;
   }
