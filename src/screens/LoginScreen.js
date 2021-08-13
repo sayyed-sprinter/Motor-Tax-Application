@@ -7,6 +7,7 @@ import Button from '../components/Button';
 import { adminUserLogin } from '../actions/adminAction';
 import { taxpayerLogin } from '../actions/taxpayerActions';
 import MessageBar from '../components/MessageBar';
+import Switch from '../components/Switch';
 
 const LoginScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -112,27 +113,7 @@ const LoginScreen = ({ history }) => {
           </a>
         </section>
         <section className='login-details'>
-          <section className='admin-switch-container'>
-            {' '}
-            <p className='admin-switch-text'>Admin</p>
-            <section className='admin-switch' onClick={() => setAdmin(!admin)}>
-              {admin ? (
-                <section
-                  className='admin-switch-btn admin-switch-btn--on'
-                  onClick={() => setAdmin(!admin)}
-                  id='btn-switch-taxpayer'
-                ></section>
-              ) : (
-                <section
-                  className='admin-switch-btn admin-switch-btn--off'
-                  onClick={() => setAdmin(!admin)}
-                  id='btn-switch-admin'
-                >
-                  &nbsp;
-                </section>
-              )}
-            </section>
-          </section>
+          <Switch value={admin} setValue={setAdmin} text='Admin' />
           <form className='login-form' onSubmit={submitHandler}>
             <section className='login-text-box'>
               {admin ? (

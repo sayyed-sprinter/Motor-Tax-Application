@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import {
+  taxpayerDeleteReducer,
   taxpayerLoginReducer,
   taxpayerReducer,
   taxpayerSignupReducer,
@@ -22,6 +23,7 @@ import {
 import { getTaxDetailsReducer } from './reducers/taxDetailReducers';
 import { getFAQsReducer } from './reducers/faqsReducers';
 import {
+  adminDeleteReducer,
   adminLoginReducer,
   adminSignupReducer,
 } from './reducers/adminReducers';
@@ -30,6 +32,7 @@ const reducer = combineReducers({
   taxpayer: taxpayerReducer,
   taxpayerSignup: taxpayerSignupReducer,
   taxpayerLogin: taxpayerLoginReducer,
+  taxpayerDelete: taxpayerDeleteReducer,
   newInsuranceCompany: newInsuranceCompanyReducers,
   insurance: insuranceReducers,
   latestInsurance: latestInsuranceReducers,
@@ -40,6 +43,7 @@ const reducer = combineReducers({
   getFAQs: getFAQsReducer,
   adminSignup: adminSignupReducer,
   adminLogin: adminLoginReducer,
+  adminDelete: adminDeleteReducer,
 });
 
 const taxpayerProfileInfoFromStorage = localStorage.getItem(
@@ -75,6 +79,7 @@ const initialState = {
       success: false,
     },
   },
+  taxpayerDelete: { deleteResponse: {} },
   insurance: {
     insuranceCompanies: [],
   },
@@ -111,6 +116,7 @@ const initialState = {
     signupResponse: {},
   },
   adminLogin: { loginResponse: adminProfileInfoFromStorage },
+  adminDelete: { deleteResponse: {} },
 };
 
 const middleware = [thunk];

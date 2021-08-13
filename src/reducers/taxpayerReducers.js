@@ -9,6 +9,11 @@ import {
   TAXPAYER_LOGIN_REQUEST,
   TAXPAYER_LOGIN_SUCCESS,
   TAXPAYER_LOGIN_FAIL,
+  TAXPAYER_LOGIN_RESET,
+  TAXPAYER_DELETE_REQUEST,
+  TAXPAYER_DELETE_SUCCESS,
+  TAXPAYER_DELETE_FAIL,
+  TAXPAYER_SIGNUP_RESET,
 } from '../constants/taxpayerConstants';
 
 export const taxpayerReducer = (state = {}, action) => {
@@ -41,6 +46,8 @@ export const taxpayerSignupReducer = (
       return { loading: false, signupResponse: action.payload };
     case TAXPAYER_SIGNUP_FAIL:
       return { loading: false, error: action.payload };
+    case TAXPAYER_SIGNUP_RESET:
+      return { signupResponse: {} };
     default:
       return state;
   }
@@ -53,6 +60,24 @@ export const taxpayerLoginReducer = (state = { loginResponse: {} }, action) => {
     case TAXPAYER_LOGIN_SUCCESS:
       return { loading: false, loginResponse: action.payload };
     case TAXPAYER_LOGIN_FAIL:
+      return { loading: false, error: action.payload };
+    case TAXPAYER_LOGIN_RESET:
+      return { loginResponse: {} };
+    default:
+      return state;
+  }
+};
+
+export const taxpayerDeleteReducer = (
+  state = { deleteResponse: {} },
+  action
+) => {
+  switch (action.type) {
+    case TAXPAYER_DELETE_REQUEST:
+      return { loading: true };
+    case TAXPAYER_DELETE_SUCCESS:
+      return { loading: false, deleteResponse: action.payload };
+    case TAXPAYER_DELETE_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

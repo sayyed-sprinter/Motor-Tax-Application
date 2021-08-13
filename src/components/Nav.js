@@ -31,7 +31,6 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
       taxpayerLoginResponse.taxpayer !== undefined
     ) {
       setTaxpayerData(true);
-      setAdminData(false);
     }
 
     if (
@@ -41,9 +40,9 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
       adminLoginResponse.adminUser !== undefined
     ) {
       setAdminData(true);
-      setTaxpayerData(false);
     }
   }, [
+    taxpayerData,
     loadingTaxpayer,
     errorTaxpayer,
     taxpayerLoginResponse,
