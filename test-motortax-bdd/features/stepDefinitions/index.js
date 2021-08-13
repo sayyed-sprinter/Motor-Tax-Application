@@ -345,6 +345,27 @@ Given(
 
     await driver.wait(until.elementLocated(By.id('profile-container')), 30000);
     expect(await driver.wait(until.elementLocated(By.id('profile-container'))));
-    await driver.quit();
   }
   );
+
+ Given(
+  'Test Login System Functionality',
+    { timeout: 30000 },
+    async function () {
+      let driver = await new Builder().forBrowser('chrome').build();
+      await driver.get('http://localhost:3000/');
+  
+      await driver.findElement(By.id('nav-login')).click();
+  
+      await driver.findElement(By.id('email')).sendKeys('');
+  
+      await driver.findElement(By.id('password')).sendKeys('');
+  
+      await driver.findElement(By.id('taxpayer-btn-login')).click();
+  
+      await driver.wait(until.elementLocated(By.id('profile-container')), 30000);
+      expect(await driver.wait(until.elementLocated(By.id('profile-container'))));
+      await driver.quit();
+  }
+  );
+
