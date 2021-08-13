@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -18,6 +19,38 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
     loginResponse: adminLoginResponse,
     error: errorAdmin,
   } = adminRes;
+
+  const [adminData, setAdminData] = useState(false);
+  const [taxpayerData, setTaxpayerData] = useState(false);
+
+  useEffect(() => {
+    if (
+      !loadingTaxpayer &&
+      !errorTaxpayer &&
+      taxpayerLoginResponse !== undefined &&
+      taxpayerLoginResponse.taxpayer !== undefined
+    ) {
+      setTaxpayerData(true);
+      setAdminData(false);
+    }
+
+    if (
+      !loadingAdmin &&
+      !errorAdmin &&
+      adminLoginResponse !== undefined &&
+      adminLoginResponse.adminUser !== undefined
+    ) {
+      setAdminData(true);
+      setTaxpayerData(false);
+    }
+  }, [
+    loadingTaxpayer,
+    errorTaxpayer,
+    taxpayerLoginResponse,
+    loadingAdmin,
+    errorAdmin,
+    adminLoginResponse,
+  ]);
 
   return (
     <ul className={ulClassName}>
@@ -43,9 +76,7 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
         </li>
       ))}
 
-      {!loadingAdmin &&
-      !errorAdmin &&
-      adminLoginResponse.adminUser !== undefined ? (
+      {adminData ? (
         <li className='nav-item'>
           <a
             href='/admin'
@@ -56,34 +87,28 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
               adminLoginResponse.adminUser.lastname}
           </a>
         </li>
+      ) : taxpayerData ? (
+        <li className='nav-item'>
+          <a
+            href='/profile'
+            className={type ? 'hamburger-bar__link' : 'nav-link'}
+            id={type ? `${type}-nav-taxpayer` : 'nav-taxpayer'}
+          >
+            {taxpayerLoginResponse.taxpayer !== undefined &&
+              taxpayerLoginResponse.taxpayer.taxpayer_name}
+          </a>
+        </li>
       ) : (
-        !loadingTaxpayer &&
-        !errorTaxpayer &&
-        taxpayerLoginResponse.taxpayer !== undefined && (
-          <li className='nav-item'>
-            <a
-              href='/profile'
-              className={type ? 'hamburger-bar__link' : 'nav-link'}
-              id={type ? `${type}-nav-taxpayer` : 'nav-taxpayer'}
-            >
-              {taxpayerLoginResponse.taxpayer !== undefined &&
-                taxpayerLoginResponse.taxpayer.taxpayer_name}
-            </a>
-          </li>
-        )
+        <li className='nav-item'>
+          <a
+            href='/login'
+            className={type ? 'hamburger-bar__link' : 'nav-link'}
+            id={type ? `${type}-nav-login` : 'nav-login'}
+          >
+            Login
+          </a>
+        </li>
       )}
-      {adminLoginResponse.adminUser === undefined &&
-        taxpayerLoginResponse.taxpayer === undefined && (
-          <li className='nav-item'>
-            <a
-              href='/login'
-              className={type ? 'hamburger-bar__link' : 'nav-link'}
-              id={type ? `${type}-nav-login` : 'nav-login'}
-            >
-              Login
-            </a>
-          </li>
-        )}
     </ul>
   );
 };
