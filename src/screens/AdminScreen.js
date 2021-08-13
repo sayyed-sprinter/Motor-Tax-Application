@@ -1,74 +1,167 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteAdminAccount } from '../actions/adminAction';
+import Dialog from '../components/Dialog';
 import DocumentListing from '../components/DocumentListing';
+import Profile from '../components/Profile';
+import Switch from '../components/Switch';
+import {
+  ADMIN_LOGIN_RESET,
+  ADMIN_SIGNUP_RESET,
+} from '../constants/adminConstants';
 
 const AdminScreen = ({ history }) => {
+  const dispatch = useDispatch();
+
   const [taxpayer, setTaxpayer] = useState(true);
   const [insuranceCompany, setInsuranceCompany] = useState(false);
+  const [docs, setDocs] = useState(false);
+  const [logoutStatus, setLogoutStatus] = useState(false);
+  const [deleted, setDeleted] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+
+  const adminRes = useSelector((state) => state.adminLogin);
+  const { loginResponse } = adminRes;
+
+  const deleteRes = useSelector((state) => state.adminLogin);
+  const { loading, deleteResponse, error } = deleteRes;
+
+  useEffect(() => {
+    if (loginResponse.adminUser === undefined) {
+      history.push('/login');
+    }
+    if (logoutStatus) {
+      localStorage.removeItem('adminprofileinfo');
+      dispatch({ type: ADMIN_LOGIN_RESET });
+      dispatch({ type: ADMIN_SIGNUP_RESET });
+      history.push('/');
+      window.location.reload();
+    }
+
+    if (deleted) {
+      if (window.confirm('Are you sure you want to delete?')) {
+        dispatch(deleteAdminAccount(loginResponse.adminUser));
+        setShowDialog(true);
+        const setTimer = setTimeout(() => {
+          setLogoutStatus(true);
+        }, 1500);
+        return () => clearTimeout(setTimer);
+      }
+    }
+  }, [
+    loginResponse,
+    history,
+    dispatch,
+    logoutStatus,
+    deleted,
+    loading,
+    error,
+    deleteResponse,
+  ]);
 
   return (
     <>
+      {showDialog && <Dialog type='error' text='Account deleted' />}
+
       <section className='admin-container'>
-        <section className='nav-admin-container' id='nav-admin-container'>
-          <section className={`nav-admin nav-Taxpayer`}>
-            {taxpayer ? (
-              <p
-                id={`menu-Taxpayer`}
-                className='admin-menu-active'
-                onClick={() => {
-                  setTaxpayer(true);
-                  setInsuranceCompany(false);
-                }}
-              >
-                Taxpayer
-              </p>
-            ) : (
-              <p
-                id={`menu-Taxpayer`}
-                onClick={() => {
-                  setTaxpayer(true);
-                  setInsuranceCompany(false);
-                }}
-              >
-                Taxpayer
-              </p>
-            )}
+        {loginResponse.adminUser && (
+          <Profile profileData={loginResponse.adminUser} />
+        )}
+
+        <section className='event-container'>
+          <section className='switch-event'>
+            <Switch
+              value={docs}
+              setValue={setDocs}
+              text='Docs'
+              classname='left'
+            />
           </section>
-          <section className={`nav-admin nav-insurance-company`}>
-            {insuranceCompany ? (
-              <p
-                id={`menu-insurance-company`}
-                className='admin-menu-active'
-                onClick={() => {
-                  setTaxpayer(false);
-                  setInsuranceCompany(true);
-                }}
-              >
-                Insurance Company
-              </p>
-            ) : (
-              <p
-                id={`menu-insurance-company`}
-                onClick={() => {
-                  setTaxpayer(false);
-                  setInsuranceCompany(true);
-                }}
-              >
-                Insurance Company
-              </p>
-            )}
+          <section className='profile-event'>
+            <p
+              className='btn btn-primary btn--logout'
+              onClick={() => setLogoutStatus(true)}
+              id='admin-logout'
+            >
+              logout
+            </p>
+
+            <p
+              className='btn btn-primary btn--delete'
+              onClick={() => setDeleted(true)}
+              id='admin-logout'
+            >
+              delete
+            </p>
           </section>
         </section>
-        <h1 className='heading-1 taxpayer-docs' id='taxpayer-documents'>
-          {taxpayer && 'Taxpayer Documents'}
-          {insuranceCompany && 'Insurance Company Documents'}
-        </h1>
 
-        {taxpayer && <DocumentListing history={history} taxpayer={taxpayer} />}
-        {insuranceCompany && (
-          <DocumentListing
-            history={history}
-            insuranceCompany={insuranceCompany}
-          />
+        {docs && (
+          <>
+            <section className='nav-admin-container' id='nav-admin-container'>
+              <section className={`nav-admin nav-Taxpayer`}>
+                {taxpayer ? (
+                  <p
+                    id={`menu-Taxpayer`}
+                    className='admin-menu-active'
+                    onClick={() => {
+                      setTaxpayer(true);
+                      setInsuranceCompany(false);
+                    }}
+                  >
+                    Taxpayer
+                  </p>
+                ) : (
+                  <p
+                    id={`menu-Taxpayer`}
+                    onClick={() => {
+                      setTaxpayer(true);
+                      setInsuranceCompany(false);
+                    }}
+                  >
+                    Taxpayer
+                  </p>
+                )}
+              </section>
+              <section className={`nav-admin nav-insurance-company`}>
+                {insuranceCompany ? (
+                  <p
+                    id={`menu-insurance-company`}
+                    className='admin-menu-active'
+                    onClick={() => {
+                      setTaxpayer(false);
+                      setInsuranceCompany(true);
+                    }}
+                  >
+                    Insurance Company
+                  </p>
+                ) : (
+                  <p
+                    id={`menu-insurance-company`}
+                    onClick={() => {
+                      setTaxpayer(false);
+                      setInsuranceCompany(true);
+                    }}
+                  >
+                    Insurance Company
+                  </p>
+                )}
+              </section>
+            </section>
+            <h2 className='heading-5 taxpayer-docs' id='taxpayer-documents'>
+              {taxpayer && 'Taxpayer Documents'}
+              {insuranceCompany && 'Insurance Company Documents'}
+            </h2>
+            {taxpayer && (
+              <DocumentListing history={history} taxpayer={taxpayer} />
+            )}
+            {insuranceCompany && (
+              <DocumentListing
+                history={history}
+                insuranceCompany={insuranceCompany}
+              />
+            )}{' '}
+          </>
         )}
       </section>
     </>

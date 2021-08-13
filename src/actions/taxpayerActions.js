@@ -10,6 +10,11 @@ import {
   TAXPAYER_LOGIN_REQUEST,
   TAXPAYER_LOGIN_SUCCESS,
   TAXPAYER_LOGIN_FAIL,
+  TAXPAYER_DELETE_REQUEST,
+  TAXPAYER_DELETE_SUCCESS,
+  TAXPAYER_DELETE_FAIL,
+  TAXPAYER_LOGIN_RESET,
+  TAXPAYER_SIGNUP_RESET,
 } from '../constants/taxpayerConstants';
 
 export const fetchTaxpayerDetails = (bodydata) => async (dispatch) => {
@@ -79,6 +84,29 @@ export const taxpayerLogin = (bodyData) => async (dispatch) => {
         err.response && err.response.data.message
           ? err.response.data.message
           : err.message,
+    });
+  }
+};
+
+export const deleteTaxpayerAccount = (taxpayerData) => async (dispatch) => {
+  try {
+    dispatch({ type: TAXPAYER_DELETE_REQUEST });
+
+    const { data } = await axios.delete(
+      `https://motor-tax.herokuapp.com/api/taxpayer/${taxpayerData._id}`
+    );
+
+    dispatch({ type: TAXPAYER_DELETE_SUCCESS, payload: data });
+    dispatch({ type: TAXPAYER_LOGIN_RESET });
+    dispatch({ type: TAXPAYER_SIGNUP_RESET });
+    localStorage.removeItem('taxpayerprofileinfo');
+  } catch (error) {
+    dispatch({
+      type: TAXPAYER_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
     });
   }
 };

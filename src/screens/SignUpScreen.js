@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import InputTextField from '../components/InputTextField';
@@ -8,6 +8,7 @@ import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
 import { createTaxpayerAcc } from '../actions/taxpayerActions';
 import MessageBar from '../components/MessageBar';
+import Switch from '../components/Switch';
 
 const SignUpScreen = ({ history }) => {
   const dispatch = useDispatch();
@@ -152,6 +153,37 @@ const SignUpScreen = ({ history }) => {
   //CHECK PASSWORD
   const verifyPassword = password === confirmPassword ? true : false;
 
+  useEffect(() => {
+    if (
+      !loadingTaxpayer &&
+      !errorTaxpayer &&
+      taxpayerSignupResponse.taxpayerCreated !== undefined
+    ) {
+      history.push({
+        pathname: '/login',
+        state: {
+          email: taxpayerSignupResponse.taxpayerCreated.email,
+          password: taxpayerSignupResponse.taxpayerCreated.password,
+        },
+      });
+    }
+
+    if (
+      !loadingAdmin &&
+      !errorAdmin &&
+      adminSignupResponse.adminCreated !== undefined
+    ) {
+      history.push({
+        pathname: '/login',
+        state: {
+          email: adminSignupResponse.adminCreated.email,
+          password: adminSignupResponse.adminCreated.password,
+          admin: true,
+        },
+      });
+    }
+  });
+
   // FORM SUBMIT HANDLER
   const submitHandler = (e) => {
     e.preventDefault();
@@ -173,14 +205,6 @@ const SignUpScreen = ({ history }) => {
           password,
         })
       );
-      history.push({
-        pathname: '/login',
-        state: {
-          email: adminSignupResponse.adminCreated.email,
-          password: adminSignupResponse.adminCreated.password,
-          admin: true,
-        },
-      });
     } else {
       dispatch(
         createTaxpayerAcc({
@@ -204,13 +228,6 @@ const SignUpScreen = ({ history }) => {
           policy_file_path,
         })
       );
-      history.push({
-        pathname: '/login',
-        state: {
-          email: taxpayerSignupResponse.taxpayerCreated.email,
-          password: taxpayerSignupResponse.taxpayerCreated.password,
-        },
-      });
     }
   };
 
@@ -219,28 +236,7 @@ const SignUpScreen = ({ history }) => {
       <h1 className='heading-1 signup-heading'>
         {admin ? 'Admin' : 'Taxpayer'} &ndash; Sign Up
       </h1>
-      <section className='admin-switch-container'>
-        {' '}
-        <p className='admin-switch-text'>Admin</p>
-        <section className='admin-switch' onClick={() => setAdmin(!admin)}>
-          {admin ? (
-            <section
-              className='admin-switch-btn admin-switch-btn--on'
-              onClick={() => setAdmin(!admin)}
-              id='btn-switch-taxpayer'
-            ></section>
-          ) : (
-            <section
-              className='admin-switch-btn admin-switch-btn--off'
-              onClick={() => setAdmin(!admin)}
-              id='btn-switch-admin'
-            >
-              &nbsp;
-            </section>
-          )}
-        </section>
-        {/* <p className='admin-switch-text'>Taxpayer</p> */}
-      </section>
+      <Switch value={admin} setValue={setAdmin} text='Admin' />
       <form className='' onSubmit={(e) => submitHandler(e)}>
         {admin ? (
           <section className='sign-up-text-box admin-signup-text-box'>
