@@ -2366,7 +2366,7 @@ textarea {
   border-radius: 3px;
   box-shadow: var(--box-shadow);
   opacity: 0.9;
-  animation: dialogAnimation 0.8s linear;
+  animation: dialogAnimation 0.7s linear;
 }
 
 .dialog--normal {
