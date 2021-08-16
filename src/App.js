@@ -40,8 +40,9 @@ function App() {
           exact
         />
         <Route path='/' component={HomeScreen} exact />
+
+        <Footer />
       </main>
-      <Footer />
     </Router>
   );
 }
