@@ -2409,3 +2409,52 @@ textarea {
     opacity: 0.9;
   }
 }
+
+/*  */
+/* FOOTER */
+/*  */
+.footer-container {
+  padding: 3rem;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  background: linear-gradient(
+    to right,
+    var(--footer-gradient-from),
+    var(--footer-gradient-to)
+  );
+}
+
+.footer {
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+
+  justify-items: center;
+  align-items: center;
+  grid-gap: 1.5rem;
+}
+
+.footer-text {
+  margin: 0;
+}
+
+.footer-heart {
+  height: 0.75rem;
+  color: #fe251b;
+  animation: 1.5s cubic-bezier(0.5, 0, 0.5, 1) 0s normal none infinite running
+    heartbeat;
+  -webkit-animation: 1.5s cubic-bezier(0.5, 0, 0.5, 1) 0s normal none infinite
+    running heartbeat;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
