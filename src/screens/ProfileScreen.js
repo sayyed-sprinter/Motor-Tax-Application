@@ -37,9 +37,13 @@ const ProfileScreen = ({ history }) => {
         setShowDialog(true);
 
         const setTimer = setTimeout(() => {
+          setDeleted(false);
           setLogoutStatus(true);
-        }, 1500);
+        }, 1300);
+
         return () => clearTimeout(setTimer);
+      } else {
+        setDeleted(false);
       }
     }
   }, [loginResponse, history, dispatch, logoutStatus, deleted]);

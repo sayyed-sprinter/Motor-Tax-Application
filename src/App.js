@@ -13,6 +13,7 @@ import InsuranceCompaniesScreen from './screens/InsuranceCompaniesScreen.js';
 import SignUpScreen from './screens/SignUpScreen.js';
 import LoginScreen from './screens/LoginScreen.js';
 import ProfileScreen from './screens/ProfileScreen.js';
+import Footer from './components/Footer.js';
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
           exact
         />
         <Route path='/' component={HomeScreen} exact />
+
+        <Footer />
       </main>
     </Router>
   );

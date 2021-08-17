@@ -42,10 +42,15 @@ const AdminScreen = ({ history }) => {
       if (window.confirm('Are you sure you want to delete?')) {
         dispatch(deleteAdminAccount(loginResponse.adminUser));
         setShowDialog(true);
+
         const setTimer = setTimeout(() => {
+          setDeleted(false);
           setLogoutStatus(true);
-        }, 1500);
+        }, 1300);
+
         return () => clearTimeout(setTimer);
+      } else {
+        setDeleted(false);
       }
     }
   }, [
