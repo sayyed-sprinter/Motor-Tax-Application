@@ -27,6 +27,7 @@ import {
   adminLoginReducer,
   adminSignupReducer,
 } from './reducers/adminReducers';
+import { taxRecordData } from './reducers/taxRecordReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
@@ -44,6 +45,7 @@ const reducer = combineReducers({
   adminSignup: adminSignupReducer,
   adminLogin: adminLoginReducer,
   adminDelete: adminDeleteReducer,
+  taxRecord: taxRecordData,
 });
 
 const taxpayerProfileInfoFromStorage = localStorage.getItem(
@@ -117,6 +119,7 @@ const initialState = {
   },
   adminLogin: { loginResponse: adminProfileInfoFromStorage },
   adminDelete: { deleteResponse: {} },
+  taxRecord: { taxRecords: [] },
 };
 
 const middleware = [thunk];

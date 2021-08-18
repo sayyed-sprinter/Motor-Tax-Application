@@ -67,7 +67,7 @@ const LoginScreen = ({ history }) => {
       taxpayerLoginResponse.success
     ) {
       history.push({
-        pathname: '/profile',
+        pathname: `/profile/${taxpayerLoginResponse.taxpayer.bluebook_number}`,
         state: { isAdmin: false },
       });
     }

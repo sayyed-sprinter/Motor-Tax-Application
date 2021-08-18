@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTaxpayerAccount } from '../actions/taxpayerActions';
 import Dialog from '../components/Dialog';
+import Graph from '../components/Graph';
 import Profile from '../components/Profile';
 import {
   TAXPAYER_LOGIN_RESET,
@@ -51,26 +52,19 @@ const ProfileScreen = ({ history }) => {
   return (
     <>
       {showDialog && <Dialog type='error' text='Account deleted' />}
+
       <section className='profile-container' id='profile-container'>
         {loginResponse.taxpayer && (
-          <Profile profileData={loginResponse.taxpayer} />
+          <Profile
+            profileData={loginResponse.taxpayer}
+            setLogoutStatusValue={setLogoutStatus}
+            setDeletedValue={setDeleted}
+            type='taxpayer'
+          />
         )}
-        <section className='profile-event'>
-          <p
-            className='btn btn-primary btn--logout'
-            onClick={() => setLogoutStatus(true)}
-            id='taxpayer-logout'
-          >
-            logout
-          </p>
-          <p
-            className='btn btn-primary btn--delete'
-            onClick={(e) => setDeleted(true)}
-            id='taxpayer-delete'
-          >
-            delete
-          </p>
-        </section>
+        {loginResponse.taxpayer && (
+          <Graph bluebookNumber={loginResponse.taxpayer.bluebook_number} />
+        )}
       </section>
     </>
   );
