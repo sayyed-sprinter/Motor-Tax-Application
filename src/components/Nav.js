@@ -89,7 +89,7 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
       ) : taxpayerData ? (
         <li className='nav-item'>
           <a
-            href='/profile'
+            href={`/profile/${taxpayerLoginResponse.taxpayer.bluebook_number}`}
             className={type ? 'hamburger-bar__link' : 'nav-link'}
             id={type ? `${type}-nav-taxpayer` : 'nav-taxpayer'}
           >
