@@ -5,6 +5,7 @@ import { getTaxRecords } from '../actions/taxRecordAction';
 
 import Loader from '../components/Loader';
 import MessageBar from '../components/MessageBar';
+import PaymentHistory from './PaymentHistory';
 
 const Graph = ({ bluebookNumber }) => {
   const dispatch = useDispatch();
@@ -92,27 +93,36 @@ const Graph = ({ bluebookNumber }) => {
   };
 
   return (
-    <section
-      className='graph-container'
-      id={`taxpayer-graph-${bluebookNumber}`}
-    >
+    <>
+      <section
+        className='graph-container'
+        id={`taxpayer-graph-${bluebookNumber}`}
+      >
+        {loading ? (
+          <Loader />
+        ) : error ? (
+          <MessageBar error={true} text={error} id={'graph-error'} />
+        ) : (
+          taxRecords !== undefined && (
+            <>
+              <section className='line-chart'>
+                <Line data={LineData} options={options} />
+              </section>
+              <section className='polar-chart'>
+                <PolarArea data={polarData} />
+              </section>
+            </>
+          )
+        )}
+      </section>
       {loading ? (
         <Loader />
       ) : error ? (
         <MessageBar error={true} text={error} id={'graph-error'} />
       ) : (
-        taxRecords !== undefined && (
-          <>
-            <section className='line-chart'>
-              <Line data={LineData} options={options} />
-            </section>
-            <section className='polar-chart'>
-              <PolarArea data={polarData} />
-            </section>
-          </>
-        )
+        taxRecords !== undefined && <PaymentHistory taxRecords={taxRecords} />
       )}
-    </section>
+    </>
   );
 };
 
