@@ -34,22 +34,37 @@ const PaymentHistory = ({ taxRecords }) => {
               </p>
               <p className='penalty-years'>
                 <strong>Overdue For</strong>
-                <span>
-                  {record.taxOverdue}{' '}
-                  {record.taxOverdue > 0
-                    ? record.taxOverdue > 1
-                      ? 'Years'
-                      : 'Year'
-                    : ''}
-                </span>
+                {record.taxOverdue > 0 ? (
+                  <span className='error'>
+                    {record.taxOverdue}{' '}
+                    {record.taxOverdue > 1 ? 'Years' : 'Year'}
+                  </span>
+                ) : (
+                  <span>
+                    {record.taxOverdue}{' '}
+                    {record.taxOverdue > 0
+                      ? record.taxOverdue > 1
+                        ? 'Years'
+                        : 'Year'
+                      : ''}
+                  </span>
+                )}
               </p>
               <p className='penalty-charge'>
                 <strong>Penalty Charge</strong>
-                <span>{record.penaltyOnOverdue}</span>
+                {record.penaltyOnOverdue > 0 ? (
+                  <span className='error'>{record.penaltyOnOverdue}</span>
+                ) : (
+                  <span>{record.penaltyOnOverdue}</span>
+                )}
               </p>
               <p className='pollution-charge'>
                 <strong>Pollution Charge</strong>
-                <span>{record.pollutingCharge}</span>
+                {record.pollutingCharge > 0 ? (
+                  <span className='error'>{record.pollutingCharge}</span>
+                ) : (
+                  <span>{record.pollutingCharge}</span>
+                )}
               </p>
             </section>
             <section className='payment-total'>

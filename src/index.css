@@ -548,6 +548,16 @@ p.btn {
   );
 }
 
+.error {
+  background: linear-gradient(
+    to right,
+    var(--error-msg-gradient-from),
+    var(--error-msg-gradient-to)
+  );
+  color: var(--white);
+  padding: 0.1rem 0.3rem;
+}
+
 .success-message {
   background: linear-gradient(
     to right,
@@ -2824,6 +2834,7 @@ section > .payment-histories:not(:last-child) {
   position: relative;
   font-size: 0.9rem;
   font-weight: 500;
+  color: var(--secondary-gradient-from);
 }
 
 .history-calendar-icon {
