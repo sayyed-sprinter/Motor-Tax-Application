@@ -406,7 +406,21 @@ Given(
 
         await driver.wait(until.elementLocated(By.id('payment-history-container')), 30000);
         expect(await driver.wait(until.elementLocated(By.id('payment-history-container'))));
-        await driver.quit();
+        
       }
       );
- 
+    
+      Given(
+        'Test View Insurance Agents Functionality',
+        { timeout: 30000 },
+        async function () {
+         let driver = await new Builder().forBrowser('chrome').build();
+         await driver.get('http://localhost:3000/');
+        
+         await driver.findElement(By.id('nav-companies')).click();
+      
+         await driver.wait(until.elementLocated(By.id('new-company-1')), 30000);
+         expect(await driver.wait(until.elementLocated(By.id('new-company-1'))));
+         await driver.quit();   
+      }
+      );
