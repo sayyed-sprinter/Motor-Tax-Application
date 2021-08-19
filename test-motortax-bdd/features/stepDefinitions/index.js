@@ -421,6 +421,29 @@ Given(
       
          await driver.wait(until.elementLocated(By.id('new-company-1')), 30000);
          expect(await driver.wait(until.elementLocated(By.id('new-company-1'))));
-         await driver.quit();   
+         
       }
       );
+
+      Given(
+        'Test View Statistical Data Functionality',
+        { timeout: 30000 },
+        async function () {
+         let driver = await new Builder().forBrowser('chrome').build();
+         await driver.get('http://localhost:3000/');
+        
+         await driver.findElement(By.id('nav-login')).click();
+    
+         await driver.findElement(By.id('email')).sendKeys('susan@tdd.com');
+      
+         await driver.findElement(By.id('password')).sendKeys('s');
+       
+         await driver.findElement(By.id('taxpayer-btn-login')).click();
+  
+         await driver.findElement(By.id('nav-taxpayer')).click();
+  
+         await driver.wait(until.elementLocated(By.id('taxpayer-graph-SUD789')), 30000);
+         expect(await driver.wait(until.elementLocated(By.id('taxpayer-graph-SUD789'))));
+         await driver.quit();
+        }
+        );
