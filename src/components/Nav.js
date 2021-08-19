@@ -94,7 +94,7 @@ const Nav = ({ ulClassName, liClassName, aClassName, shouldUseLink, type }) => {
             id={type ? `${type}-nav-taxpayer` : 'nav-taxpayer'}
           >
             {taxpayerLoginResponse.taxpayer !== undefined &&
-              taxpayerLoginResponse.taxpayer.taxpayer_name}
+              taxpayerLoginResponse.taxpayer.taxpayer_name.split(' ')[0]}
           </a>
         </li>
       ) : (

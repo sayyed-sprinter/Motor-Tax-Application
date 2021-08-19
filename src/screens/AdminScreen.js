@@ -70,104 +70,93 @@ const AdminScreen = ({ history }) => {
 
       <section className='admin-container'>
         {loginResponse.adminUser && (
-          <Profile profileData={loginResponse.adminUser} />
+          <Profile
+            profileData={loginResponse.adminUser}
+            setLogoutStatusValue={setLogoutStatus}
+            setDeletedValue={setDeleted}
+          />
         )}
 
-        <section className='event-container'>
-          <section className='switch-event'>
-            <Switch
-              value={docs}
-              setValue={setDocs}
-              text='Docs'
-              classname='left'
-            />
-          </section>
-          <section className='profile-event'>
-            <p
-              className='btn btn-primary btn--logout'
-              onClick={() => setLogoutStatus(true)}
-              id='admin-logout'
-            >
-              logout
-            </p>
-
-            <p
-              className='btn btn-primary btn--delete'
-              onClick={() => setDeleted(true)}
-              id='admin-logout'
-            >
-              delete
-            </p>
-          </section>
-        </section>
-
-        {docs && (
-          <>
-            <section className='nav-admin-container' id='nav-admin-container'>
-              <section className={`nav-admin nav-Taxpayer`}>
-                {taxpayer ? (
-                  <p
-                    id={`menu-Taxpayer`}
-                    className='admin-menu-active'
-                    onClick={() => {
-                      setTaxpayer(true);
-                      setInsuranceCompany(false);
-                    }}
-                  >
-                    Taxpayer
-                  </p>
-                ) : (
-                  <p
-                    id={`menu-Taxpayer`}
-                    onClick={() => {
-                      setTaxpayer(true);
-                      setInsuranceCompany(false);
-                    }}
-                  >
-                    Taxpayer
-                  </p>
-                )}
-              </section>
-              <section className={`nav-admin nav-insurance-company`}>
-                {insuranceCompany ? (
-                  <p
-                    id={`menu-insurance-company`}
-                    className='admin-menu-active'
-                    onClick={() => {
-                      setTaxpayer(false);
-                      setInsuranceCompany(true);
-                    }}
-                  >
-                    Insurance Company
-                  </p>
-                ) : (
-                  <p
-                    id={`menu-insurance-company`}
-                    onClick={() => {
-                      setTaxpayer(false);
-                      setInsuranceCompany(true);
-                    }}
-                  >
-                    Insurance Company
-                  </p>
-                )}
-              </section>
-            </section>
-            <h2 className='heading-5 taxpayer-docs' id='taxpayer-documents'>
-              {taxpayer && 'Taxpayer Documents'}
-              {insuranceCompany && 'Insurance Company Documents'}
-            </h2>
-            {taxpayer && (
-              <DocumentListing history={history} taxpayer={taxpayer} />
-            )}
-            {insuranceCompany && (
-              <DocumentListing
-                history={history}
-                insuranceCompany={insuranceCompany}
+        <section className='admin-options'>
+          <section className='event-container'>
+            <section className='switch-event'>
+              <Switch
+                value={docs}
+                setValue={setDocs}
+                text='Docs'
+                classname='left'
               />
-            )}{' '}
-          </>
-        )}
+            </section>
+          </section>
+
+          {docs && (
+            <>
+              <section className='nav-admin-container' id='nav-admin-container'>
+                <section className={`nav-admin nav-Taxpayer`}>
+                  {taxpayer ? (
+                    <p
+                      id={`menu-Taxpayer`}
+                      className='admin-menu-active'
+                      onClick={() => {
+                        setTaxpayer(true);
+                        setInsuranceCompany(false);
+                      }}
+                    >
+                      Taxpayer
+                    </p>
+                  ) : (
+                    <p
+                      id={`menu-Taxpayer`}
+                      onClick={() => {
+                        setTaxpayer(true);
+                        setInsuranceCompany(false);
+                      }}
+                    >
+                      Taxpayer
+                    </p>
+                  )}
+                </section>
+                <section className={`nav-admin nav-insurance-company`}>
+                  {insuranceCompany ? (
+                    <p
+                      id={`menu-insurance-company`}
+                      className='admin-menu-active'
+                      onClick={() => {
+                        setTaxpayer(false);
+                        setInsuranceCompany(true);
+                      }}
+                    >
+                      Insurance Company
+                    </p>
+                  ) : (
+                    <p
+                      id={`menu-insurance-company`}
+                      onClick={() => {
+                        setTaxpayer(false);
+                        setInsuranceCompany(true);
+                      }}
+                    >
+                      Insurance Company
+                    </p>
+                  )}
+                </section>
+              </section>
+              <h2 className='heading-5 taxpayer-docs' id='taxpayer-documents'>
+                {taxpayer && 'Taxpayer Documents'}
+                {insuranceCompany && 'Insurance Company Documents'}
+              </h2>
+              {taxpayer && (
+                <DocumentListing history={history} taxpayer={taxpayer} />
+              )}
+              {insuranceCompany && (
+                <DocumentListing
+                  history={history}
+                  insuranceCompany={insuranceCompany}
+                />
+              )}{' '}
+            </>
+          )}
+        </section>
       </section>
     </>
   );
