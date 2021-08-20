@@ -10,13 +10,13 @@ const Switch = ({ value, setValue, text, classname = 'right' }) => {
           <section
             className='value-switch-btn value-switch-btn--on'
             onClick={() => setValue(!value)}
-            id={`btn-switch-${text}`}
+            id={`btn-switch-${text.toLowerCase()}`}
           ></section>
         ) : (
           <section
             className='value-switch-btn value-switch-btn--off'
             onClick={() => setValue(!value)}
-            id='btn-switch-value'
+            id={`btn-switch-${text.toLowerCase()}`}
           >
             &nbsp;
           </section>
