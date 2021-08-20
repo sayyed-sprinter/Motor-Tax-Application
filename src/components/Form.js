@@ -411,12 +411,14 @@ const Form = ({ history }) => {
         {error && error !== 'tax-paid' && (
           <MessageBar error={true} text={error} />
         )}
-        {error === 'tax-paid' && <MessageBar text='Tax already paid!' />}
+        {error === 'tax-paid' && (
+          <MessageBar text='Tax already paid!' id='tax-already-paid' />
+        )}
         {errInsuranceReport && errInsuranceReport !== 'tax-paid' && (
           <MessageBar error={true} text={errInsuranceReport} />
         )}
         {errInsuranceReport === 'tax-paid' && (
-          <MessageBar text='Tax already paid!' />
+          <MessageBar text='Tax already paid!' id='tax-already-paid' />
         )}
       </form>
     </section>
