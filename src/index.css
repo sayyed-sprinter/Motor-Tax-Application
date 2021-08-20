@@ -2967,3 +2967,25 @@ section > .payment-histories:not(:last-child) {
     font-size: 0.9rem;
   }
 }
+
+.scroll-top {
+  position: fixed;
+  bottom: 3rem;
+  right: 4%;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(
+    to right bottom,
+    var(--secondary-gradient-from),
+    var(--secondary-gradient-to)
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-top-icon {
+  font-size: 1.5rem;
+  color: var(--white);
+}

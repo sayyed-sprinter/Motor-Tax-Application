@@ -5,6 +5,7 @@ import Dialog from '../components/Dialog';
 import DocumentListing from '../components/DocumentListing';
 import Profile from '../components/Profile';
 import Switch from '../components/Switch';
+import Top from '../components/Top';
 import {
   ADMIN_LOGIN_RESET,
   ADMIN_SIGNUP_RESET,
@@ -154,6 +155,7 @@ const AdminScreen = ({ history }) => {
                   insuranceCompany={insuranceCompany}
                 />
               )}{' '}
+              <Top />
             </>
           )}
         </section>

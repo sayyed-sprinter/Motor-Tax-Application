@@ -4,6 +4,7 @@ import { deleteTaxpayerAccount } from '../actions/taxpayerActions';
 import Dialog from '../components/Dialog';
 import Graph from '../components/Graph';
 import Profile from '../components/Profile';
+import Top from '../components/Top';
 import {
   TAXPAYER_LOGIN_RESET,
   TAXPAYER_SIGNUP_RESET,
@@ -66,6 +67,7 @@ const ProfileScreen = ({ history }) => {
           <Graph bluebookNumber={loginResponse.taxpayer.bluebook_number} />
         )}
       </section>
+      <Top />
     </>
   );
 };
