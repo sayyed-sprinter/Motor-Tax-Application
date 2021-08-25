@@ -5,6 +5,7 @@ import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
 
 import { FaFilePdf } from 'react-icons/fa';
+import Rating from './Rating';
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -16,8 +17,6 @@ const PaymentSuccess = ({ type }) => {
   const { loading: loadingIns, error: errIns, report_details } = insurance_info;
 
   const downloadClickListener = () => {
-    console.log(taxpayerinfo);
-
     if (type === 'tax' && !loadingTax && !errTax) {
       var taxDocDefinition = {
         content: [
@@ -94,7 +93,12 @@ const PaymentSuccess = ({ type }) => {
       <p className='payment-msg'>
         Your payment has been successfully captured.
       </p>
-      <p className='payment-review'>Please rate your experience below.</p>
+      {type === 'tax' && (
+        <>
+          <p className='payment-review'>Please rate your experience below.</p>
+          <Rating />
+        </>
+      )}
 
       <div
         onClick={downloadClickListener}

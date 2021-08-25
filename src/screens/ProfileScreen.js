@@ -58,6 +58,10 @@ const ProfileScreen = ({ history }) => {
         {loginResponse.taxpayer && (
           <Profile
             profileData={loginResponse.taxpayer}
+            nextpaymentData={{
+              nextDate: loginResponse.next_payment,
+              days: loginResponse.remaining_days,
+            }}
             setLogoutStatusValue={setLogoutStatus}
             setDeletedValue={setDeleted}
             type='taxpayer'

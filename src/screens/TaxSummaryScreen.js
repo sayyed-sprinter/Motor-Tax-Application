@@ -10,6 +10,7 @@ import { TAXPAYER_FETCH_RESET } from '../constants/taxpayerConstants';
 import PaymentSuccess from '../components/PaymentSuccess';
 import Loader from '../components/Loader';
 import MessageBar from '../components/MessageBar';
+import FeedbackForm from '../components/FeedbackForm';
 
 const TaxSummaryScreen = ({ history }) => {
   const record = useSelector((state) => state.taxpayer);
@@ -102,6 +103,7 @@ const TaxSummaryScreen = ({ history }) => {
           </div>
         </>
       )}
+      {!showButton && <FeedbackForm id={taxpayerinfo.recordId} />}
     </section>
   );
 };

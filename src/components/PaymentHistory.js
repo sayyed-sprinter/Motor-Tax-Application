@@ -66,6 +66,49 @@ const PaymentHistory = ({ taxRecords }) => {
                   <span>{record.pollutingCharge}</span>
                 )}
               </p>
+
+              <p className='bluebook-doc-file'>
+                <strong>Bluebook</strong>
+
+                {record.docs.map((doc, i) => (
+                  <span key={i}>
+                    {doc.bluebook_file_path === ''
+                      ? 'No file attached'
+                      : doc.bluebook_file_path}
+                  </span>
+                ))}
+              </p>
+              <p className='citizen-doc-file'>
+                <strong>Citizenship</strong>
+
+                {record.docs.map((doc, i) => (
+                  <span key={i}>
+                    {doc.citizenship_file_path === ''
+                      ? 'No file attached'
+                      : doc.citizenship_file_path}
+                  </span>
+                ))}
+              </p>
+              <p className='policy-doc-file'>
+                <strong>Policy</strong>
+
+                {record.docs.map((doc, i) => (
+                  <span key={i}>
+                    {doc.policy_file_path === ''
+                      ? 'No file attached'
+                      : doc.policy_file_path}
+                  </span>
+                ))}
+              </p>
+              <p className='documents--verified'>
+                <strong>Documents verified</strong>
+                {record.adminComment !== '' && !record.verified && (
+                  <span className='error'>{record.adminComment}</span>
+                )}
+                {record.adminComment === '' && record.verified && (
+                  <span className='success'>Verified</span>
+                )}
+              </p>
             </section>
             <section className='payment-total'>
               <p className='total-mob'>Total</p>

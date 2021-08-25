@@ -548,6 +548,14 @@ p.btn {
   );
 }
 
+.success-message {
+  background: linear-gradient(
+    to right,
+    var(--success-msg-gradient-from),
+    var(--success-msg-gradient-to)
+  );
+}
+
 .error {
   background: linear-gradient(
     to right,
@@ -558,12 +566,14 @@ p.btn {
   padding: 0.1rem 0.3rem;
 }
 
-.success-message {
+.success {
   background: linear-gradient(
     to right,
     var(--success-msg-gradient-from),
     var(--success-msg-gradient-to)
   );
+  color: var(--white);
+  padding: 0.1rem 0.3rem;
 }
 
 @media screen and (max-width: 62rem) {
@@ -2313,7 +2323,7 @@ textarea {
 }
 
 .profile--taxpayer {
-  height: 33rem;
+  height: 37rem;
 }
 
 .profile--admin {
@@ -2348,6 +2358,14 @@ textarea {
   background-color: var(--container-color);
   box-shadow: var(--box-shadow);
   border-radius: 5px;
+  flex-direction: column;
+}
+
+.profile-top-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--container-color);
+  border-radius: 5px;
 }
 
 .profile-details {
@@ -2355,14 +2373,52 @@ textarea {
   padding-bottom: 1.5rem;
 }
 
-.profile-event {
-  width: 30%;
+.profile-next-tax-payment {
+  width: 25%;
+  margin: 2rem;
+  padding: 1rem;
+  background-color: var(--primary-gradient-from);
+  border-radius: var(--border-radius);
+  box-shadow: 2px 2px 4px #00000042;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
+  transition: all 0.2s cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  overflow: hidden;
+}
+
+.profile-next-tax-payment:hover {
+  box-shadow: var(--box-shadow-dense);
+}
+
+.profile-next-tax-payment > strong {
+  margin: 0.2rem 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--font-color);
+  animation: rightToLeft 1s linear;
+}
+
+.profile-next-tax-payment > p:not(:last-child) {
+  margin-bottom: 1.2rem;
+}
+
+.profile-next-tax-payment > p {
+  margin: 0.5rem 0;
+  font-weight: 700;
+  color: var(--secondary-gradient-from);
+  animation: leftToRight 1s linear;
+}
+
+.profile-event {
+  width: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-evenly;
   padding-right: 1.5rem;
   box-sizing: border-box;
+  margin-bottom: 1rem;
 }
 
 .profile-event > .btn {
@@ -2413,14 +2469,46 @@ textarea {
   width: 40%;
 }
 
+@keyframes leftToRight {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes rightToLeft {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
 @media screen and (max-width: 70rem) {
+  .profile-next-tax-payment {
+    width: 90%;
+    margin: 0 auto 1.5rem auto;
+  }
+
   .profile-details {
     width: 77%;
     padding-bottom: 1.5rem;
   }
 
+  .profile--taxpayer {
+    height: 50rem;
+  }
+
+  .profile-top-container {
+    flex-direction: column;
+  }
+
   .profile-event {
-    width: 22%;
+    width: 50%;
+    justify-content: space-evenly;
   }
 
   .profile-event > .btn {
@@ -2429,12 +2517,17 @@ textarea {
 }
 
 @media screen and (max-width: 62rem) {
+  .profile-next-tax-payment {
+    width: 75%;
+    margin: 0 auto 1.5rem auto;
+  }
+
   .profile--admin {
     height: 28rem;
   }
 
   .profile--taxpayer {
-    height: 41rem;
+    height: 55rem;
   }
 
   .profile-details {
@@ -2457,7 +2550,7 @@ textarea {
 
   .profile-event {
     width: 96%;
-    margin: 0 auto;
+    margin: 0 auto 1rem auto;
     flex-direction: row;
     justify-content: space-between;
     padding-right: 0;
@@ -2764,6 +2857,29 @@ textarea {
   box-sizing: border-box;
 }
 
+.payment-year {
+  position: relative;
+}
+
+.payment-year > svg,
+.payment-year > p {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.payment-year > svg {
+  font-size: 5rem;
+  color: var(--secondary-gradient-from);
+}
+
+.payment-year > p {
+  color: var(--secondary-gradient-from);
+  margin: 0.5rem 0;
+}
+
 section > .payment-histories:not(:last-child) {
   border-bottom: 3px solid rgba(254, 60, 108, 0.9);
 }
@@ -2810,7 +2926,11 @@ section > .payment-histories:not(:last-child) {
 .tax-amount,
 .penalty-years,
 .penalty-charge,
-.pollution-charge {
+.pollution-charge,
+.bluebook-doc-file,
+.citizen-doc-file,
+.policy-doc-file,
+.documents--verified {
   display: flex;
   width: 96%;
   margin: auto;
@@ -2824,24 +2944,6 @@ section > .payment-histories:not(:last-child) {
 .penalty-charge > strong,
 .pollution-charge > strong {
   width: 46%;
-}
-
-.payment-year {
-  position: relative;
-}
-
-.payment-year > p {
-  position: relative;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--secondary-gradient-from);
-}
-
-.history-calendar-icon {
-  position: absolute;
-  font-size: 5rem;
-  color: rgba(51, 51, 51, 0.9);
-  top: 30%;
 }
 
 .payment-grand-total {
@@ -2889,8 +2991,7 @@ section > .payment-histories:not(:last-child) {
   letter-spacing: 1px;
 }
 
-.payment-total,
-.payment-year {
+.payment-total {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2904,6 +3005,11 @@ section > .payment-histories:not(:last-child) {
   .total-mob {
     display: block;
     font-weight: 700;
+  }
+
+  .payment-year {
+    border-left: 3px solid rgba(254, 60, 108, 0.9);
+    border-right: 3px solid rgba(254, 60, 108, 0.9);
   }
 
   .payment-history-headings {
@@ -2934,7 +3040,11 @@ section > .payment-histories:not(:last-child) {
   .tax-amount,
   .penalty-years,
   .penalty-charge,
-  .pollution-charge {
+  .pollution-charge,
+  .bluebook-doc-file,
+  .citizen-doc-file,
+  .policy-doc-file,
+  .documents--verified {
     font-size: 0.9rem;
   }
 
@@ -2944,18 +3054,6 @@ section > .payment-histories:not(:last-child) {
     padding: 0 1.25rem;
     border-bottom: none;
     border-top: none;
-  }
-
-  .payment-year {
-    border: 3px solid var(--secondary-gradient-from);
-    border-top: none;
-    border-bottom: none;
-  }
-
-  .history-calendar-icon {
-    font-size: 4rem;
-    color: rgba(51, 51, 51, 0.9);
-    top: 9%;
   }
 
   .payment-grand-total {
@@ -2988,4 +3086,120 @@ section > .payment-histories:not(:last-child) {
 .scroll-top-icon {
   font-size: 1.5rem;
   color: var(--white);
+}
+
+/*  */
+/* RATING */
+/*  */
+
+.rating-container {
+  width: var(--container-width);
+  margin: 0 auto;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+}
+
+.star > svg {
+  fill: var(--secondary-gradient-to);
+  font-size: 1.5rem;
+}
+
+/*  */
+/* FEEDBACK */
+/*  */
+
+.feedback-container {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.feedback-form {
+  width: 100%;
+  position: relative;
+  display: block;
+}
+
+.feedback-textarea {
+  height: 10rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.floating--btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 7px 5px;
+  font-size: 0.8rem;
+  height: auto;
+  padding: 0.4rem 0.5rem;
+  border-radius: 2px;
+}
+
+/* TAXPAYER-FEEDBACK */
+
+.taxpayer-feedback-heading {
+  margin: 0 auto 3rem auto;
+}
+
+.taxpayer-feedback-container {
+  display: flex;
+  width: 88%;
+  margin: 0 auto 5rem auto;
+  justify-content: space-evenly;
+}
+
+.taxpayer-feedback {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 15rem;
+}
+
+.taxpayer-feedback > svg {
+  fill: var(--secondary-gradient-from);
+  font-size: 1.5rem;
+}
+
+.taxpayer-feedback > h2 {
+  margin: 1rem 0 0.2rem 0;
+  padding: 0;
+  color: var(--font-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.taxpayer-rating > svg {
+  fill: var(--secondary-gradient-to);
+  font-size: 1rem;
+}
+
+.taxpayer-feedback > p {
+  color: var(--font-color);
+  font-size: 0.9rem;
+  text-align: justify;
+  line-height: 1.4rem;
+}
+
+@media screen and (max-width: 62rem) {
+  .taxpayer-feedback-container {
+    flex-direction: column;
+    margin-bottom: 3rem;
+    margin-top: -1.5rem;
+  }
+
+  .taxpayer-feedback {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem 0;
+  }
+
+  .taxpayer-feedback > p {
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0;
+  }
 }

@@ -28,6 +28,11 @@ import {
   adminSignupReducer,
 } from './reducers/adminReducers';
 import { taxRecordData } from './reducers/taxRecordReducers';
+import { savedRatingReducers } from './reducers/ratingReducers';
+import {
+  getFeedbackReducers,
+  savedFeedbackReducers,
+} from './reducers/feedbackReducers';
 
 const reducer = combineReducers({
   taxpayer: taxpayerReducer,
@@ -46,6 +51,9 @@ const reducer = combineReducers({
   adminLogin: adminLoginReducer,
   adminDelete: adminDeleteReducer,
   taxRecord: taxRecordData,
+  savedRating: savedRatingReducers,
+  savedFeedback: savedFeedbackReducers,
+  getFeedback: getFeedbackReducers,
 });
 
 const taxpayerProfileInfoFromStorage = localStorage.getItem(
@@ -120,6 +128,9 @@ const initialState = {
   adminLogin: { loginResponse: adminProfileInfoFromStorage },
   adminDelete: { deleteResponse: {} },
   taxRecord: { taxRecords: [] },
+  savedRating: { message: '' },
+  savedFeedback: { message: '' },
+  getFeedback: { feedback: [] },
 };
 
 const middleware = [thunk];

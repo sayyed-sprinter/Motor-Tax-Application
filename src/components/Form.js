@@ -193,13 +193,13 @@ const Form = ({ history }) => {
   return (
     <section className='form--pay-tax' id='home-screen'>
       {insurancePaid ? (
-        <h1 className='heading-1' id='pay-now'>
+        <h2 className='heading-1' id='pay-now'>
           Pay Your Tax
-        </h1>
+        </h2>
       ) : (
-        <h1 className='heading-1' id='pay-now'>
+        <h2 className='heading-1' id='pay-now'>
           Pay Motor Insurance
-        </h1>
+        </h2>
       )}
 
       <form

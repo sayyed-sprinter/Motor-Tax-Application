@@ -5,7 +5,10 @@ import axios from 'axios';
 
 import { BiLinkAlt } from 'react-icons/bi';
 import { VscLoading } from 'react-icons/vsc';
-import { createNewlInsuranceCompany } from '../actions/insuranceAction';
+import {
+  createNewlInsuranceCompany,
+  getLatestInsuranceCompanies,
+} from '../actions/insuranceAction';
 import Button from './Button';
 import MessageBar from './MessageBar';
 
@@ -36,29 +39,6 @@ const CompanyForm = () => {
   const [fileLoading, setFileLoading] = useState(false);
   const [vatLoader, setVatLoader] = useState(false);
   const [licenseLoader, setLicenseLoader] = useState(false);
-  //const [btnText, setBtnText] = useState('Register');
-
-  // useEffect(() => {
-  //   if (!loading && !error) {
-  //     dispatch(getLatestInsuranceCompanies());
-  //     setInsuranceCompany('');
-  //     setLicenseNumber('');
-  //     setVatNumber('');
-  //     setAddress('');
-  //     setContact('');
-  //     setEmail('');
-  //     setBtnText('Register')
-  //   }
-
-  //   const timer = setTimeout(() => {
-  //     window.scroll({
-  //       top: 100,
-  //       left: 100,
-  //       behavior: 'smooth',
-  //     });
-  //   }, 2000);
-  //   return () => clearTimeout(timer);
-  // }, [dispatch, loading, error]);
 
   // DISPLAY Loader
   const showLoader = (type) => {
@@ -134,6 +114,9 @@ const CompanyForm = () => {
   };
 
   useEffect(() => {
+    if (tempSuccess) {
+      dispatch(getLatestInsuranceCompanies());
+    }
     const setTimer = setTimeout(() => {
       setTempSuccess(false);
       setInsuranceCompany('');
@@ -142,9 +125,14 @@ const CompanyForm = () => {
       setAddress('');
       setContact('');
       setEmail('');
-    }, 5000);
+      window.scroll({
+        top: 100,
+        left: 100,
+        behavior: 'smooth',
+      });
+    }, 2000);
     return () => clearTimeout(setTimer);
-  }, [setTempSuccess, tempSuccess]);
+  }, [setTempSuccess, tempSuccess, dispatch]);
 
   const submitCompanyFormHandler = (e) => {
     e.preventDefault();
@@ -314,20 +302,6 @@ const CompanyForm = () => {
           id='btn-company-register'
         />
       </form>
-      {/* {loading ? (
-        setBtnText('Loading...')
-      ) : error ? (
-        <MessageBar type='error' text={error} />
-      ) : (
-        insuranceCompanies !== undefined &&
-        insuranceCompanies.success && (
-          <MessageBar
-            type='success'
-            text='New company registered successfully'
-            id='company-registered'
-          />
-        )
-      )} */}
 
       {tempSuccess && (
         <MessageBar
