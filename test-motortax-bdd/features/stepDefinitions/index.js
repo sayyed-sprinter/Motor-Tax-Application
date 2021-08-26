@@ -487,27 +487,52 @@ const { delay } = require('../utils/delay');
 // );
 
 // 1U VIEW STATISTICAL DATA FEATURE TEST
+// Given(
+//   'Test View Statistical Data Functionality',
+//   { timeout: 30000 },
+//   async function () {
+//     let driver = await new Builder().forBrowser('chrome').build();
+//     await driver.get('http://localhost:3000/');
+
+//     await driver.findElement(By.id('nav-login')).click();
+
+//     await driver.findElement(By.id('email')).sendKeys('susan@tdd.com');
+
+//     await driver.findElement(By.id('password')).sendKeys('s');
+
+//     await driver.findElement(By.id('taxpayer-btn-login')).click();
+
+//     await driver.wait(
+//       until.elementLocated(By.id('taxpayer-graph-SUD789')),
+//       30000
+//     );
+//     expect(
+//       await driver.wait(until.elementLocated(By.id('taxpayer-graph-SUD789')))
+//     );
+    
+//   }
+// );
+
+
 Given(
-  'Test View Statistical Data Functionality',
+  'Test Write Feedback Functionality',
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/');
+    await driver.get('http://localhost:3000/tax-summary');
 
-    await driver.findElement(By.id('nav-login')).click();
+    await driver.findElement(By.id('btn-pay-tax')).click();
 
-    await driver.findElement(By.id('email')).sendKeys('susan@tdd.com');
+    await driver.findElement(By.id('message')).sendKeys('The feature is very easy to use and understand');
 
-    await driver.findElement(By.id('password')).sendKeys('s');
-
-    await driver.findElement(By.id('taxpayer-btn-login')).click();
-
+    await driver.findElement(By.id('feedback-form-submit')).click();
+    
     await driver.wait(
-      until.elementLocated(By.id('taxpayer-graph-SUD789')),
+      until.elementLocated(By.id('feedback-response-message')),
       30000
     );
     expect(
-      await driver.wait(until.elementLocated(By.id('taxpayer-graph-SUD789')))
+      await driver.wait(until.elementLocated(By.id('feedback-response-message')))
     );
     await driver.quit();
   }
