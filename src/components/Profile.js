@@ -110,12 +110,18 @@ const Profile = ({
           {type === 'taxpayer' && (
             <section className='profile-next-tax-payment'>
               <strong>Next tax payment date</strong>
-              <p>{nextpaymentData.nextDate.split('T')[0]}</p>
+              <p>
+                {nextpaymentData.nextDate
+                  ? nextpaymentData.nextDate.split('T')[0]
+                  : '----/--/--'}
+              </p>
               <strong>Days remaining</strong>
               <p>
-                {nextpaymentData.days > 1
-                  ? `${nextpaymentData.days} days`
-                  : `${nextpaymentData.days} day`}
+                {nextpaymentData.days
+                  ? nextpaymentData.days > 1
+                    ? `${nextpaymentData.days} days`
+                    : `${nextpaymentData.days} day`
+                  : '----'}
               </p>
             </section>
           )}

@@ -105,37 +105,67 @@ const Rating = () => {
           <section className='stars'>
             <section className='star star-1'>
               {starOne ? (
-                <TiStarFullOutline onClick={() => starOneClickHandler()} />
+                <TiStarFullOutline
+                  id='one-star--full'
+                  onClick={() => starOneClickHandler()}
+                />
               ) : (
-                <TiStarOutline onClick={() => starOneClickHandler()} />
+                <TiStarOutline
+                  id='one-star'
+                  onClick={() => starOneClickHandler()}
+                />
               )}
             </section>
             <section className='star star-2'>
               {starTwo ? (
-                <TiStarFullOutline onClick={() => starTwoClickHandler()} />
+                <TiStarFullOutline
+                  id='two-star--full'
+                  onClick={() => starTwoClickHandler()}
+                />
               ) : (
-                <TiStarOutline onClick={() => starTwoClickHandler()} />
+                <TiStarOutline
+                  id='two-star'
+                  onClick={() => starTwoClickHandler()}
+                />
               )}
             </section>
             <section className='star star-3'>
               {starThree ? (
-                <TiStarFullOutline onClick={() => starThreeClickHandler()} />
+                <TiStarFullOutline
+                  id='three-star--full'
+                  onClick={() => starThreeClickHandler()}
+                />
               ) : (
-                <TiStarOutline onClick={() => starThreeClickHandler()} />
+                <TiStarOutline
+                  id='three-star'
+                  onClick={() => starThreeClickHandler()}
+                />
               )}
             </section>
             <section className='star star-4'>
               {starFour ? (
-                <TiStarFullOutline onClick={() => starFourClickHandler()} />
+                <TiStarFullOutline
+                  id='four-star--full'
+                  onClick={() => starFourClickHandler()}
+                />
               ) : (
-                <TiStarOutline onClick={() => starFourClickHandler()} />
+                <TiStarOutline
+                  id='four-star'
+                  onClick={() => starFourClickHandler()}
+                />
               )}
             </section>
             <section className='star star-5'>
               {starFive ? (
-                <TiStarFullOutline onClick={() => starFiveClickHandler()} />
+                <TiStarFullOutline
+                  id='five-star--full'
+                  onClick={() => starFiveClickHandler()}
+                />
               ) : (
-                <TiStarOutline onClick={() => starFiveClickHandler()} />
+                <TiStarOutline
+                  id='five-star'
+                  onClick={() => starFiveClickHandler()}
+                />
               )}
             </section>
           </section>

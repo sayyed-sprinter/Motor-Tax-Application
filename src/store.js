@@ -69,15 +69,18 @@ const adminProfileInfoFromStorage = localStorage.getItem('adminprofileinfo')
 const initialState = {
   taxpayer: {
     taxpayerinfo: {
-      bluebook_number: '...',
-      vehicle_number: '...',
-      engine_cc: '...',
-      province: '...',
-      lastTaxPaidOn: '...',
-      taxAmount: 2,
-      taxOverdue: '3',
-      penaltyOnOverdue: 2,
-      pollutingCharge: 0,
+      taxpayer_name: 'BDD Tester',
+      bluebook_number: 'BDD',
+      vehicle_number: 'BDD123',
+      type: 'Bike',
+      engine_cc: '300',
+      province: 'Bagmati',
+      lastTaxPaidOn: '2021/02/15',
+      taxAmount: 32000,
+      taxOverdue: '1',
+      penaltyOnOverdue: 5120,
+      pollutingCharge: 500,
+      recordId: '61260a97ea98d453549ae62d',
     },
   },
   taxpayerSignup: {
