@@ -509,13 +509,38 @@ const { delay } = require('../utils/delay');
 //     expect(
 //       await driver.wait(until.elementLocated(By.id('taxpayer-graph-SUD789')))
 //     );
+        // await driver.quit();
+//   }
+// );
+
+
+// Given(
+//   'Test Write Feedback Functionality',
+//   { timeout: 30000 },
+//   async function () {
+//     let driver = await new Builder().forBrowser('chrome').build();
+//     await driver.get('http://localhost:3000/tax-summary');
+
+//     await driver.findElement(By.id('btn-pay-tax')).click();
+
+//     await driver.findElement(By.id('message')).sendKeys('The feature is very easy to use and understand');
+
+//     await driver.findElement(By.id('feedback-form-submit')).click();
     
+//     await driver.wait(
+//       until.elementLocated(By.id('feedback-response-message')),
+//       30000
+//     );
+//     expect(
+//       await driver.wait(until.elementLocated(By.id('feedback-response-message')))
+//     );
+//     await driver.quit();
 //   }
 // );
 
 
 Given(
-  'Test Write Feedback Functionality',
+  'Test Experience Rating Functionality',
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
@@ -523,7 +548,7 @@ Given(
 
     await driver.findElement(By.id('btn-pay-tax')).click();
 
-    await driver.findElement(By.id('message')).sendKeys('The feature is very easy to use and understand');
+    await driver.findElement(By.id('four-star')).click();
 
     await driver.findElement(By.id('feedback-form-submit')).click();
     
