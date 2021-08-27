@@ -539,26 +539,52 @@ const { delay } = require('../utils/delay');
 // );
 
 
+// Given(
+//   'Test Experience Rating Functionality',
+//   { timeout: 30000 },
+//   async function () {
+//     let driver = await new Builder().forBrowser('chrome').build();
+//     await driver.get('http://localhost:3000/tax-summary');
+
+//     await driver.findElement(By.id('btn-pay-tax')).click();
+
+//     await driver.findElement(By.id('four-star')).click();
+
+//     await driver.findElement(By.id('feedback-form-submit')).click();
+    
+//     await driver.wait(
+//       until.elementLocated(By.id('feedback-response-message')),
+//       30000
+//     );
+//     expect(
+//       await driver.wait(until.elementLocated(By.id('feedback-response-message')))
+//     );
+//     await driver.quit();
+//   }
+// );
+
 Given(
-  'Test Experience Rating Functionality',
+  'Test Next Tax Payment Functionality',
   { timeout: 30000 },
   async function () {
     let driver = await new Builder().forBrowser('chrome').build();
-    await driver.get('http://localhost:3000/tax-summary');
+    await driver.get('http://localhost:3000/');
 
-    await driver.findElement(By.id('btn-pay-tax')).click();
+    await driver.findElement(By.id('nav-login')).click();
 
-    await driver.findElement(By.id('four-star')).click();
+    await driver.findElement(By.id('email')).sendKeys('m@h.com');
 
-    await driver.findElement(By.id('feedback-form-submit')).click();
-    
+    await driver.findElement(By.id('password')).sendKeys('m');
+
+    await driver.findElement(By.id('taxpayer-btn-login')).click();
+
     await driver.wait(
-      until.elementLocated(By.id('feedback-response-message')),
+      until.elementLocated(By.id('profile-next-tax-payment')),
       30000
     );
     expect(
-      await driver.wait(until.elementLocated(By.id('feedback-response-message')))
+      await driver.wait(until.elementLocated(By.id('profile-next-tax-payment')))
     );
-    await driver.quit();
+        await driver.quit();
   }
 );
