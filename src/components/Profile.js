@@ -108,7 +108,10 @@ const Profile = ({
             </section>
           </section>
           {type === 'taxpayer' && (
-            <section className='profile-next-tax-payment'>
+            <section
+              className='profile-next-tax-payment'
+              id='profile-next-tax-payment'
+            >
               <strong>Next tax payment date</strong>
               <p>
                 {nextpaymentData.nextDate
