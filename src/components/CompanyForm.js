@@ -171,6 +171,8 @@ const CompanyForm = () => {
               id='insurance_company'
               name='insurance_company'
               required
+              pattern='^[a-zA-Z ]*$'
+              title='Only text are allowed'
               value={insuranceCompany}
               onChange={(e) => setInsuranceCompany(e.target.value)}
             ></input>

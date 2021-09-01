@@ -2699,7 +2699,16 @@ textarea {
     margin: 0.5rem 0.15rem;
     padding: 2rem 0;
   }
+
+  .footer-text {
+    font-size: 0.8rem;
+  }
+
+  .footer-heart {
+    height: 0.6rem;
+  }
 }
+
 /*  */
 /* GRAPH */
 /*  */

@@ -21,6 +21,7 @@ const SupportForm = () => {
           idValue='name'
           classValue='input--text'
           labelName='name'
+          isRegExpValid={true}
         />
         <InputTextField
           value={email}

@@ -246,6 +246,7 @@ const SignUpScreen = ({ history }) => {
               idValue='admin-firstname'
               classValue='input--text'
               labelName='Firstname'
+              isRegExpValid={true}
             />
             <InputTextField
               value={lastname}
@@ -253,6 +254,7 @@ const SignUpScreen = ({ history }) => {
               idValue='admin-lastname'
               classValue='input--text'
               labelName='Lastname'
+              isRegExpValid={true}
             />
           </section>
         ) : (
@@ -263,6 +265,7 @@ const SignUpScreen = ({ history }) => {
               idValue='taxpayer-name'
               classValue='input--text'
               labelName='Taxpayer Name'
+              isRegExpValid={true}
             />
             <InputTextField
               value={bluebookNumber}
